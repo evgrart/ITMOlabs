@@ -1,0 +1,57 @@
+\documentclass[14pt,final,oneside]{article}% класс документа, характеристики
+%>>>>> Разметка документа
+\usepackage[a4paper, mag=1000, left=3cm, right=1.5cm, top=2cm, bottom=2cm, headsep=0.7cm, footskip=1cm]{geometry} % По ГОСТу: left>=3cm, right=1cm, top=2cm, bottom=2cm,
+\linespread{1} % межстройчный интервал по ГОСТу := 1.5
+%<<<<< Разметка документа
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[english, russian]{babel}
+\usepackage{amsmath, amsfonts, amssymb, amssymb, amsthm, mathtools}
+\usepackage{geometry}
+\usepackage{colortbl} % таблички
+\usepackage{listings} % листинг
+\usepackage{dcolumn} % выравнивание чисел
+\usepackage[normalem]{ulem} % для подчёркиваний uline
+\ULdepth = 0.16em % расстояние от линии до текста выше/ниже
+\lstset{basicstyle=\ttfamily\normalsize}  
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{float}
+\lstset{
+    language=Java,
+    numbers=left,                    % Нумерация строк слева
+    stepnumber=1,                    % Каждая строка нумеруется
+    numbersep=5pt,                   % Отступ от кода до номеров строк
+    showspaces=false,                % Не показывать пробелы
+    showstringspaces=false,          % Не показывать пробелы в строках
+    tabsize=4,                       % Размер табуляции
+    frame=single
+    breaklines=true,                 % Перенос строк
+    breakatwhitespace=false,         % Переносить строки по пробелам
+    basicstyle=\ttfamily,            % Шрифт текста
+    keywordstyle=\color{blue},       % Цвет ключевых слов
+    commentstyle=\color{green},      % Цвет комментариев
+    stringstyle=\color{red},         % Цвет строковых литералов
+}
+\usepackage{titlesec}
+\titleformat{\section}
+{\LARGE\bfseries}
+{\thesection}{15pt}{} 
+\usepackage{fancyhdr}
+\theoremstyle{theorem}
+\newtheorem{theorem}{Теорема}
+\newtheorem{lemma}{Лемма}
+\renewcommand{\thesection}{\arabic{section}.}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}.}
+\usepackage{tocloft}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftsecfont}{\Large\bfseries} 
+\renewcommand{\cfttoctitlefont}{\LARGE\bfseries}
+\newcommand{\lr}[1]{\left( {#1} \right)}
+\usepackage{hyperref} % гиперссылки
+\hypersetup{
+    colorlinks=true,        % Включаем цветные ссылки
+    linkcolor=blue!50!black, % Цвет внутренних ссылок (например, на разделы)
+    urlcolor=blue!50!black,  % Цвет URL-ссылок
+    citecolor=blue!50!black, % Цвет ссылок на библиографию
+}

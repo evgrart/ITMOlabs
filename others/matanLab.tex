@@ -1,0 +1,110 @@
+\input{preambula_questions}
+\begin{document}
+\hspace{1cm}
+\thispagestyle{empty}
+\begin{center}
+\LARGE{Университет ИТМО} 
+\vspace{20pt}
+
+\LARGE{Факультет программной инженерии и компьютерной техники \\
+Образовательная программа системное и прикладное программное обеспечение}
+\vspace{160pt}
+
+\LARGE{Лабораторная работа  \textnumero 1 \\
+По дисциплине "Математический анализ" \\ 
+Вариант 26}
+\vspace{120pt}
+\end{center}
+
+\begin{flushright}
+\LARGE{Выполнил студент группы P3109 \\ 
+Евграфов Артём Андреевич (ISU: 465826)}
+\vspace{120pt}
+\end{flushright}
+
+\begin{center}
+\Large{Санкт-Петербург 2024}
+\end{center}
+
+\newpage
+\setcounter{page}{1}
+\Large
+\noindent Изначально в варианте 26 мне была дана функция $f(x)=\ln{\frac{1+x}{1-x}} + \frac{1}{x}$, однако она не имеет действительных корней. Докажем это. \\
+$D(f(x))=(-1; 1)$, заметим, что $f(x)=-f(-x)\text{, так как } f(-x)=\ln{\frac{1-x}{1+x}}-\frac{1}{x}=\ln{((\frac{1+x}{1-x})^{-1})} - \frac{1}{x} = -(\ln{\frac{1+x}{1-x}} + \frac{1}{x}) = -f(x)$, те $f(x)$ - нечётная ф-ция. Рассмотрим $x \in (0; 1)$. \\
+Найдем производную функции:
+\[
+f(x) = \ln\left(\frac{1+x}{1-x}\right) + \frac{1}{x}
+\]
+
+\noindent Воспользуемся правилом дифференцирования. Производная суммы равна сумме производных:
+
+\[
+f'(x) = \frac{d}{dx}\left[\ln\left(\frac{1+x}{1-x}\right)\right] + \frac{d}{dx}\left[\frac{1}{x}\right]
+\]
+
+\noindent Для первой части:
+\[
+\frac{d}{dx}\left[\ln\left(\frac{1+x}{1-x}\right)\right] = \frac{1}{\frac{1+x}{1-x}} \cdot \frac{d}{dx}\left[\frac{1+x}{1-x}\right]
+\]
+\[
+\frac{d}{dx}\left[\frac{1+x}{1-x}\right] = \frac{(1-x) - (1+x)(-1)}{(1-x)^2} = \frac{1-x+1+x}{(1-x)^2} = \frac{2}{(1-x)^2}
+\]
+Подставляем:
+\[
+\frac{1}{\frac{1+x}{1-x}} \cdot \frac{2}{(1-x)^2} = \frac{(1-x)}{(1+x)} \cdot \frac{2}{(1-x)^2} = \frac{2}{(1+x)(1-x)}
+\]
+
+\noindent Для второй части:
+\[
+\frac{d}{dx}\left[\frac{1}{x}\right] = -\frac{1}{x^2}
+\]
+
+\noindent Итак, производная:
+\[
+f'(x) = \frac{2}{(1+x)(1-x)} - \frac{1}{x^2} = \frac{3x^2-1}{x^2(1-x^2)}.
+\]
+
+\noindent Заметим, что при заданных х знаменатель производной строго больше 0, а чиститель равен 0 при $x = \frac{\sqrt{3}}{3}$, причём при $x < \frac{\sqrt{3}}{3}: \: f'(x) < 0 \text{, а при } x > \frac{\sqrt{3}}{3}: \: f'(x) > 0$, значит $x = \frac{\sqrt{3}}{3}$ - точка минимума функции при х из интервала $(0; 1)$, значит $\forall x \in D(f(x)) \: |{f(x)|} \geq f(\frac{\sqrt{3}}{3}) = \ln{(2+\sqrt{3})} + \sqrt{3} > 0$. Это доказывает, что действительных корней нет. \\
+Вследствие того, что у предложенной для 26 варианта функции нет действительных корней, в дальнейшем я буду рассматривать функцию из 9 варианта. 
+\newpage
+Рассмотрим $f(x) = x^3 - 3x - 2e^{-x}$. $D(f(x)) = \mathbb{R}$
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\linewidth]{image.png}
+    \caption{График $y = f(x)$}
+\end{figure}
+\noindent График функции пересекает ось Оx между $x=1$ и $x=2$. \\
+Проверим удовлетворение условий теоремы Больцано-Коши: \\
+$f(1) = 1 - 3 - 2e^{-1} \approx -2.73576$; \\
+$f(2) = 2^3 - 3\cdot2 - 2e^{-2} \approx 1.72933$; \\
+$f(1)f(2)<0$, значит $\exists c: f(c) = 0$. \\
+Программа на языке программирования Python, которая позволяет находить корень с точностью $10^{-17}$: 
+\begin{lstlisting}
+from math import *
+from decimal import *
+
+def f(x):
+    x = Decimal(str(x))
+    return x ** Decimal("3") - Decimal("3") * x - Decimal("2") * Decimal(str(pow((e), (-x))))
+
+def bisect(l, r, eps):
+    mid = (l + r) / 2
+    while (abs(f(mid)) > eps):
+        if (f(mid) > 0):
+            r = mid
+        else:
+            l = mid
+        mid = (l + r) / 2
+    return (r + l) / 2
+
+
+print(bisect(Decimal(1), Decimal(2),
+             Decimal(str(10 ** (-17)))))
+\end{lstlisting}
+Программа выводит результат: 1.785461454619108521285619772; \\
+Результат, выводимый WolframAlpha: 1.78546145461910852128561977296418336576. \\
+Вывод: \\
+В ходе лабораторной работы я научился приблизительно находить корни уравнения $f(x)=0$, используя метод бисекций.
+\end{document}
+
+\end{document}

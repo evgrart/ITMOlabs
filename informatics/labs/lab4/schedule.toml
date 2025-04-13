@@ -1,0 +1,56 @@
+even_week = false
+current_week_number = 11
+
+[[schedule.wednesday]]
+wednesday.number_lesson = 1
+wednesday.subject = "Informatics"
+wednesday.type = "Lecture"
+wednesday.classroom = "1216/0"
+wednesday.time = "8:20-9:50"
+wednesday.teacher = "Balakshin Pavel Valerievish"
+wednesday.building = "Lomo"
+
+[[schedule.wednesday]]
+wednesday.number_lesson = 2
+wednesday.subject = "OPD"
+wednesday.type = "Lecture"
+wednesday.classroom = "1216/0"
+wednesday.time = "10:00-11:30"
+wednesday.teacher = "Klimenkov Sergey Viktorovich"
+wednesday.building = "Lomo"
+
+[[schedule.wednesday]]
+wednesday.number_lesson = 3
+wednesday.subject = "Lapta"
+wednesday.type = "Sport"
+wednesday.classroom = 4405
+wednesday.time = "11:40-13:10"
+wednesday.teacher = "Trifonov Vladislav Olegovich"
+wednesday.building = "Lomo"
+
+[[schedule.friday]]
+friday.number_lesson = 1
+friday.subject = "Matan"
+friday.type = "Practice"
+friday.classroom = 2316
+friday.time = "8:20-9:50"
+friday.teacher = "Bagmutov Alexander Sergeevich"
+friday.building = "Kronva"
+
+[[schedule.friday]]
+friday.number_lesson = 2
+friday.subject = "Matan"
+friday.type = "Practice"
+friday.classroom = 2316
+friday.time = "10:00-11:30"
+friday.teacher = "Bagmutov Alexander Sergeevich"
+friday.building = "Kronva"
+
+[[schedule.friday]]
+friday.number_lesson = 3
+friday.subject = "Tennis"
+friday.type = "Sport"
+friday.classroom = 4403
+friday.time = "15:20-16:50"
+friday.teacher = "Doroginsky Vladislav Vyacheslavovich"
+friday.building = "Lomo"

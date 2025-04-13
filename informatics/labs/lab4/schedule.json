@@ -1,0 +1,64 @@
+{
+  "even_week": false,
+  "current_week_number": 11,
+  "schedule": {
+    "wednesday": [
+      {
+        "number_lesson": 1,
+        "subject": "Informatics",
+        "type": "Lecture",
+        "classroom": "1216/0",
+        "time": "8:20-9:50",
+        "teacher": "Balakshin Pavel Valerievish",
+        "building": "Lomo"
+      },
+      {
+        "number_lesson": 2,
+        "subject": "OPD",
+        "type": "Lecture",
+        "classroom": "1216/0",
+        "time": "10:00-11:30",
+        "teacher": "Klimenkov Sergey Viktorovich",
+        "building": "Lomo"
+      },
+      {
+        "number_lesson": 3,
+        "subject": "Lapta",
+        "type": "Sport",
+        "classroom": 4405,
+        "time": "11:40-13:10",
+        "teacher": "Trifonov Vladislav Olegovich",
+        "building": "Lomo"
+      }
+    ],
+    "friday": [
+      {
+        "number_lesson": 1,
+        "subject": "Matan",
+        "type": "Practice",
+        "classroom": 2316,
+        "time": "8:20-9:50",
+        "teacher": "Bagmutov Alexander Sergeevich",
+        "building": "Kronva"
+      },
+      {
+        "number_lesson": 2,
+        "subject": "Matan",
+        "type": "Practice",
+        "classroom": 2316,
+        "time": "10:00-11:30",
+        "teacher": "Bagmutov Alexander Sergeevich",
+        "building": "Kronva"
+      },
+      {
+        "number_lesson": 3,
+        "subject": "Tennis",
+        "type": "Sport",
+        "classroom": 4403,
+        "time": "15:20-16:50",
+        "teacher": "Doroginsky Vladislav Vyacheslavovich",
+        "building": "Lomo"
+      }
+    ]
+  }
+}

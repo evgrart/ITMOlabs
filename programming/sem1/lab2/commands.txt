@@ -1,0 +1,2 @@
+javac -cp Pokemon.jar -sourcepath . -d out mypokemons/*.java mymoves/*/*.java Fight.java - компилируем 
+jar cfm Lab2.jar MANIFEST.MF -C out . Fight.class - создаем jar-ник

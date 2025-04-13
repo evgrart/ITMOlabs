@@ -1,0 +1,62 @@
+[2025-03-25 18:00:00] [INFO ] Server started on port 8080
+[2025-03-25 18:00:09] [INFO ] New client connected: /127.0.0.1:59568
+[2025-03-25 18:00:09] [INFO ] Server received something
+[2025-03-25 18:01:29] [INFO ] Client /127.0.0.1:59568 has disconected
+[2025-03-25 18:01:29] [INFO ] Коллекция записана в json
+[2025-03-25 18:01:34] [INFO ] New client connected: /127.0.0.1:53454
+[2025-03-25 18:01:34] [INFO ] Server received something
+[2025-03-25 18:04:04] [INFO ] Client /127.0.0.1:53454 has disconected
+[2025-03-25 18:04:04] [INFO ] Коллекция записана в json
+[2025-03-25 18:04:07] [INFO ] New client connected: /127.0.0.1:54032
+[2025-03-25 18:04:07] [INFO ] Server received something
+[2025-03-25 18:04:28] [INFO ] Client /127.0.0.1:54032 has disconected
+[2025-03-25 18:04:28] [INFO ] Коллекция записана в json
+[2025-03-25 18:04:30] [INFO ] New client connected: /127.0.0.1:34128
+[2025-03-25 18:04:30] [INFO ] Server received something
+[2025-03-25 18:05:08] [INFO ] Client /127.0.0.1:34128 has disconected
+[2025-03-25 18:05:08] [INFO ] Коллекция записана в json
+[2025-03-25 18:05:10] [INFO ] New client connected: /127.0.0.1:59298
+[2025-03-25 18:05:10] [INFO ] Server received something
+[2025-03-25 18:26:28] [INFO ] Server started on port 8080
+[2025-03-25 19:04:17] [INFO ] Address already in use
+[2025-03-25 19:04:30] [INFO ] Address already in use
+[2025-03-25 19:04:34] [INFO ] Address already in use
+[2025-03-25 19:04:54] [INFO ] Server started on port 8081
+[2025-03-25 19:05:17] [INFO ] New client connected: /127.0.0.1:60714
+[2025-03-25 19:05:18] [INFO ] Server received something
+[2025-03-25 19:05:27] [INFO ] Server received something
+[2025-03-25 19:05:33] [INFO ] Server received something
+[2025-03-25 19:13:52] [INFO ] Server started on port 8081
+[2025-03-25 19:13:57] [INFO ] New client connected: /127.0.0.1:40904
+[2025-03-25 19:13:58] [INFO ] Server received something
+[2025-03-25 19:14:01] [INFO ] Server received something
+[2025-03-25 19:16:09] [INFO ] Server started on port 8081
+[2025-03-25 19:16:16] [INFO ] New client connected: /127.0.0.1:43992
+[2025-03-25 19:16:16] [INFO ] Server received something
+[2025-03-25 19:16:19] [INFO ] Server received something
+[2025-03-25 19:16:39] [INFO ] Server started on port 8081
+[2025-03-25 19:16:40] [INFO ] New client connected: /127.0.0.1:34324
+[2025-03-25 19:16:48] [INFO ] Ошибка: файл не существует.
+[2025-03-25 19:17:43] [INFO ] Server started on port 8081
+[2025-03-25 19:17:47] [INFO ] New client connected: /127.0.0.1:49220
+[2025-03-25 19:17:47] [INFO ] Server received something
+[2025-03-25 19:17:53] [INFO ] Server received something
+[2025-03-25 19:17:55] [INFO ] Server received something
+[2025-03-25 19:18:15] [INFO ] Server started on port 8081
+[2025-03-25 19:18:15] [INFO ] New client connected: /127.0.0.1:56852
+[2025-03-25 19:18:39] [INFO ] Ошибка: файл не существует.
+[2025-03-25 19:27:27] [INFO ] Server started on port 8081
+[2025-03-25 19:27:29] [INFO ] New client connected: /127.0.0.1:53514
+[2025-03-25 19:27:29] [INFO ] Server received something
+[2025-03-25 19:27:34] [INFO ] Server received something
+[2025-03-25 19:27:37] [INFO ] Server received something
+[2025-03-25 19:28:02] [INFO ] Client /127.0.0.1:53514 has disconected
+[2025-03-25 19:28:02] [INFO ] Коллекция записана в json
+[2025-03-25 19:28:04] [INFO ] New client connected: /127.0.0.1:53924
+[2025-03-25 19:28:05] [INFO ] Server received something
+[2025-03-25 19:28:12] [INFO ] Server started on port 8081
+[2025-03-25 19:28:24] [INFO ] New client connected: /127.0.0.1:34218
+[2025-03-25 19:28:24] [INFO ] Server received something
+[2025-03-25 19:28:31] [INFO ] Server received something
+[2025-03-26 00:33:59] [INFO ] Client /127.0.0.1:34218 has disconected
+[2025-03-26 00:33:59] [INFO ] Коллекция записана в json

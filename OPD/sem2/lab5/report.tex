@@ -1,0 +1,313 @@
+\input{preambula_labs}
+\begin{document}
+\thispagestyle{empty}
+\begin{center}
+\LARGE{Университет ИТМО} 
+\vspace{20pt}
+
+\LARGE{Факультет программной инженерии и компьютерной техники \\
+Образовательная программа системное и прикладное программное обеспечение}
+\vspace{160pt}
+
+\LARGE{Лабораторная работа  \textnumero 5 \\
+По дисциплине "Основы профессиональной деятельности" \\ 
+Вариант 9500}
+\vspace{120pt}
+\end{center}
+
+\begin{flushright}
+\LARGE{Выполнил студент группы P3109 \\ 
+Евграфов Артём Андреевич \\
+Проверила: \\
+Ткешелашвили Нино Мерабиевна}
+\vspace{120pt}
+\end{flushright}
+
+\begin{center}
+\Large{Санкт-Петербург 2025}
+\end{center}
+
+\newpage
+\setcounter{page}{1}
+\tableofcontents
+\newpage
+\section{Задание варианта 9500}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{P1O.png}
+\end{figure}
+\section{Описание программы}
+\begin{longtable}{|>{\centering\arraybackslash}p{1cm}|>{\centering\arraybackslash}p{2cm}|>{\centering\arraybackslash}p{3cm}|>{\arraybackslash}p{9cm}|}
+\hline
+Адрес & Содержимое & Мнемоника & Комментарии \\
+\hline
+\endfirsthead
+
+\hline
+Адрес & Содержимое & Мнемоника & Комментарии \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+28B & 05CD & ADR & Ячейка для инкрементирования адреса результата  \\\hline
+28C & 0200 & CLA & 0000 -> AC \\\hline
+\rowcolor{yellow}
+28D & 1205 & IN 5 & Ввод содержимого SR ВУ2 в 6-й бит AC \\\hline
+\rowcolor{yellow}
+28E & 2F40 & AND \#40 & Проверяем условие "6-й бит AC = 1"  \\\hline
+\rowcolor{yellow}
+28F & F0FD & BZS (IP - 3) & Переход на 0x28D, если 6-й бит = 0 (Z == 1) \\\hline
+\rowcolor{green}
+290 & 1204 & IN 4 & Ввод содержимого DR ВУ2 в младший байт AC \\\hline
+\rowcolor{green}
+291 & 7F0A & CMP \#0A & Сравнение AC со стоп-символом 0A \\\hline
+\rowcolor{green}
+292 & F00B & BZS (IP + 11) & Переход на 0x29E, если Z == 1 \\\hline
+293 & 0680 & SWAB & Свап байтов AC \\\hline
+294 & E8F6 & ST (IP - 10) & Сохранение первого символа по адресу из ячейки 0x28B  \\\hline
+\rowcolor{yellow}
+295 & 1205 & IN 5 & Ввод содержимого SR ВУ2 в 6-й бит AC \\\hline
+\rowcolor{yellow}
+296 & 2F40 & AND \#40 & Проверяем условие "6-й бит AC = 1" (старший байт затирается из-за расширения знака)  \\\hline
+\rowcolor{yellow}
+297 & F0FD & BZS (IP - 3) & Переход на 0x294, если 6-й бит = 0 (Z == 1) \\\hline
+\rowcolor{green}
+298 & 1204 & IN 4 & Ввод содержимого DR ВУ2 в младший байт AC \\\hline
+\rowcolor{green}
+299 & 7F0A & CMP \#0A & Сравнение AC со стоп-символом 0A \\\hline
+\rowcolor{green}
+29A & F005 & BZS (IP + 5) & Переход на 0x29E, если Z == 1 \\\hline
+29B & 48EF & ADD (IP - 17) & Теперь в AC хранится СИМВ1 СИМВ2 \\\hline
+29C & EAEE & ST (IP - 18)+ & Сохранение второго символа по адресу из ячейки 0x28B и увеличение значения ячейки на 1 \\\hline
+29D & CEED & JUMP (IP - 18) & Переход на адрес 0x28D (если все окей, продолжаем считывать)  \\\hline
+29E & 0680 & SWAB & Свап байтов АС (так как 0A должен быть слева) \\\hline
+29F & CE01 & JUMP (IP + 1) & Переходим на 0x2A0  \\\hline
+2A0 & 48EA & ADD (IP - 22) & Теперь в AC хранится СИМВ1 СИМВ2=0A \\\hline
+2A1 & E8E9 & ST (IP - 23) & Сохранение результата с символом 0A  \\\hline 
+2A2 & 0100 & HLT & остановка программы \\\hline 
+ \rowcolor{red}
+5CD & 0000 & RES & Ячейка для сохранения символа слова (дальше инкрементируется) 
+\end{longtable}
+\section{ОП и ОДЗ исходных данных и результата}
+\subsection{Область представления}
+RES - 16-разрядная ячейка для сохранения 2-х символов. Старший байт - код первого символа, младший байт - код второго символа. \\
+ADR - 11-разрядное беззнаковое число. Ячейка для хранения адреса начала символов кода.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{KOI.png}
+\end{figure}
+\subsection{Область определения}
+8-ричный код символа $\in [\text{0x20}; \text{0xFF}\textbackslash\{0x7\text{F}\}]$. \\
+Максимально возможное количество символов для ввода = 1126.\\
+$(2047(0x7FF_{16}) - 1484(0x5CD_{16}))\cdot2 =1126$
+\section{Трассировка программы} 
+Слово для трассировки: СМЕСЬ. \\
+Слово в кодировке КОИ-8: F3 ED E5 F3 F8. \\
+Слово в кодировке UTF-8 (BE):  D0A1 D09C D095 D0A1 D0AC\\
+Слово в кодировке UTF-16 (BE): 0421 041C 0415 0421 042C \\
+Таблица трассировки первых двух символов слова СМЕСЬ:
+\begin{longtable}{|*{12}{>{\ttfamily}r|}}
+\hline
+\textbf{Адр} & \textbf{Знчн} & \textbf{IP} & \textbf{CR} & \textbf{AR} & \textbf{DR} & \textbf{SP} & \textbf{BR} & \textbf{AC} & \textbf{NZVC} & \textbf{Адр} & \textbf{Знчн} \\\hline
+28B & 05CD & 28B & 0000 & 000 & 0000 & 000 & 0000 & 0000 & 0100 &  & \\\hline
+28B & 05CD & 28C & 05CD & 28B & 05CD & 000 & 028B & 0000 & 0100 &  & \\\hline
+28C & 0200 & 28D & 0200 & 28C & 0200 & 000 & 028C & 0000 & 0100 &  & \\\hline
+28D & 1205 & 28E & 1205 & 28D & 1205 & 000 & 028D & 0040 & 0100 &  & \\\hline
+28E & 2F40 & 28F & 2F40 & 28E & 0040 & 000 & 0040 & 0040 & 0000 &  & \\\hline
+28F & F0FD & 290 & F0FD & 28F & F0FD & 000 & 028F & 0040 & 0000  &  & \\\hline
+290 & 1204 & 291 & 1204 & 290 & 1204 & 000 & 0290 & 00F3 & 0000 &  & \\\hline
+291 & 7F0A & 292 & 7F0A & 291 & 000A & 000 & 000A & 00F3 & 0001 &  & \\\hline
+292 & F00B & 293 & F00B & 292 & F00B & 000 & 0292 & 00F3 & 0001 &  & \\\hline
+293 & 0680 & 294 & 0680 & 293 & 0680 & 000 & 0293 & F300 & 1001 &  & \\\hline
+294 & E8F6 & 295 & E8F6 & 5CD & F300 & 000 & FFF6 & F300 & 1001 & 5CD & F300 \\\hline
+295 & 1205 & 296 & 1205 & 295 & 1205 & 000 & 0295 & F300 & 1001 &  & \\\hline
+296 & 2F40 & 297 & 2F40 & 296 & 0040 & 000 & 0040 & 0000 & 0101 &  & \\\hline
+297 & F0FD & 295 & F0FD & 297 & F0FD & 000 & FFFD & 0000 & 0101 &  & \\\hline
+295 & 1205 & 296 & 1205 & 295 & 1205 & 000 & 0295 & 0040 & 0101 &  & \\\hline
+296 & 2F40 & 297 & 2F40 & 296 & 0040 & 000 & 0040 & 0040 & 0001 &  & \\\hline
+297 & F0FD & 298 & F0FD & 297 & F0FD & 000 & 0297 & 0040 & 0001 &  & \\\hline
+298 & 1204 & 299 & 1204 & 298 & 1204 & 000 & 0298 & 00ED & 0001 &  & \\\hline
+299 & 7F0A & 29A & 7F0A & 299 & 000A & 000 & 000A & 00ED & 0001 &  & \\\hline
+29A & F005 & 29B & F00B & 29A & F00B & 000 & 029A & 00ED & 0001 &  & \\\hline
+29B & 48EF & 29C & 48EF & 5CD & F300 & 000 & FFEF & F3ED & 1000 &  & \\\hline
+29C & EAEE & 29D & EAEE & 5CD & F3ED & 000 & FFEE & F3ED & 1000 & 28B & 05CE  \\\hline
+& & & & & & & & & & 5CD & F3ED \\\hline
+29D & CEEF & 28D & CEEF & 29D & 028D & 000 & FFEF & F3ED & 1000 & & \\\hline
+28D & 1205 & 28E & 1205 & 28D & 1205 & 000 & 028D & F340 & 1000 &  & \\\hline
+28E & 2F40 & 28F & 2F40 & 28E & 0040 & 000 & 0040 & 0040 & 0000 &  & \\\hline
+28F & F0FD & 290 & F0FD & 28F & F0FD & 000 & 028F & 0040 & 0000 &  & \\\hline
+290 & 1204 & 291 & 1204 & 290 & 1204 & 000 & 0290 & 000A & 0000 &  & \\\hline
+291 & 7F0A & 292 & 7F0A & 291 & 000A & 000 & 000A & 000A & 0101 &  & \\\hline
+292 & F00B & 29E & F00B & 292 & F00B & 000 & 000B & 000A & 0101 &  & \\\hline
+29E & 0680 & 29F & 0680 & 29E & 0680 & 000 & 029E & 0A00 & 0001 &  & \\\hline
+29F & CE01 & 2A1 & CE01 & 29F & 02A1 & 000 & 0001 & 0A00 & 0001 &  & \\\hline
+2A1 & E8E9 & 2A2 & E8E9 & 5CE & 0A00 & 000 & FFE9 & 0A00 & 0001 & 5CE & 0A00 \\\hline
+2A2 & 0100 & 2A3 & 0100 & 2A2 & 0100 & 000 & 02A2 & 0A00 & 0001 &  & \\\hline
+\end{longtable}
+
+\section{Дополнительное задание}
+С ВУ-8 (клавиатура) вводится строка, enter - завершение ввода. После окончания ввода, на ВУ-5 (принтер) вывести коды символов в 16-ричной системе счисления через пробел. Кодировка любая.
+\begin{lstlisting}
+ORG 0x000
+ADR: WORD $RES
+COUNTER: WORD 0x0000
+
+BEGIN: CLA
+
+READ: IN 0x19
+      AND #0x40
+      BZS READ
+      IN 0x18
+      CMP #0x0A
+      BZS SAVE
+      ST (ADR)+
+      LD COUNTER
+      INC
+      ST COUNTER
+      JUMP READ
+
+SAVE: CLA
+      LD COUNTER
+      CMP #0x00 
+      BZS EXIT
+      JUMP START_WRITING
+
+START_WRITING: CLA
+      IN 0xD
+      AND #0x40
+      BZS START_WRITING
+      LD ADR
+      SUB COUNTER
+      ST ADR
+      JUMP WRITE
+
+WRITE: CLA
+      LD (ADR)
+      ASR
+      ASR
+      ASR
+      ASR
+      PUSH
+      CALL FUNC
+      POP
+      OUT 0xC
+      LD (ADR)+
+      AND #0x0F
+      PUSH
+      CALL FUNC
+      POP
+      OUT 0xC
+      LD #0x9A
+      OUT 0xC
+      LOOP COUNTER
+      JUMP WRITE
+      HLT        
+
+FUNC: LD &1
+      CMP #0x00
+      BZS SET_0
+      CMP #0x01
+      BZS SET_1
+      CMP #0x02
+      BZS SET_2
+      CMP #0x03
+      BZS SET_3
+      CMP #0x04
+      BZS SET_4
+      CMP #0x05
+      BZS SET_5
+      CMP #0x06
+      BZS SET_6
+      CMP #0x07
+      BZS SET_7
+      CMP #0x08
+      BZS SET_8
+      CMP #0x09
+      BZS SET_9
+      CMP #0x0A
+      BZS SET_A
+      CMP #0x0B
+      BZS SET_B
+      CMP #0x0C
+      BZS SET_C
+      CMP #0x0D
+      BZS SET_D
+      CMP #0x0E
+      BZS SET_E
+      CMP #0x0F
+      BZS SET_F  
+        
+SET_0:  LD #0x30
+        ST &1
+        RET
+        
+SET_1:  LD #0x31
+        ST &1
+        RET
+        
+SET_2:  LD #0x32
+        ST &1
+        RET
+        
+SET_3:  LD #0x33
+        ST &1
+        RET
+        
+SET_4:  LD #0x34
+        ST &1
+        RET
+        
+SET_5:  LD #0x35
+        ST &1
+        RET
+        
+SET_6:  LD #0x36
+        ST &1
+        RET
+        
+SET_7:  LD #0x37
+        ST &1
+        RET
+        
+SET_8:  LD #0x38
+        ST &1
+        RET
+        
+SET_9:  LD #0x39
+        ST &1
+        RET
+        
+SET_A:  LD #0x41
+        ST &1
+        RET
+        
+SET_B:  LD #0x42
+        ST &1
+        RET
+        
+SET_C:  LD #0x43
+        ST &1
+        RET
+        
+SET_D:  LD #0x44
+        ST &1
+        RET
+        
+SET_E:  LD #0x45
+        ST &1
+        RET
+        
+SET_F:  LD #0x46
+        ST &1
+        RET
+          
+ORG 0x2CD
+RES: WORD 0x0000
+\end{lstlisting}
+\section{Вывод}
+В ходе выполнения данной лабораторной работы я научился работать с ВУ-2, освоил команды ввода-вывода, а также познакомился с синтаксисом ассемблера БЭВМ-NG.
+\end{document}

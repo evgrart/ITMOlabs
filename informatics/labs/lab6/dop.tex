@@ -1,0 +1,25 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{lindenmayersystems}
+
+\tikzset{
+  Koch curve/.style = {
+    l-system={ % Задаём параметры системы Линдемейера
+      rule set={F -> F-F++F-F}, % Правило для фрактала 
+      axiom=F++F++F, % Начальное состояние
+      step=1pt, % Длина каждого шага
+      angle=60, % Угол поворота
+      #1 % Подставляем значение угла из 21 строки
+    }
+  }
+}
+
+\begin{document}
+
+\foreach \order in {1,...,6} {
+    \begin{tikzpicture}
+      \draw[Koch curve={order=\order, step=300pt/3^\order}] l-system -- cycle;
+    \end{tikzpicture}
+}
+
+\end{document}

@@ -1,0 +1,106 @@
+\input{preambula_labs}
+
+\begin{document}
+\thispagestyle{empty}
+\begin{center}
+\LARGE{Университет ИТМО} 
+\vspace{20pt}
+
+\vspace{180pt}
+
+\LARGE{Численное интегрирование \\
+Евграфов Артём, 465826, P3109\\ 
+Вариант 18 \\}
+\vspace{335pt}
+\end{center}
+
+\begin{center}
+\Large{Санкт-Петербург 2025}
+\end{center}
+
+\newpage
+\setcounter{page}{1}
+\noindent Вычислить приближённо интеграл с погрешностью $\epsilon = 0,00001$  методами: прямоугольников, трапеций, Симпсона. 
+\[\int_{\frac{\pi}{4}}^{\frac{\pi}{2}} \ln(\sin{x}) \; dx\] \\
+
+\noindent \textbf{Метод прямоугольников} \\
+\(f'(x) = \cot{x}\) - производная непрерывна на отрезке, можно воспользоваться оценкой погрешности: \(\displaystyle |\Delta| \leq \frac{(b-a)}{4} h \sup_{x \in[\frac{\pi}{4}, \frac{\pi}{2}]} |f'(x)|.\) \\
+\(\displaystyle \sup_{x \in [\frac{\pi}{2},\frac{\pi}{4}]} |f'(x)| = f'(\frac{\pi}{4}) = 1\), так как $f'(x)$ - убывающая функция на отрезке. \\
+$|\Delta| \leq \frac{\pi}{16}h, \; \frac{16|\Delta|}{\pi} \leq h$, значит, чтобы получить погрешность меньше 0,00001, нужно выбрать такой h
+$h \leq \frac{16 \cdot 0.00001}{\pi} \approx 0.000050929$.
+Пусть $h = 0.00005, $ так как $h = \frac{b - a}{n}$, то $n \approx 15708$. \\
+Пусть $x_i = \left(i + \frac{1}{2} \right)h$, где $0 \leq i \leq n - 1$. \\
+\[\int_{\frac{\pi}{4}}^{\frac{\pi}{2}} \ln(\sin{x}) \; dx \approx h\sum_{i = 0}^{n - 1}\ln{\left(\sin{\left(x_i\right)}\right)} \approx -0.08641372538311086\]
+\begin{minted}[linenos=true, frame=single, breaklines=true]{python}
+from math import pi, log, sin
+
+a = pi / 4
+b = pi / 2
+h = 0.00005
+n = int((b - a) / h)
+s = 0
+
+for i in range(n):
+    xi = a + (i + 0.5) * h
+    s += log(sin(xi))
+
+result = s * h
+print(result)
+\end{minted}
+
+\noindent \textbf{Метод трапеций} \\
+Пусть $x_i = ih$, где $0 \leq i \leq n$, тогда $\displaystyle \int_a^{b}f(x) \, dx \approx h\left(\frac{1}{2}\left(f(x_0)  + f(x_n)\right) +\sum_{i = 0}^{n - 1}f(x_i) \right)$ - формула трапеций. \\
+\(\displaystyle |\Delta| \leq \frac{(b-a)}{4} h \sup_{x \in[a,b]} |f'(x)|\). Аналогично методу прямоугольников, пусть $h = 0,00005$ и $n = 15708$. \\
+\[\displaystyle \int_{\frac{\pi}{4}}^{\frac{\pi}{2}}\ln{\left( \sin{\left( x \right)}\right)} \approx h\left(\frac{1}{2}\left(\ln{\left( \sin{\left( \frac{\pi}{2} \right)}\right)} + \ln{\left( \sin{\left( \frac{\pi}{4}\right)}\right)} \right) + \sum_{i = 0}^{n-1}{\ln{\left( \sin{\left( x_i \right)}\right)}}\right) \approx -0.08641372569556682\]
+\begin{minted}[linenos=true, frame=single, breaklines=true]{python}
+from math import pi, log, sin
+
+a = pi / 4
+b = pi / 2
+h = 0.00005
+n = int((b - a) / h)
+s = 0.5 * (log(sin(a)) + log(sin(b)))
+
+for i in range(1, n):
+    xi = a + i * h
+    s += log(sin(xi))
+
+result = s * h
+print(result)
+\end{minted}
+\textbf{Метод Симпсона}
+\[
+\int_{a}^{b} f(x) \, dx \approx \frac{h}{3} \left( f(x_0) + f(x_n) + 2 \sum_{i=1}^{m-1} f(x_{2i}) + 4 \sum_{i=1}^{m} f(x_{2i-1}) \right),
+\]
+При $n = 2m$. \\
+\(\displaystyle |\Delta| \leq \frac{5}{18}(b-a)h\sup_{x \in[a, b]} |f'(x)|\), \\
+\(|\Delta| \leq \frac{5\pi h}{72}\), \\
+\(\frac{72|\Delta|}{5\pi} \leq h\).
+Для минимизации погрешности выберем $h \leq \frac{72\cdot0.00001}{5\pi} \approx 0.0000458366.$ \\
+Пусть опять $h = 0.00005, \; h = \frac{b - a}{n} \approx 15708, \; m = 7854.$ \\
+Пусть $x_i = ih,$ где $0 \leq i \leq n$. \\
+\(\displaystyle \int_{\frac{\pi}{4}}^{\frac{\pi}{2}} \ln(\left(\sin{\left( x\right)} \right)) \; dx \approx \frac{h}{3}\left(\ln(\left(\sin{\left( \frac{\pi}{2}\right)} 
+\right)) + \ln(\left(\sin{\left( \frac{\pi}{4}\right)} \right))  + 2\sum_{i=1}^{m-1}\ln(\left(\sin{\left( {x_{2i}}\right)} \right))+ 4\sum_{i=1}^{m}\ln(\left(\sin{\left( {x_{2i-1}}\right)} \right))\right) \approx -0.0864137254870533.\)
+\begin{minted}[linenos=true, frame=single, breaklines=true]{python}
+from math import pi, log, sin
+
+a = pi / 4
+b = pi / 2
+h = 0.00005
+n = int((b - a) / h)  
+s = log(sin(a)) + log(sin(b))  
+
+for i in range(1, n // 2):
+    xi = a + 2 * i * h
+    s += 2 * log(sin(xi))
+
+for i in range(1, n // 2 + 1):
+    xi = a + (2 * i - 1) * h
+    s += 4 * log(sin(xi))
+
+result = h / 3 * s
+print(result)
+\end{minted}
+\textbf{Вывод}: точным значением интеграла является -0.08641372548729102... \\
+Наиболее точным оказался метод Симпсона (погрешность $2.3772651\cdot10^{-13}$).
+\end{document}

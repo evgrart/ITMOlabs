@@ -1,0 +1,215 @@
+\input{preambula_labs}
+
+\begin{document}
+\thispagestyle{empty}
+\begin{center}
+\LARGE{Университет ИТМО} 
+\vspace{20pt}
+
+\vspace{180pt}
+
+\LARGE{ИДЗ матан \\
+Евграфов Артём, 465826, P3109\\ 
+1 часть - вариант 3 \\
+2 часть - вариант 9 \\
+3 часть - вариант 19 \\}
+\vspace{335pt}
+\end{center}
+
+\begin{center}
+\Large{Санкт-Петербург 2025}
+\end{center}
+
+\newpage
+\setcounter{page}{1}
+\tableofcontents
+\newpage
+\section{}
+\subsection{}
+\subsubsection{}
+С помощью интеграла Римана вычислить площадь фигуры,
+ограниченной графиками функций \\
+$y=ax^2e^x, \; y=-x^3e^x$ \\
+
+
+\noindent
+$ax^2 + y^3 = - x^2e^x$   
+
+\noindent $ x = 0  \text{ и }  x = -a $ — единственные точки пересечения \\
+Значит, площадь фигуры, ограниченной графиками функций, равна: \[\int_{-a}^0 ax^2e^x +x^3e^x \; dx\ = \int_{-a}^0 ax^2e^x\; dx\ + \int_{-a}^0 x^3e^x \; dx,\]
+
+\noindent Вычислим отдельно каждый интеграл:
+\[ \int ax^2 e^x \; dx = a \int x^2e^x \; dx = a (x^2e^x - 2x e^x + 2e^x) + C,
+\]
+
+\[\int_{-a}^0 ax^2e^xdx =  2a - a(a^2e^{-a} + 2ae^{-a} + 2e^{-a}),\]
+
+\[
+\int x^3e^x \; dx = x^3e^x - 3x^2e^x + 6xe^x - 6e^x + C,
+\]  
+\[
+\int_{-a}^0 x^3e^x \; dx = -6 - (-a^3e^{-a} - 3a^2e^{-a} - 6ae^{-a} - 6e^{-a}) + C.
+\]
+ 
+\[
+\int_{-a}^0 ax^2e^x +x^3e^x \; dx = 2a - a(a^2e^{-a} + 2ae^{-a} + 2e^{-a}) - 6 + a^3e^{-a} + 3a^2e^{-a} + 6ae^{-a} + 6e^{-a} = \] 
+\[ = 2a - a^3e^{-a}-2a^2e^{-a}-2ae^{-a}-6+a^3e^{-a}+3a^2e^{-a}+6ae^{-a}+6e^{-a} = 2a - 6 + e^{-a}(a^2 + 4a + 6),
+\]  
+
+\noindent Итого:  
+\[
+S = 2a - 6 + e^{-a}(a^2 + 4a + 6).
+\]  
+\subsubsection{}
+Вычислить площадь фигуры, ограниченной графиками функций. \\
+$y=ax^2e^x, \; y=-x^3e^x$ \\
+приближённо с помощью интегральных сумм. Сравнить результаты точного и
+численного вычисления при n = 10, 100, 1000 \\
+
+\noindent Пусть $f(x) = ax^2e^x, \; g(x) = -x^3e^x$ \\
+Тогда $S \approx \sum_{i=1}^n (f(\xi_i) - g(\xi_i))\Delta_i, \text{ где } \Delta_i = \frac{a}{n} - \text{длина отрезка разбиения, а } \xi_i = -a + \frac{i}{n}a = \frac{a(i-n)}{n} - \text{выбранная на каждом отрезке точка, в которой берётся значение} f(\xi_i) - g(\xi_i).$ \\
+\[S \approx \sum_{i=1}^n \left( a\left(\frac{a(i-n)}{n}\right)^2 e^{\frac{a(i-n)}{n}} + \left(\frac{a(i-n)}{n}\right)^3 e^{\frac{a(i-n)}{n}} \right) \frac{a}{n} \\
+= \frac{a^4}{n^4} \sum_{i=1}^n e^{\frac{a(i-n)}{n}} i (i-n)^2. \]
+\begin{minted}[linenos=true, frame=single, breaklines=true]{python}
+from math import exp
+
+def calculate_approximation(n, a=1):
+    total = 0.0
+    
+    for i in range(1, n + 1):
+        deg = a * (i - n) / n
+        term = exp(deg) * i * ((i - n) ** 2)
+        total += term
+        
+    total *= (a ** 4) / (n ** 4)
+    return total
+
+result = calculate_approximation(int(input()))
+print(f"Sum: {result}")
+\end{minted}
+Приближённое значение при $n=10, \; a=1$: 0.04636546907481377 \\
+Приближённое значение при $n=100, \; a=1$: 0.04667078704186313 \\
+Приближённое значение при $n=1000, \; a=1$: 0.04667382222922722 \\
+Точное значение при $a = 1$: 0.046667385288586553
+\subsection{}
+\subsubsection{}
+Представить геометрическую интерпретацию листа Декарта: $x^3 + y^3 = 3axy$ \\
+
+\noindent График очевидно симметричен относительно $y=x$, так как если \((x_0, y_0)\) - решение, то и  \((y_0, x_0)\) - тоже решение. При этом в 3-й четверти системы координат графика нет, так как тогда в левой части уравнения выражение $< 0$, а в правой $> 0$ (при $a > 0,$ иначе петля будет в 3-й четверти, а в 1-й - ничего). Рассмотрим уравнение в полярных координатах, пусть \(x = r\cos\phi, \; y=r\sin\phi\). Отсюда \\
+\(r^3(\cos^3\phi + \sin^3\phi) = 3ar^2\cos\phi\sin\phi\), \\
+\(r = \frac{3a\cos\phi\sin\phi}{\cos^3\phi + \sin^3\phi}\). Заметим, что при \(\phi = 0 \text{ и } \phi = \frac{\pi}{4} \; r =0\), значит, при этих значениях \(\phi\) график дважды проходит через (0, 0), а значит, и образуется петля.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\linewidth]{matan.png}
+\end{figure}
+\subsubsection{}
+Вычислить площадь фигуры, ограниченной петлёй листа Декарта, с помощью интеграла Римана. \\
+
+\[r(\phi) = \frac{3a\cos\phi\sin\phi}{\cos^3\phi + \sin^3\phi} = \frac{3a\cos\phi\sin\phi}{(\cos\phi + \sin\phi)(1-\cos\phi\sin\phi)} = \frac{\frac{3}{2}a\sin{2\phi}}{(\cos\phi+\sin\phi)(1 - \frac{1}{2}\sin{2\phi})}.\]
+
+\[S = \frac{1}{2}\int_{\alpha}^{\beta}r^2(\phi) \; d\phi\]
+\[S = \frac{1}{2}\int_{0}^{\frac{\pi}{2}}r^2(\phi) \; d\phi\ = \frac{9a^2}{8}\int_{0}^{\frac{\pi}{2}}\frac{\sin^2(2\phi)}{(\cos\phi + \sin\phi)^2(1-\frac{1}{2}\sin{2\phi})^2} \; d\phi = \frac{9a^2}{8}\int_{0}^{\frac{\pi}{2}}\frac{\sin^2(2\phi)}{(1 + \sin{2\phi})(1-\frac{1}{2}\sin{2\phi})^2} \; d\phi = \]
+\[
+= \frac{9a^2}{8} \left( \frac{4}{9} \int_{0}^{\frac{\pi}{2}} \frac{d\phi}{\sin{2\phi} + 1} + \frac{32}{9} \int_{0}^{\frac{\pi}{2}} \frac{d\phi}{\sin{2\phi} + 2} + \frac{16}{3} \int_{0}^{\frac{\pi}{2}} \frac{d\phi}{(\sin{2\phi} - 2)^2} \right) \circledequal
+\]
+\noindent Вычислим каждый интеграл из суммы выше (сумму мы получили просто разложив на простейшие многочлены относительно $\sin{2\phi}$): \\
+\[\int\frac{d\phi}{\sin{2\phi} + 1} = \int\frac{d\phi}{(\cos\phi + \sin\phi)^2} = \int\frac{d\phi}{\sin^2\phi\,(1+\cot\phi)^2} = -\int\frac{d(\cot{\phi})}{(1+\cot\phi)^2} = \frac{\sin\phi}{\cos\phi + \sin\phi} + C,\]
+\[\int_0^{\frac{\pi}{2}}\frac{d\phi}{\sin{2\phi} + 1} = 1.\]
+\[\int \frac{d\phi}{\sin{2\phi}-2} \stackrel{2\phi=x}{=} \frac{1}{2}\int\frac{dx}{\sin{x}-2} = \frac{1}{2}
+\int\frac{dx}{\frac{2\tan{\frac{x}{2}}}{\tan^2{\frac{x}{2}} + 1} - 2} = \frac{1}{4}\int\frac{\tan^2{\frac{x}{2} + 1}}{-\tan^2{\frac{x}{2}} + \tan{\frac{x}{2}} - 1} \; d\phi \stackrel{\tan{\frac{x}{2}} = t}{=} \frac{1}{2}\int \frac{dt}{-t^2+t-1} = \] 
+\[= -\frac{1}{2}\frac{2\arctan{\frac{2t-1}{\sqrt{3}}}}{\sqrt{3}} + C = -\frac{\arctan{\frac{2\tan{\phi}-1}{\sqrt{3}}}}{\sqrt{3}} + C,\]
+\[\int_0^{\frac{\pi}{2}} \frac{d\phi}{\sin2\phi-2} = -\frac{\frac{\pi}{2}}{\sqrt3} + \frac{\arctan\left({-\frac{\sqrt{3}}{3}}\right)}{\sqrt{3}} = \frac{-2\pi}{3\sqrt3}.\]
+\[\int_0^{\frac{\pi}{2}} \frac{d\phi}{(\sin{2\phi} - 2)^2} = \frac{1}{6} + \frac{4\pi}{9\sqrt3} \; \text{ну тут эту глину месить - себя не уважать}\]
+\[\circledequal \frac{9a^2}{8}\left(\frac{4}{9} - \frac{32}{9}\cdot \frac{2\pi}{3\sqrt{3}} + \frac{16}{3} \left(\frac{1}{6} + \frac{4\pi}{9\sqrt{3}} \right) \right) = \frac{a^2}{8}\left(4- 32\cdot \frac{2\pi}{3\sqrt{3}} + 48 \left(\frac{1}{6} + \frac{4\pi}{9\sqrt{3}} \right) \right) = \frac{12a^2}{8} = \frac{3a^2}{2}.\]
+\subsubsection{}
+Вычислить площадь фигуры, ограниченной петлёй листа Декарта, приближенно с помощью интегральных сумм. Сравнить результаты точного и численного вычислений при $n = 10, \; 100, \; 1000$. \\
+
+\noindent Мы знаем, что \( r(\phi) = \frac{3a\cos(\phi)\sin(\phi)}{\cos^3(\phi)+\sin^3(\phi)} \).
+\noindent Тогда \[ S \approx \frac{1}{2} \sum_{i=1}^n r^2(\xi_i) \Delta_i \] где \( \Delta_i = \frac{\pi}{2n} \) — длина отрезка разбиения, а \( \xi_i = i \Delta_i = \frac{i\pi}{2n} \) — выбранная на каждом отрезке точка, в которой считается значение функции. Имеем:
+
+\[
+S \approx \frac{1}{2} \sum_{i=1}^n r^2(\phi) \Delta_i = \frac{\pi}{4n} \sum_{i=1}^n r^2(i \Delta_i) = \frac{\pi}{4n} \sum_{i=1}^n \frac{9a^2 \cos^2\left(\frac{i\pi}{2n}\right) \sin^2\left(\frac{i\pi}{2n}\right)}{\left(\cos^3\left(\frac{i\pi}{2n}\right)+\sin^3\left(\frac{i\pi}{2n}\right)\right)^2}
+\]
+\begin{minted}[linenos=true, frame=single, breaklines=true]{python}
+from math import pi, sin, cos
+
+n = int(input())
+a = 1
+total_sum = 0.0
+
+for i in range(1, n + 1):
+    angle = i * pi / (2 * n)
+    numerator = 9 * (a ** 2) * (cos(angle) ** 2) * (sin(angle) ** 2)
+    total_sum += numerator / (cos(angle) ** 3 + sin(angle) ** 3) ** 2
+
+result = total_sum * pi / (4 * n)
+
+print(f"Approximeted S: {result:.15f}")
+\end{minted}
+Приближённое значение при $n=10, \; a=1$: 1.500001004402789\\
+Приближённое значение при $n=100, \; a=1$: 1.500000000001072\\
+Приближённое значение при $n=1000, \; a=1$: 1.500000000000782 \\
+Точное значение при $a = 1$: 1.5\
+\subsection{}
+Вычислить площадь фигуры, ограниченной петлёй кривой: \\
+$x=a\sin(2t), \; y=a\sin(t), \; a>0$ \\
+
+\noindent $x=a\sin(2t)$ - синусоида вдоль 0y \\
+$y = a\sin(t)$ - синусоида вдоль 0x с периодом в 2 раза меньше, чем у $x(t)$ \\
+$x'(t) = 2a\cos(2t), \; y(t) = a\cos(t)$. Достаточно рассмотреть функции на $[0, \pi]$. В этих точках кривая проходит через (0, 0), то есть самопересечение при $t = 0, \; t=\pi$.
+\[
+\int_{0}^{\pi} y(t) d(x(t)) = \int_{0}^{\pi} y(t) x'(t) dt = \int_{0}^{\pi} 2a^2 \sin t \cdot \cos 2t \; dt \\
+= -2a^2 \int_{0}^{\pi} \cos 2t \; d(\cos t) =\]
+\[= -2a^2 \int_{0}^{\pi} (2\cos^2 t - 1) \; d(\cos t) \\
+= -2a^2 \left( \frac{2 \cos^3 \pi}{3} - \cos \pi \right) - \left( \frac{2 \cos^3 0}{3} - \cos 0 \right) \\
+= -2a^2 \left( \frac{1}{3} + \frac{1}{3} \right) = \frac{-4a^2}{3}.\] \\
+\[S = \left| \int_{0}^{x} y(t) d(x(t)) \right| = \frac{4a^2}{3}.
+\]
+\section{}
+\subsection{}
+Вычислить длину кривой, заданной параметрически или в
+полярных координатах: \\
+$x = 6-3t^3, \; y = \frac{9(2t^2-t^4)}{8}, \; y\geq0$
+\[L = \int_0^{2\pi} \sqrt{\left( \frac{dx}{dt} \right)^2 + \left( \frac{dy}{dt} \right)^2}dt\]
+\(x'(t) = -9t^2, \; y'(t)= \frac{9}{2}t - \frac{9}{2}t^3\) \\
+\(y\geq 0, \text{ значит } 2t^2-t^4 \geq 0, \; t \in [-\sqrt2; \sqrt2]\)
+\[L = \int_0^{2\pi} \sqrt{\left( -9t^2 \right )^2 +  \left(\frac{9}{2}t - \frac{9}{2}t^3 \right )^2 } dt = \int_0^{2\pi} \frac{9t+9t^3}{2} dt = \int_0^{2\pi}\frac{9t}{2}dt + \int_0^{2\pi}\frac{9t^3}{2}dt.\]
+Так как $t \in [-\sqrt2; \sqrt2]$ и кривая симметрична относительно оси ординат ($y(t)$ - чётная функция), то: 
+\[L = 2\int_0^{\sqrt{2}} \frac{9t}{2}dt + 2\int_0^{\sqrt{2}} \frac{9t^3}{2}dt = 9\int_0^{\sqrt{2}}t^3+t \; dt = 9\left(\frac{\left(\sqrt{2}\right)^4}{4} + \frac{\left(\sqrt{2}\right)^2}{2}  \right) = 9\cdot(1 + 1) = 18.\]
+\subsection{}
+$r = 1 + \cos{t}, \; \phi = t - \tan{\frac{t}{2}}$ от точки А$\left(2; 0\right)$ до B$\left(r_0; \phi_0\right)$ при $r_0 = 1, \; \phi_0 = \frac{\pi}{2}$. \\
+
+\noindent Найдём значение t, при котором $r(t) = 2$ и  $\phi(t) = 0$: \\
+$r(t) = 2$ возможно только при $\cos{t} = 1$, значит $t = 2\pi n, \; n \in {\displaystyle \mathbb {Z} }.$ Заметим, что при указанных t $\tan{\frac{t}{2}}$ принимает целые значения, а при $n \neq 0$ t принимает иррациональные значения. Значит, $t = 0$ - единственное решение, при котором кривая проходит через точку А. \\
+Найдём значение t, при котором $r(t) = 1$ и  $\phi(t) = \frac{\pi}{2}$: \\
+$r(t) = 1$ может быть только при $\cos{t} = 0 \iff t=\frac{\pi}{2} + \pi n, \; n \in {\displaystyle \mathbb {Z} }.$ \\
+Уравнение $\tan{\frac{t}{2}} + \frac{\pi}{2} = t$ при t вида $\frac{\pi}{2} + \pi n$ имеет вид: \\
+\[\tan(\frac{\pi}{4} + \frac{\pi n}{2} ) + \frac{\pi}{2} = \pi n + \frac{\pi}{2},\]
+\[\pm1 + \frac{\pi}{2}=\pi n + \frac{\pi}{2}\] 
+Уравнение очев не имеет решений при $n \in {\displaystyle \mathbb {Z} }$, значит кривая не проходит через точку B$\left(1; \frac{\pi}{2}\ \right)$. Раз функция не проходит через B, но проходит через A, будем интегрировать от 0 до $t_0$. \\
+\[S = \int_{0}^{t_{0}}\sqrt{r^2(t)\left(\phi'(t)\right)^2 + \left(r'(t)\right)^2} dt = \int_{0}^{t_0}\sqrt{\left(1+\cos{t}\right)^2 \cdot \left(1 -\frac{1}{2\cos^2{\frac{x}{2}}} \right)^2 + \sin^2{t}} \; dt = \] 
+\[ = \int_{0}^{t_0}\sqrt{\left(1+\cos{t}\right)^2 \cdot \left(1 -\frac{1}{1+\cos{t}} \right)^2 + \sin^2{t}} \; dt = \int_0^{t_0}\sqrt{\sin^2{t} + \cos^2{t}} \; dt = \int_0^{t_0}1 \; dt = t_{0}\]
+\section{}
+Исследовать несобственные интегралы на сходимость (в каждом варианте четыре интеграла).  Если  подынтегральная  функция  является  знакопеременной, требуется исследовать интеграл на абсолютную и  условную сходимости. \\
+\noindent а) \(\displaystyle \int_1^{\infty}\frac{1}{x}\cdot\frac{x+\sin{x}}{x-\sin{x}} \; dx,\) \\
+\noindent б) \(\displaystyle \int_0^{\infty}x\cos{\left(x^3-x\right)} \; dx,\) \\
+\noindent в) \(\displaystyle \int_1^{2}\frac{dx}{\sqrt{\left(1-x^2\right)(2-x^2)}},\) \\
+\noindent г) \(\displaystyle \int_0^{1}\frac{\cos{\frac{1}{x}}}{x} \; dx.\) \\
+
+\noindent а) Заметим, что при $x \geq 1$ подынтегральная функция не является знакопеременной. Исследуем интеграл на сходимость. Так как \(\sin{x} \in [-1; 1]\), то: \\
+\(\displaystyle \frac{1}{x}\cdot\frac{x+\sin{x}}{x-\sin{x}} \geq \frac{1}{x}\cdot\frac{x-1}{x+1} = \frac{x-1}{x^2+x} \geq 0\). Исследуем на сходимость интеграл \(\displaystyle \int_1^{\infty} \frac{x-1}{x^2+x} \; dx\). \\
+\(\displaystyle \int_1^{\infty} \frac{x-1}{x^2+x} \; dx = \int_{1}^{\infty} \frac{2}{x+1} \; dx \; - \; \int_{1}^{\infty} \frac{1}{x} \; dx = \lim_{e\rightarrow{\infty}}\left(2\ln(1+e)-\ln(e) - \left(2\ln(2) - \ln(1) \right) \right)= \) \\ 
+\(=\displaystyle \lim_{e\rightarrow{\infty}}\left(\ln{\left(\frac{1}{e} + 1\right)} + \ln(1 + e)- 2\ln2  \right) = \infty\), то есть интеграл \(\displaystyle \int_1^{\infty} \frac{x-1}{x^2+x}dx\) расходится, а значит \(\displaystyle \int_1^{\infty}\frac{1}{x}\cdot\frac{x+\sin{x}}{x-\sin{x}} \; dx\) расходится. \\
+
+\noindent б) Подынтегральная функция является знакопеременной. Очевидно, что \(\displaystyle \int_0^{1}x\cos{\left(x^3-x\right)} \; dx\) сходится, причём абсолютно. Значит, сходимость исходного интеграла зависит от сходимости \(\displaystyle \int_1^{\infty}x\cos{\left(x^3-x\right)} \; dx\). \\
+\(\displaystyle \int_1^{\infty}x|\cos{\left(x^3-x\right)}| \; dx = \int_1^{\infty}\frac{x}{3x^2-1}|\cos{\left(x^3-x\right)}| \; d\left(x^3-x \right) \sim \int_1^{\infty}\frac{1}{3x}|\cos{\left(x^3-x\right)}| \; d\left(x^3-x \right) \stackrel{t = x^3-x}{=} \frac{1}{3}\int_0^{\infty}\frac{|\cos{t}|}{t^{\frac{1}{3}}} \; dt\). \\
+Заметим, что \(\displaystyle \frac{1}{3}\int_0^{\infty}\frac{\cos{t}}{t^{\frac{1}{3}}} \; dt\) очевидно сходится по признаку Дирихле. Теперь проверим интеграл на абсолютную сходимость: \\
+\(\displaystyle \left|\int\limits_{\pi n - \frac{\pi}{2}}^{2 \pi n - \frac{\pi}{2}} \frac{|\cos x|}{x^{\frac{1}{3}}} \ dx \right| \geq \frac{1}{(2\pi n)^{\frac{1}{3}}}\int\limits_{\pi n - \frac{\pi}{2}}^{2\pi n- \frac{\pi}{2}}|\cos x| \ dx = \frac{n}{(2\pi n)^{\frac{1}{3}}} \int\limits_{- \frac{\pi}{2}}^{\frac{\pi}{2}} \cos x \ dx = \frac{2}{(2\pi)^{\frac{1}{3}}}n^{\frac{2}{3}}\). Последнее выражение не стремится к нулю с ростом $n$ - противоречие с критерием Коши, значит исходный интеграл сходится условно. \\
+
+\noindent в) Подыинтегральная функция не является знакопеременной на отрезке. При $x \in [1; \sqrt{2]}$ функция не существует, исследуем интеграл на сходимость при $x \in [\sqrt{2}; 2]$ (аналогично можно было взять $x \in [1; \sqrt{2}]$). \\ 
+\((1-x^2)(2-x^2) = x^4 - x^2 + 2\) - функция возрастает при $x \geq \sqrt{2}$, а значит функция \(\frac{1}{\sqrt{(1-x^2)(2-x^2)}}\) монотонно убывает, причём \(\displaystyle \lim_{x \xrightarrow[]{} \sqrt2}{\frac{1}{\sqrt{(1-x^2)(2-x^2)}} = \infty}\), а интеграл \(\displaystyle \int_2^{\sqrt{2}}1 \; dx\) очевидно ограничен сверху, значит \(\displaystyle \int_2^{\sqrt{2}} \frac{dx}{\sqrt{(1-x^2)(2-x^2)}}\) сходится по Дирихле, но тогда и исходный интеграл \(\displaystyle \int_{\sqrt{2}}^{2} \frac{dx}{\sqrt{(1-x^2)(2-x^2)}}\) сходится (знак на сходимость не влияет). \\
+
+\noindent г)  \(\displaystyle \int_0^{1}\frac{\cos{\frac{1}{x}}}{x} \; dx \stackrel{t = \frac{1}{x}}{=} \int_{1}^{\infty}t\cos{t} \; d\left(\frac{1}{x}\right) = -\int_1^{\infty}\frac{\cos{t}}{t} \; dt\) - этот интеграл сходится по признаку Дирихле (аналогично пункту б). Подынтегральная функция является знакопеременной, проверим интеграл на абсолютную сходимость: \\
+\(\displaystyle \int_1^{\infty}\frac{|\cos{x}|}{x} \; dx \geq \int\limits_1^{+\infty} \frac{\cos^2 x}{x} \ dx = \frac{1}{2}\int\limits_1^{+\infty}\frac{1 + \cos 2x}{x} \ dx = \frac{1}{2}\int\limits_1^{+\infty}\frac{dx}{x} + \frac{1}{2}\int\limits_1^{+\infty}\frac{\cos 2x}{x} \ dx\). Первый интеграл, очевидно, расходится. Посмотрим на сходимость второго: \\
+\(\displaystyle \int\limits_1^{+\infty}\frac{\cos 2x}{x} \ dx = \left. \frac{\sin 2x}{2x} \right|_1^{+\infty} + \int\limits_1^{+\infty} \frac{\sin 2x}{2x^2} \ dx = -\frac{\sin 2}{2} + \frac{1}{2}\int\limits_1^{+\infty}\frac{\sin 2x}{x^2} \ dx.\) Так как \(\displaystyle \left|\frac{\sin 2x}{x^2}\right| \leq \frac{1}{x^2}\), а \(\displaystyle \int_{0}^{\infty}\frac{1}{x^2} \; dx\) сходится, то сходится и \(\displaystyle \int\limits_1^{+\infty}\frac{\cos 2x}{x} \ dx\), а значит \(\displaystyle \int_1^{\infty}\frac{|\cos{x}|}{x} \; dx\) расходится. Исходный интеграл сходится только условно.
+\end{document}

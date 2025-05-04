@@ -1,0 +1,254 @@
+\input{preambula_questions}
+
+
+\title{\centering JNF}  
+\author{\centering Евграфов Артём}  
+\date{\centering 3 Мая 2025} 
+
+\begin{document}
+\maketitle
+\newpage
+\setcounter{page}{1}
+\tableofcontents
+\newpage
+\section{Условие}
+Вариант 17 \\
+
+\noindent \(\displaystyle
+\begin{pmatrix}
+-7 &   0 &  4 &  1 &  3 &  1 \\
+ 0 &  -7 & -2 &  0 & -2 & -1 \\
+ 0 &   0 & -7 &  0 &  1 &  2 \\
+ 0 &   0 &  0 & -7 &  0 &  0 \\
+ 0 &   0 &  0 &  0 & -7 &  0 \\
+ 0 &   0 &  0 &  0 &  0 & -7
+\end{pmatrix}
+\)
+\section{Собственные и присоединенные вектора}
+Так как матрица верхнетреугольная, то её характеристический многочлен имеет следующий вид: \(\det(A-\lambda E_6) = (-7 - \lambda)^6.\) У этого многочлена единственный корень $\lambda = -7$ кратности 6. Рассмотрим теперь матрицу $B = A - \lambda E_6$ и уравнение $BX = 0$: \\
+
+\noindent \(\displaystyle
+\begin{pmatrix}
+0 &   0 &  4 &  1 &  3 &  1 & \vline & 0\\
+ 0 &  0 & -2 &  0 & -2 & -1 & \vline & 0 \\
+ 0 &   0 & 0 &  0 &  1 &  2 & \vline & 0\\
+ 0 &   0 &  0 & 0 &  0 &  0 & \vline & 0\\
+ 0 &   0 &  0 &  0 & 0 &  0 & \vline & 0\\
+ 0 &   0 &  0 &  0 &  0 & 0 & \vline & 0
+\end{pmatrix}
+\implies 
+\begin{cases}
+x_1 = \beta \\
+x_2 = \gamma \\
+x_3 = 3\alpha \\
+x_4 = -2\alpha \\
+x_5 = -4\alpha \\
+x_6 = 2\alpha
+\end{cases}
+\) \\
+
+\noindent Тогда базис $W_1$ состоит из следующих векторов: \\
+\[
+\begin{pmatrix}
+0 \\ 0 \\ 3 \\ -2 \\ -4 \\ 2
+\end{pmatrix}
+\quad
+\begin{pmatrix}
+1 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0
+\end{pmatrix}
+\quad
+\begin{pmatrix}
+0 \\ 1 \\ 0 \\ 0 \\ 0 \\ 0
+\end{pmatrix}
+\] \\
+Геометрическая кратность собственного значения равна 3,
+значит для построения жорданова базиса требуется еще три присоединённых вектора. Найдём их, решив уравнение $B^2X = 0$: \\
+\noindent \(\displaystyle
+\begin{pmatrix}
+0 &   0 &  0 &  0 &  4 &  8 & \vline & 0\\
+ 0 &  0 & 0 &  0 & -2 & -4 & \vline & 0 \\
+ 0 &   0 & 0 &  0 &  0 &  0 & \vline & 0\\
+ 0 &   0 &  0 & 0 &  0 &  0 & \vline & 0\\
+ 0 &   0 &  0 &  0 & 0 &  0 & \vline & 0\\
+ 0 &   0 &  0 &  0 &  0 & 0 & \vline & 0
+\end{pmatrix}
+\implies 
+\begin{cases}
+x_1 = \beta \\
+x_2 = \gamma \\
+x_3 = \theta \\
+x_4 = \phi \\
+x_5 = -2\alpha \\
+x_6 =\alpha
+\end{cases}
+\) \\
+
+\noindent Теперь дополним базис $W_1$ до базиса $W_2$:
+\[
+\begin{pmatrix}
+0 \\ 0 \\ 0 \\ 0 \\ -2 \\ 1
+\end{pmatrix}
+\quad
+\begin{pmatrix}
+0 \\ 0 \\ 1 \\ 0 \\ 0 \\ 0
+\end{pmatrix}
+\quad
+\cup W_1
+\] \\
+
+\noindent Заметим, что $B^3 = 0$. Тогда в прошлой системе положим $x_5 = 1$ и определим базис $W_3$: \\
+\[
+\begin{pmatrix}
+0 \\ 0 \\ 0 \\ 0 \\ 1 \\ 0
+\end{pmatrix}
+\quad
+\cup W_2
+\] \\
+\section{Жорданова лестница}
+Высота лестницы - 3, $r_3 = 6 - 5 = 1, \; r_2 = 5 - 3 = 2, \; r_{1} = 3$. Вид у жордановой лестницы будет вот такой: \\
+\[
+\begin{array}{ccccc}
+ f & \vline &  & \vline &  \\
+ Bf & \vline & g & \vline &  \\
+ B^2f & \vline & Bg & \vline & e \\
+\end{array}
+\] \\
+\noindent Верхнюю ступеньку займет $f = (0 \; 0 \; 0 \; 0 \; 1 \;0)^T$, \\
+
+\[
+Bf = 
+\begin{pmatrix}
+0 & 0 & 4 & 1 & 3 & 1 \\
+0 & 0 & -2 & 0 & -2 & -1 \\
+0 & 0 & 0 & 0 & 1 & 2 \\
+0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+0 \\
+0 \\
+0 \\
+0 \\
+1 \\
+0
+\end{pmatrix}
+=
+\begin{pmatrix}
+3 \\
+-2 \\
+1 \\
+0 \\
+0 \\
+0 
+\end{pmatrix}
+\]
+\[
+B^2f = 
+\begin{pmatrix}
+0 & 0 & 0 & 0 & 4 & 8 \\
+0 & 0 & 0 & 0 & -2 & -4 \\
+0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+0 \\
+0 \\
+0 \\
+0 \\
+1 \\
+0
+\end{pmatrix}
+=
+\begin{pmatrix}
+4 \\
+-2 \\
+0 \\
+0 \\
+0 \\
+0 
+\end{pmatrix}
+\]
+\noindent На второй ступени положим $g = (0 \; 0 \; 0 \; 0 \; -2 \;1)^T$,
+\[
+Bg = 
+\begin{pmatrix}
+0 & 0 & 4 & 1 & 3 & 1 \\
+0 & 0 & -2 & 0 & -2 & -1 \\
+0 & 0 & 0 & 0 & 1 & 2 \\
+0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+0 \\
+0 \\
+0 \\
+0 \\
+-2 \\
+1
+\end{pmatrix}
+=
+\begin{pmatrix}
+-5 \\
+3 \\
+0 \\
+0 \\
+0 \\
+0 
+\end{pmatrix}
+\]
+\noindent На нижнюю ступень положим вектор \(e = (0 \; 0 \; 3 \; -2 \; -4 \;2)^T\). Имеем следующий базис: \\
+\[
+\begin{pmatrix}
+4 \\ -2 \\ 0 \\ 0 \\ 0 \\ 0
+\end{pmatrix}
+\quad
+\begin{pmatrix}
+3 \\ -2 \\ 1 \\ 0 \\ 0 \\ 0
+\end{pmatrix}
+\quad
+\begin{pmatrix}
+0 \\ 0 \\ 0 \\ 0 \\ 1 \\ 0
+\end{pmatrix}
+\quad
+\begin{pmatrix}
+-5 \\ 3 \\ 0 \\ 0 \\ 0 \\ 0
+\end{pmatrix}
+\quad
+\begin{pmatrix}
+0 \\ 0 \\ 0 \\ 0 \\ -2 \\ 1
+\end{pmatrix}
+\quad
+\begin{pmatrix}
+0 \\ 0 \\ 3 \\ -2 \\ -4 \\ 2
+\end{pmatrix}
+\] \\
+\noindent Имеем матрицу перехода T: \\
+\[
+\begin{pmatrix}
+4 & 3 & 0 & -5 & 0 & 0 \\
+-2 & -2 & 0 & 3 & 0 & 0 \\
+0 & 1 & 0 & 0 & 0 & 3 \\
+0 & 0 & 0 & 0 & 0 & -2 \\
+0 & 0 & 1 & 0 & -2 & -4 \\
+0 & 0 & 0 & 0 & 1 & 2
+\end{pmatrix}
+\]
+\noindent Определитель этой матрицы равен -4, то есть вектора действительно ЛНЗ. Так как в лестнице 1 столбец высоты 3, один высоты 2 и один высоты 1, то имеем следующую ЖНФ: \\
+ \[
+     J = \begin{pmatrix}
+     -7 & 1 & 0 & 0 & 0 & 0 \\
+     0 & -7 & 1 & 0 & 0 & 0 \\
+     0 & 0 & -7 & 0 & 0 & 0 \\
+     0 & 0 & 0 & -7 & 1 & 0 \\
+     0 & 0 & 0 & 0 & -7 & 0 \\
+     0 & 0 & 0 & 0 & 0 & -7
+     \end{pmatrix}.
+     \]
+\end{document}

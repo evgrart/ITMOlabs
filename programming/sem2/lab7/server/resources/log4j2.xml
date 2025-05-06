@@ -1,0 +1,26 @@
+<Configuration status="WARN">
+    <Appenders>
+        <!-- Консольный аппендер -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss}] [%-5level] %msg%n"/>
+        </Console>
+
+        <!-- Файловый аппендер -->
+        <File name="FileLogger" fileName="logs/server.log" append="true">
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss}] [%-5level] %msg%n"/>
+        </File>
+    </Appenders>
+
+    <Loggers>
+        <!-- Логгер для Log4j -->
+        <Logger name="org.apache.logging.log4j" level="error" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+
+        <!-- Root логгер -->
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="FileLogger"/> <!-- Добавляем AppenderRef для FileLogger -->
+        </Root>
+    </Loggers>
+</Configuration>

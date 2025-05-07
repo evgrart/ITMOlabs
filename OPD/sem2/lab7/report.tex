@@ -1,0 +1,168 @@
+\input{preambula_labs}
+\begin{document}
+\thispagestyle{empty}
+\begin{center}
+\LARGE{Университет ИТМО} 
+\vspace{20pt}
+
+\LARGE{Факультет программной инженерии и компьютерной техники \\
+Образовательная программа системное и прикладное программное обеспечение}
+\vspace{160pt}
+
+\LARGE{Лабораторная работа  \textnumero 7 \\
+По дисциплине "Основы профессиональной деятельности" \\ 
+Вариант 9702}
+\vspace{120pt}
+\end{center}
+
+\begin{flushright}
+\LARGE{Выполнил студент группы P3109 \\ 
+Евграфов Артём Андреевич \\
+Проверила: \\
+Ткешелашвили Нино Мерабиевна}
+\vspace{120pt}
+\end{flushright}
+
+\begin{center}
+\Large{Санкт-Петербург 2025}
+\end{center}
+
+\newpage
+\setcounter{page}{1}
+\tableofcontents
+\newpage
+\section{Задание варианта 9702}
+\begin{figure}[H]
+    \centering
+\includegraphics[width=1\linewidth]{P1O.png}
+\end{figure}
+\section{Микрокомандный код}
+\begin{longtable}{|>{\centering\arraybackslash}p{1cm}|>{\centering\arraybackslash}p{2.5cm}|>{\centering\arraybackslash}p{3cm}|>{\arraybackslash}p{9cm}|}
+\hline
+Адрес МП & Микрокоманда & Описание & Комментарий \\
+\hline
+\endfirsthead
+
+\hline
+\endlastfoot
+E0 & 0010809501 & $\sim$ DR + 1 → AC, N, Z & Вся команда  \\\hline
+E1 & 80C4101040 & GOTO INT @ C4 & Переход на цикл прерывания \\\hline
+\end{longtable}
+\section{Трассировка микрокоманды}
+\begin{longtable}{|*{11}{>{\ttfamily}r|}}
+\hline
+\textbf{МР до выборки МК} & \textbf{МR} & \textbf{IP} & \textbf{CR} & \textbf{AR} & \textbf{DR} & \textbf{SP} & \textbf{BR} & \textbf{AC} & \textbf{NZVC} & \textbf{Мр (СчМК)} \\ 
+\hline
+\endhead
+ &  & 020 & 0000 & 000 & 0000 & 000 & 0000 & 0000 & 0000 &  \\\hline
+ &  & 021 & 0000 & 020 & 0010 & 000 & 0000 & 0000 & 0000 &  \\\hline
+ &  & 022 & 0000 & 021 & 9020 & 000 & 0000 & 0000 & 0000 &  \\\hline
+ &  & 021 & 0000 & 021 & 9020 & 000 & 0000 & 0000 & 0000 &  \\\hline
+D4 & 00BBE00000 & 021 & 0000 & 000 & 0000 & 000 & 0000 & 0000 & 0100 & D5 \\\hline
+D5 & 80C3101040 & 021 & 0000 & 000 & 0000 & 000 & 0000 & 0000 & 0100 & C3 \\\hline
+C3 & 0400000000 & 021 & 0000 & 000 & 0000 & 000 & 0000 & 0000 & 0100 & C4 \\\hline
+C4 & 80DE801040 & 021 & 0000 & 000 & 0000 & 000 & 0000 & 0000 & 0100 & DE  \\\hline
+DE & 4000000000 & 021 & 0000 & 000 & 0000 & 000 & 0000 & 0000 & 0100 & DF  \\\hline
+DF & 8001101040 & 021 & 0000 & 000 & 0000 & 000 & 0000 & 0000 & 0100 & 01  \\\hline
+01 & 00A0009004 & 021 & 0000 & 021 & 0000 & 000 & 0021 & 0000 & 0100 & 02  \\\hline
+02 & 0104009420 & 022 & 0000 & 021 & 9020 & 000 & 0021 & 0000 & 0100 & 03  \\\hline
+03 & 0002009001 & 022 & 9020 & 021 & 9020 & 000 & 0021 & 0000 & 0100 & 04  \\\hline
+04 & 8109804002 & 022 & 9020 & 021 & 9020 & 000 & 0021 & 0000 & 0100 & 09  \\\hline
+09 & 800C404002 & 022 & 9020 & 021 & 9020 & 000 & 0021 & 0000 & 0100 & 0C  \\\hline
+0C & 8024084002 & 022 & 9020 & 021 & 9020 & 000 & 0021 & 0000 & 0100 & 24  \\\hline
+24 & 8026804002 & 022 & 9020 & 021 & 9020 & 000 & 0021 & 0000 & 0100 & 25  \\\hline
+25 & 814A404002 & 022 & 9020 & 021 & 9020 & 000 & 0021 & 0000 & 0100 & 26  \\\hline
+26 & 0080009001 & 022 & 9020 & 020 & 9020 & 000 & 0021 & 0000 & 0100 & 27  \\\hline
+27 & 0100000000 & 022 & 9020 & 020 & 0010 & 000 & 0021 & 0000 & 0100 & 28  \\\hline
+28 & 813C804002 & 022 & 9020 & 020 & 0010 & 000 & 0021 & 0000 & 0100 & 3C  \\\hline
+3C & 8143204002 & 022 & 9020 & 020 & 0010 & 000 & 0021 & 0000 & 0100 & 3D  \\\hline
+3D & 81E0104002 & 022 & 9020 & 020 & 0010 & 000 & 0021 & 0000 & 0100 & E0  \\\hline
+E0 & 0010809501 & 022 & 9020 & 020 & 0010 & 000 & 0021 & FFF0 & 1000 & E1  \\\hline
+\end{longtable}
+\newpage
+\section{Тестовая программа}
+\begin{minted}[linenos=true, frame=single, breaklines=true]{asm}
+ORG 0x0444
+RES1: WORD 0x0000
+RES2: WORD 0x0000
+RES3: WORD 0x0000
+X: WORD 0x0000
+Y: WORD 0x00FF
+
+TEST1:
+	LD #0xB
+	ST $X
+	LD $X
+	AND $Y
+	ST $X
+	WORD 0x9447
+	WORD 0xF201
+	JUMP $TEST2
+	NEG
+	SUB $X
+	BZS SET1
+	JUMP $TEST2
+
+SET1:
+	LD #1
+	ST $RES1
+	JUMP $TEST2
+
+TEST2:
+	LD #0xFA
+	ST $X
+	LD $X
+	AND $Y
+	ST $X
+	WORD 0x9447
+	WORD 0xF201
+	JUMP $TEST3
+	NEG
+	SUB $X
+	BZS SET2
+	JUMP $TEST3
+	
+SET2:
+	LD #0x1
+	ST $RES2
+	JUMP $TEST3
+
+TEST3:
+	LD #0x80
+	ST $X
+	LD $X
+	AND $Y
+	ST $X
+	WORD 0x9447
+	WORD 0xF201
+	JUMP $TEST4
+	NEG
+	SUB $X
+	BZS SET3
+	JUMP $TEST4
+
+SET3:
+	LD #0x1
+	ST $RES3
+	JUMP $TEST4
+
+TEST4:
+	ST $RES1
+	AND $RES2
+	AND $RES3
+	HLT
+\end{minted}
+\section{Методика проверки команды}
+1. Запустить БЭВМ с помощью команды java -jar -Dmode=cli bcomp-ng.jar \\ 
+2. Записать мои микрокоманды в память с помощью команд ma и mw: \\
+ma E0 \\
+mw 0010809501 \\
+mw 80C4101040 \\
+mdecodea \\
+3. Записать тестовую программу в память: прописать команду asm, потом вставить тестовую
+программу и в конце написать END. \\
+4. Прописать start C C C C C ... ($\geq 40$ букв C). \\
+5. Если в AC единица, значит все тесты пройдены. \\
+\section{Вывод}
+В ходе выполнения данной лабораторной работы я познакомился с МПУ БЭВМ и синтезировал собственную команду.
+\end{document}

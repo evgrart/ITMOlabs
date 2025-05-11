@@ -19,7 +19,7 @@ import java.util.HashMap;
 
 public class DBmanager {
     private String url = "jdbc:postgresql://localhost:6405/studs";
-    private String password = "IYrn5PyqfTGtlQZw";
+    private String password = "password";
     private String user = "s465826";
     private Connection connection = null;
     private PasswordManager passwordManager = new PasswordManager("s465826");

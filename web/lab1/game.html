@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html lang = "ru">
+
+    <head> 
+        <meta charset = "UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title > Лаба веб-1 </title>
+        <link rel = "stylesheet" href = "styles.css">
+    </head>    
+
+    <body>
+        <video id="background" class = "background" autoplay muted loop width="100%" height="100%">
+            <source src="images/background.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>  
+
+        <a href="index.html" class="backbutton">
+            НАЗАД
+        </a>
+
+        <button id="sound" class="soundbutton">
+            ВКЛ ЗВУК 
+        </button>  
+
+
+        <form class = "oreshnik">
+            <h2> ОРЕШНИК </h2> 
+            <div class="form-group">
+                <label for="xvalue"><p>X:</p></label>
+                <input type="text" id="xvalue" name="x" class="input">
+            </div>
+
+            <div class="form-group">
+                <label for="yvalue"><p>Y:</p></label>
+                <input type="text" id="yvalue" name="y" class="input">
+            </div> 
+            <div class="form-group">
+                <label for="rvalue"><p>R:</p></label>
+                <select id="rvalue" name="r" class="input">
+                    <option value="1">1</option>
+                    <option value="1.5">1.5</option>
+                    <option value="2">2</option>
+                    <option value="2.5">2.5</option>
+                    <option value="3">3</option>
+                </select>                  
+            </div>
+            <button type="button" id="bam" class="exterminatus"> ЭКСТЕРМИНАТУС </button>
+        </form>    
+        <canvas id="canvas" class="canvas" width="500" height="500"></canvas>
+        <script src="scripts.js"></script>  
+    </body>   
+</html> 

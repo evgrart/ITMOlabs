@@ -122,6 +122,28 @@
     width: 60px;
 }
 
+.results {
+    position: relative;
+    top: 70px; 
+    z-index: 1;
+    width: 1000px;
+    margin: 40px auto; 
+    border-collapse: collapse; 
+    color: white;
+    background-color: rgb(20, 48, 46, 0.8);
+    box-shadow: 0 0 15px black;
+}
+
+.results th, .results td {
+    border: 1px solid #555;
+    padding: 10px;
+    text-align: center;
+}
+
+.results th {
+    background-color: rgb(20, 48, 46, 0.7);
+}
+
 .exterminatus {
     width: 240px;
     top: 10px;

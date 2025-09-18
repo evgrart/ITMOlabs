@@ -6,7 +6,6 @@ public class Main {
     public static void main(String[] args) {
         FCGIInterface fcgi = new FCGIInterface();
         while (fcgi.FCGIaccept() >= 0) {
-            System.out.println("Request received");
             Request request = new Request(fcgi);
             request.process();
         }

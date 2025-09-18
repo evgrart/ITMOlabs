@@ -2,25 +2,59 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const video = document.getElementById('background');
     const sound = document.getElementById('sound');
-    const r = document.getElementById('rvalue'); 
-    const x = document.getElementById('xvalue');  
-    const y = document.getElementById('yvalue');  
-    const fireb = document.querySelector('.exterminatus');
-
-    if (video && sound) { /* если элементов нет вернет налл*/
-
-        sound.addEventListener('click', () => {
-            video.muted = !video.muted; 
-            if (video.muted) {
-                sound.textContent = 'ВКЛ ЗВУК';
-            } else {
-                sound.textContent = 'ВЫКЛ ЗВУК';
-            }
-        });
-
-    } 
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
+    const r = document.getElementById('rvalue');
+    const x = document.getElementById('xvalue');
+    const y = document.getElementById('yvalue');
+    const fire = document.getElementById('bam');
+    const results = document.getElementById('results-body');
+    
+    if (video && sound) {
+        sound.addEventListener('click', () => {
+            video.muted = !video.muted;
+            sound.textContent = video.muted ? 'ВКЛ ЗВУК' : 'ВЫКЛ ЗВУК';
+        });
+    }
+
+    drawShape(r.value); 
+    r.addEventListener('change', () => {
+        drawShape(r.value);
+    });
+
+
+    fire.addEventListener('click', (event) => {
+        event.preventDefault(); 
+        if (validateForm()) {
+            const xv = x.value.trim().replace(',', '.');
+            const yv = y.value.trim().replace(',', '.');
+            const rv = r.value;
+            sendReq(xv, yv, rv);
+        }
+    });
+
+
+    if (canvas) {
+        canvas.addEventListener('click', (event) => {
+            if (!r.value) {
+                alert('Выбери значение R');
+                return;
+            }
+
+            const rect = canvas.getBoundingClientRect();
+            const canvasX = event.clientX - rect.left;
+            const canvasY = event.clientY - rect.top;
+
+            const scale = 80;
+            const cX = canvas.width / 2;
+            const cY = canvas.height / 2;
+            
+            const mX = (canvasX - cX) / scale;
+            const mY = (cY - canvasY) / scale; 
+
+            sendReq(mX.toFixed(2), mY.toFixed(2), r.value);
+        });
+    }
 
     function drawShape(rValue) {
         const x = canvas.width;
@@ -89,38 +123,85 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.fillText(labelText, x / 2 + 10, yPos + 5);
     }
     }
-    const rval = document.getElementById('rvalue');
-    if (rval) {
-        drawShape(rval.value);
-        
-        rval.addEventListener('change', () => {
-            drawShape(rval.value);
-        });
-    }
-    function valid() {
-        const xval = x.value;
-        const yval = y.value;
-        const rval = r.value;
 
-        if (xval === '' || yval === '' || rval === '') {
-            alert('Все поля должны быть заполнены!');
-            return false;
-        }
+    function validateForm() {
+        const xStr = x.value.trim().replace(',', '.');
+        const yStr = y.value.trim().replace(',', '.');
         
-        const x = parseFloat(xVal);
-        const y = parseFloat(yVal);
+        const xNum = parseFloat(xStr);
+        const yNum = parseFloat(yStr);
         
-        if (isNaN(x) || isNaN(y)) {
-            alert('X и Y должны быть числами!');
+        if (isNaN(xNum) || isNaN(yNum)) {
+            alert('X и Y - числа');
             return false;
         }
 
-        if (y <= -5 || y >= 3) {
-            alert('Y должен быть в диапазоне (-5; 3).');
+        if (yNum <= -5 || yNum >= 3) {
+            alert('Y должен быть в диапазоне (-5; 3)');
             return false;
         }
         
         return true; 
     }
-    
-});
+
+    function sendReq(x, y, r) {
+        console.log(`Отправка запроса: x=${x}, y=${y}, r=${r}`);
+        const url = `/fcgi-bin/lab-server-1.0.jar?x=${x}&y=${y}&r=${r}`;
+
+        fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Сетевая ошибка: ${response.status} ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Получен ответ от сервера:', data);
+                if (data.error) {
+                    alert(`Ошибка от сервера: ${data.error}`);
+                } else {
+                    updateUI(data);
+                }
+            })
+            .catch(error => {
+                console.error('Ошибка при отправке запроса:', error);
+                alert('Не удалось связаться с сервером. Проверьте консоль (F12).');
+            });
+    }
+
+    function updateUI(data) {
+        const scale = 80;
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+        const canvasX = centerX + data.x * scale;
+        const canvasY = centerY - data.y * scale;
+
+        drawPoint(canvasX, canvasY, data.hit);
+        addResultToTable(data);
+    }
+
+    function drawPoint(x, y, isHit) {
+        ctx.beginPath();
+        ctx.arc(x, y, 5, 0, 2 * Math.PI);
+        ctx.fillStyle = isHit ? 'lime' : 'red';
+        ctx.fill();
+        ctx.strokeStyle = 'black';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+    }
+
+    function addResultToTable(data) {
+        if (!results) return;
+
+        const row = results.insertRow(0);
+        const hitText = data.hit ? 'Попадание' : 'Промах';
+
+        row.innerHTML = `
+            <td>${data.x}</td>
+            <td>${data.y}</td>
+            <td>${data.r}</td>
+            <td>${data.currentTime}</td>
+            <td>${hitText}</td>
+        `;
+    }
+});sendRequestToServer

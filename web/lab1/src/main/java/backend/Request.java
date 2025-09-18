@@ -1,24 +1,15 @@
 package backend;
 
-import com.google.gson.Gson; 
-import java.nio.charset.StandardCharsets;
+import com.google.gson.Gson;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
-import com.fastcgi.FCGIInterface; 
+import com.fastcgi.FCGIInterface;
 
 public class Request {
     private final FCGIInterface fcgi;
-    private static final String response = """
-            Access-Control-Allow-Origin: *
-            Connection: keep-alive
-            Content-Type: application/json
-            Content-Length: %d
-                        
-            %s
-            
-            """;  
+    private static final String HEADER_TEMPLATE = "Content-Type: application/json\r\n\r\n%s";  
     HitChecker hitChecker;    
     private String errorMessage;     
 
@@ -51,35 +42,33 @@ public class Request {
         responseData.put("y", hitChecker.getY());
         responseData.put("r", hitChecker.getR());
         responseData.put("currentTime", currentTime);
-        responseData.put("executionTime", "0.001");
         responseData.put("hit", flag);
         sendSuccessResponse(responseData);
-
     }
 
     private void sendSuccessResponse(Map<String, Object> data) {
         String json = new Gson().toJson(data);
-        String httpResponse = String.format(response, json.getBytes(StandardCharsets.UTF_8).length, json); // длина и тело
-        System.out.println(httpResponse); // выводи и передача апачи
+        String httpResponse = String.format(HEADER_TEMPLATE, json);
+        System.out.print(httpResponse); 
     }
-    
+
     private void sendUnsuccessResponse(String message) {
         Map<String, String> errorMap = Map.of("error", message);
         String json = new Gson().toJson(errorMap);
-        String httpResponse = String.format(response, json.getBytes(StandardCharsets.UTF_8).length, json);
-        System.out.println(httpResponse);
+        String httpResponse = String.format(HEADER_TEMPLATE, json);
+        System.out.print(httpResponse);
     }
 
-    private Map<String, String> parse (String query) { // query = "x=1&y=2&r=3"
-    Map<String, String> params = new HashMap<>();
-    for (String param : query.split("&")) {
-        String[] pair = param.split("=");
-        if (pair.length > 1) {
-            params.put(pair[0], pair[1]);
-        } else {
-            params.put(pair[0], "");
+    private Map<String, String> parse(String query) { // query = "x=1&y=2&r=3"
+        Map<String, String> params = new HashMap<>();
+        for (String param : query.split("&")) {
+            String[] pair = param.split("=");
+            if (pair.length > 1) {
+                params.put(pair[0], pair[1]);
+            } else {
+                params.put(pair[0], "");
+            }
         }
+        return params;
     }
-    return params;
-}
 }

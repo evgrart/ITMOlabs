@@ -27,7 +27,7 @@
         <form class = "oreshnik">
             <h2> ОРЕШНИК </h2> 
             <div class="form-group">
-                <label for="xvalue"><p>X:</p></label>
+                <label for="xvalue"><p>X:</p></label> <!--переделать--> 
                 <input type="text" id="xvalue" name="x" class="input">
             </div>
 
@@ -47,6 +47,21 @@
             </div>
             <button type="button" id="bam" class="exterminatus"> ЭКСТЕРМИНАТУС </button>
         </form>    
+
+        <table class="results">
+        <thead>
+            <tr>
+                <th>X</th>
+                <th>Y</th>
+                <th>R</th>
+                <th>Результат</th>
+                <th>Время</th>
+            </tr>
+        </thead>
+        <tbody id="results-body">
+        </tbody>
+        </table>
+
         <canvas id="canvas" class="canvas" width="500" height="500"></canvas>
         <script src="scripts.js"></script>  
     </body>   

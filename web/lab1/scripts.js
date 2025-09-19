@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const fire = document.getElementById('bam');
     const results = document.getElementById('results-body');
     
+    const maxh = 30;
+
     if (video && sound) {
         sound.addEventListener('click', () => {
             video.muted = !video.muted;
@@ -52,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const mX = (canvasX - cX) / scale;
             const mY = (cY - canvasY) / scale; 
 
-            sendReq(mX.toFixed(2), mY.toFixed(2), r.value);
+            sendReq(Number(mX), Number(mY), r.value);
         });
     }
 
@@ -178,6 +180,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         drawPoint(canvasX, canvasY, data.hit);
         addResultToTable(data);
+
+        saveToStorage(data);
     }
 
     function drawPoint(x, y, isHit) {
@@ -204,4 +208,27 @@ document.addEventListener('DOMContentLoaded', () => {
             <td>${hitText}</td>
         `;
     }
-});sendRequestToServer
+
+    function saveToStorage(data) {
+        let arr = JSON.parse(localStorage.getItem('results') || '[]');
+        arr.unshift(data); 
+        if (arr.length > maxh) arr = arr.slice(0, maxh); // обрезаем
+        localStorage.setItem('results', JSON.stringify(arr));
+    }
+
+    function loadFromStorage() {
+        const arr = JSON.parse(localStorage.getItem('results') || '[]');
+        for (let i = arr.length - 1; i >= 0; i--) {
+            addResultToTable(arr[i]);
+
+            const scale = 80;
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const canvasX = centerX + arr[i].x * scale;
+            const canvasY = centerY - arr[i].y * scale;
+            drawPoint(canvasX, canvasY, arr[i].hit);
+        }
+    }
+
+    loadFromStorage(); // подгрузить 
+});

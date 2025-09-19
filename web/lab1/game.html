@@ -27,8 +27,20 @@
         <form class = "oreshnik">
             <h2> ОРЕШНИК </h2> 
             <div class="form-group">
-                <label for="xvalue"><p>X:</p></label> <!--переделать--> 
-                <input type="text" id="xvalue" name="x" class="input">
+                <label><p>X:</p></label>
+                <input type="hidden" id="xvalue" name="x" value="0">
+
+                <div class="radio-group">
+                    <div><label><input type="radio" name="x-choice" value="-3" onclick="document.getElementById('xvalue').value = this.value;"> -3</label></div>
+                    <div><label><input type="radio" name="x-choice" value="-2" onclick="document.getElementById('xvalue').value = this.value;"> -2</label></div>
+                    <div><label><input type="radio" name="x-choice" value="-1" onclick="document.getElementById('xvalue').value = this.value;"> -1</label></div>
+                    <div><label><input type="radio" name="x-choice" value="0" onclick="document.getElementById('xvalue').value = this.value;" checked> 0</label></div>
+                    <div><label><input type="radio" name="x-choice" value="1" onclick="document.getElementById('xvalue').value = this.value;"> 1</label></div>
+                    <div><label><input type="radio" name="x-choice" value="2" onclick="document.getElementById('xvalue').value = this.value;"> 2</label></div>
+                    <div><label><input type="radio" name="x-choice" value="3" onclick="document.getElementById('xvalue').value = this.value;"> 3</label></div>
+                    <div><label><input type="radio" name="x-choice" value="4" onclick="document.getElementById('xvalue').value = this.value;"> 4</label></div>
+                    <div><label><input type="radio" name="x-choice" value="5" onclick="document.getElementById('xvalue').value = this.value;"> 5</label></div>
+                </div>
             </div>
 
             <div class="form-group">

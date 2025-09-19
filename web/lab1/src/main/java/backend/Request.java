@@ -22,7 +22,7 @@ public class Request {
         }
 
         if (request == null || request.isEmpty()) {
-            errorMessage = "Параметры не заданы";
+            errorMessage = "Ничего не указано";
             return;
         }
         Map<String, String> params = parse(request);
@@ -47,6 +47,7 @@ public class Request {
     }
 
     private void sendSuccessResponse(Map<String, Object> data) {
+        System.out.print(data.get("hit"));
         String json = new Gson().toJson(data);
         String httpResponse = String.format(HEADER_TEMPLATE, json);
         System.out.print(httpResponse); 

@@ -12,14 +12,14 @@ public class HitChecker {
             y = Double.parseDouble(params.get("y"));
             r = Double.parseDouble(params.get("r"));
         } catch (NumberFormatException e) {
-            errorMessage = "Введены некорректные данные";
+            errorMessage = "Введены некорректные числа";
         }
     }
 
     public boolean validate() {
         if (errorMessage != null) return false;
         if (x == null || y == null || r == null) {
-            errorMessage = "Параметры не заданы";
+            errorMessage = "Задайте все три параметра";
             return false;
         }
         boolean flag = (x != null && (x == -3 || x == -2 || x == -1 || x == 0 || x == 1 || x == 2 || x == 3 || x == 4 || x == 5));
@@ -35,16 +35,20 @@ public class HitChecker {
     }
 
     public boolean checkHit() {
-        if (x >= -r/2 && x <= 0 && y >= 0 && y <= r) {
+        if (x >= 0 && y <= 0 && (x*x + y*y <= r*r / 4)) {
             return true;
         }
-        if (x <= 0 && y <= 0 && y >= -x - r/2) {
+
+        if (x <= 0 && x >= -r && y >= 0 && y <= r) {
             return true;
         }
-        if (x >= 0 && y <= 0 && (x*x + y*y <= r*r)) {
+
+        if (x <= 0 && y <= 0 && (x + y >= -r)) {
             return true;
         }
+        
         return false;
+        
     }
 
     public Double getX() {

@@ -1,6 +1,13 @@
 package backend;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonPrimitive;
+import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonSerializer;
+import java.lang.reflect.Type;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
@@ -18,6 +25,11 @@ public class Request {
         String request = null;
         try {
             request = fcgi.request.params.getProperty("QUERY_STRING");
+            String s = fcgi.request.params.getProperty("REQUEST_METHOD");
+            if (s.equals("POST")) {
+                errorMessage = "POST не доступен";
+                return;
+            }
         } catch (Exception e) {
         }
 
@@ -46,9 +58,17 @@ public class Request {
         sendSuccessResponse(responseData);
     }
 
-    private void sendSuccessResponse(Map<String, Object> data) {
-        System.out.print(data.get("hit"));
-        String json = new Gson().toJson(data);
+    private void sendSuccessResponse(Map<String, Object> data) {        
+        GsonBuilder gsonBuilder = new GsonBuilder();
+
+        gsonBuilder.registerTypeAdapter(BigDecimal.class, new JsonSerializer<BigDecimal>() {
+            public JsonElement serialize(BigDecimal src, Type typeOfSrc, JsonSerializationContext context) {
+                return new JsonPrimitive(src.toPlainString());
+            }
+        });
+
+        Gson gson = gsonBuilder.create();
+        String json = gson.toJson(data);
         String httpResponse = String.format(HEADER_TEMPLATE, json);
         System.out.print(httpResponse); 
     }

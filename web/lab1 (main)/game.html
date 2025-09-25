@@ -60,21 +60,38 @@
             <button type="button" id="bam" class="exterminatus"> ЭКСТЕРМИНАТУС </button>
         </form>    
 
-        <table class="results">
+        <table class="errors">
         <thead>
             <tr>
-                <th>X</th>
-                <th>Y</th>
-                <th>R</th>
-                <th>Результат</th>
+                <th>Ошибка</th>
                 <th>Время</th>
             </tr>
         </thead>
-        <tbody id="results-body">
+        <tbody id="errors-body">
         </tbody>
         </table>
+    
+
+        <div class="results-container">
+            <table class="results">
+                <thead>
+                    <tr>
+                        <th class="X">X</th>
+                        <th class="Y">Y</th>
+                        <th class="R">R</th>
+                        <th class="res">Результат</th>
+                        <th class="time">Время</th>
+                    </tr>
+                </thead>
+                <tbody id="results-body">
+                </tbody>
+            </table>
+        </div>
+
 
         <canvas id="canvas" class="canvas" width="500" height="500"></canvas>
         <script src="scripts.js"></script>  
     </body>   
 </html> 
+
+

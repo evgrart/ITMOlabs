@@ -100,7 +100,7 @@
     align-items: stretch;  
     margin-bottom: 20px;  
     position: absolute;
-    top: 270px;
+    top: 200px;
     left: 70px;
     z-index: 1;
     border: 2px solid black;
@@ -122,25 +122,92 @@
     width: 60px;
 }
 
-.results {
-    position: relative;
-    top: 70px; 
+.results-container {
+    position: absolute;
+    top: 10px;
+    right: 500px;
     z-index: 1;
     width: 1000px;
-    margin: 40px auto; 
-    border-collapse: collapse; 
-    color: white;
-    background-color: rgb(20, 48, 46, 0.8);
+    max-height: 550px;     
+    overflow-y: auto;      
+    margin: 40px auto;
     box-shadow: 0 0 15px black;
+    background-color: rgba(20, 48, 46, 0.8);
 }
 
-.results th, .results td {
+.results {
+    width: 100%;
+    border-collapse: collapse;
+    color: white;
+    table-layout: fixed;
+}
+
+.results thead th { 
+    position: sticky; 
+    top: 0; 
+    z-index: 2; 
+    background-color: rgba(20, 48, 46, 0.95); 
+} 
+
+.results { 
+    table-layout: fixed; 
+    width: 1000px; 
+}
+
+.results .time { 
+    width: 20%; 
+} 
+
+.results .X, .results .R, .results .Y { 
+    width: 25%; 
+}
+
+.results .res { 
+    width: 20%; 
+} 
+
+
+.results th { 
+    background-color: rgba(20, 48, 46, 0.7); 
+    border: 1px solid #555; 
+    padding: 10px; 
+    text-align: center; 
+}
+
+.results td {
     border: 1px solid #555;
     padding: 10px;
     text-align: center;
+    white-space: nowrap;       
+    overflow: hidden;          
+    text-overflow: ellipsis;   
+    max-width: 200px;          
 }
 
-.results th {
+
+.errors {
+    position: absolute;       
+    left: 60px;
+    top: 780px;
+    z-index: 1;
+    width: 370px;
+    max-height: 300px;        
+    overflow-y: auto;         
+    display: block;          
+    border-collapse: collapse; 
+    color: white;
+    background-color: rgba(20, 48, 46, 0.8);
+    box-shadow: 0 0 15px black;
+}
+
+.errors th, .errors td {
+    border: 1px solid #555;
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+}
+
+.errors th {
     background-color: rgb(20, 48, 46, 0.7);
 }
 
@@ -225,4 +292,4 @@
     100% {
         transform: rotate(360deg);
     }
-}
+} 

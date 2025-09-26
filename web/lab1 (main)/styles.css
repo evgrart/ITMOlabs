@@ -4,7 +4,7 @@
     position : absolute;
     top: 75px;
     left: 60px;
-    border: 2px solid red;
+    border: 2px solid red; /*сплошной*/
     padding: 10px;
     font-size: 22px;
     z-index: 1;
@@ -20,7 +20,7 @@
     position: absolute;
     right: 60px;
     top: 165px;
-    text-decoration: none;
+    text-decoration: none; /*линк*/
     color: white;
     font-size: 17px;
     animation: spin 2s linear infinite;
@@ -96,8 +96,11 @@
     z-index: 1;
 }
 
+.soundbutton:hover {
+    background-color: red;
+}
+
 .oreshnik {
-    align-items: stretch;  
     margin-bottom: 20px;  
     position: absolute;
     top: 200px;
@@ -139,7 +142,7 @@
     width: 100%;
     border-collapse: collapse;
     color: white;
-    table-layout: fixed;
+    table-layout: fixed; /*ширина первой*/
 }
 
 .results thead th { 
@@ -178,9 +181,9 @@
     border: 1px solid #555;
     padding: 10px;
     text-align: center;
-    white-space: nowrap;       
-    overflow: hidden;          
-    text-overflow: ellipsis;   
+    white-space: nowrap;     /*не переносить*/  
+    overflow: hidden;       /*обрезать*/   
+    text-overflow: ellipsis;   /*многоточие*/
     max-width: 200px;          
 }
 
@@ -194,7 +197,7 @@
     max-height: 300px;        
     overflow-y: auto;         
     display: block;          
-    border-collapse: collapse; 
+    border-collapse: collapse; /*двойные рамки*/
     color: white;
     background-color: rgba(20, 48, 46, 0.8);
     box-shadow: 0 0 15px black;
@@ -225,7 +228,7 @@
 }
 
 .form-group {
-    display: flex; 
+    display: flex; /*выравнивание по родителю*/
     margin: 0;
     padding: 5px;
     font-size: 20px;

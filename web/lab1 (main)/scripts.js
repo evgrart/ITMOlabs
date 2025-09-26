@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const fire = document.getElementById('bam');
     const results = document.getElementById('results-body');
     const errors = document.getElementById('errors-body');
+    const api = document.getElementById('X-API-Key').value;
 
     const maxh = 30;
     const scale = 80; 
@@ -145,8 +146,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function sendReq(x, y, r) {
-        console.log(`Отправка запроса: x=${x}, y=${y}, r=${r}`);
-        const url = `/fcgi-bin/lab-server-1.0.jar?x=${x}&y=${y}&r=${r}`;
+        console.log(`Отправка запроса: x=${x}, y=${y}, r=${r}, api=${api}`);
+        const url = `/fcgi-bin/lab-server-1.0.jar?x=${x}&y=${y}&r=${r}&apiKey=${api}`;
 
         fetch(url, {method:"GET"})
             .then(response => {
@@ -217,6 +218,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function saveError(message) {
+        if (message == "Ошибка от сервера: 401 Unauthorized") { // "401 Unauthorized"
+            //window.location.replace('error.html')
+            window.location.href = 'error.html';
+            message = "401 Unauthorized";                
+        }
+
         const time = new Date().toLocaleTimeString();
         const errorData = { message, time };
 

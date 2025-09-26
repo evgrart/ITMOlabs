@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "backend",
+            "request": "launch",
+            "mainClass": "backend.Main",
+            "projectName": "bebra-app"
+        },
+        {
+            "type": "java",
+            "name": "backend",
+            "request": "launch",
+            "mainClass": "backend.Main",
+            "projectName": "bebra-app"
+        }
+    ]
+}

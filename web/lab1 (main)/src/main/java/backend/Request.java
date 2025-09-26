@@ -6,38 +6,53 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
+import com.fastcgi.FCGIInterface;
+
 import java.lang.reflect.Type;
 import java.math.BigDecimal;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
-import com.fastcgi.FCGIInterface;
 
 public class Request {
     private final FCGIInterface fcgi;
-    private static final String HEADER_TEMPLATE = "Content-Type: application/json\r\n\r\n%s";  
-    HitChecker hitChecker;    
-    private String errorMessage;     
-
+    private static final String HEADER_TEMPLATE = "Content-Type: application/json\r\n\r\n%s";
+    private HitChecker hitChecker;
+    private String errorMessage;
+    
     public Request(FCGIInterface fcgi) {
         this.fcgi = fcgi;
         String request = null;
         try {
             request = fcgi.request.params.getProperty("QUERY_STRING");
-            String s = fcgi.request.params.getProperty("REQUEST_METHOD");
-            if (s.equals("POST")) {
+            String method = fcgi.request.params.getProperty("REQUEST_METHOD");
+            if ("POST".equalsIgnoreCase(method)) {
                 errorMessage = "POST не доступен";
+                sendUnsuccessResponse(errorMessage);
                 return;
             }
         } catch (Exception e) {
+            errorMessage = "Ошибка чтения запроса";
+            sendUnsuccessResponse(errorMessage);
+            return;
         }
 
         if (request == null || request.isEmpty()) {
             errorMessage = "Ничего не указано";
             return;
         }
+
         Map<String, String> params = parse(request);
+
+        String apiKey = params.get("apiKey");
+        if (apiKey == null || !apiKey.equals("aboba-123-bebrochka")) {
+            errorMessage = "401 Unauthorized";
+            return;
+        }
+
         hitChecker = new HitChecker(params);
     }
 
@@ -46,6 +61,7 @@ public class Request {
             sendUnsuccessResponse(errorMessage != null ? errorMessage : hitChecker.getErrorMessage());
             return;
         }
+
         boolean flag = hitChecker.checkHit();
         String currentTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss dd.MM.yyyy"));
 
@@ -55,13 +71,14 @@ public class Request {
         responseData.put("r", hitChecker.getR());
         responseData.put("currentTime", currentTime);
         responseData.put("hit", flag);
+
         sendSuccessResponse(responseData);
     }
 
-    private void sendSuccessResponse(Map<String, Object> data) {        
+    private void sendSuccessResponse(Map<String, Object> data) {
         GsonBuilder gsonBuilder = new GsonBuilder();
-
         gsonBuilder.registerTypeAdapter(BigDecimal.class, new JsonSerializer<BigDecimal>() {
+            @Override
             public JsonElement serialize(BigDecimal src, Type typeOfSrc, JsonSerializationContext context) {
                 return new JsonPrimitive(src.toPlainString());
             }
@@ -70,7 +87,7 @@ public class Request {
         Gson gson = gsonBuilder.create();
         String json = gson.toJson(data);
         String httpResponse = String.format(HEADER_TEMPLATE, json);
-        System.out.print(httpResponse); 
+        System.out.print(httpResponse);
     }
 
     private void sendUnsuccessResponse(String message) {
@@ -80,16 +97,25 @@ public class Request {
         System.out.print(httpResponse);
     }
 
-    private Map<String, String> parse(String query) { // query = "x=1&y=2&r=3"
+    private Map<String, String> parse(String query) {
         Map<String, String> params = new HashMap<>();
-        for (String param : query.split("&")) {
-            String[] pair = param.split("=");
-            if (pair.length > 1) {
-                params.put(pair[0], pair[1]);
+        if (query == null || query.isEmpty()) return params;
+
+        String[] pairs = query.split("&");
+        for (String pair : pairs) {
+            int idx = pair.indexOf("=");
+            String key;
+            String value;
+            if (idx > 0) {
+                key = URLDecoder.decode(pair.substring(0, idx), StandardCharsets.UTF_8);
+                value = URLDecoder.decode(pair.substring(idx + 1), StandardCharsets.UTF_8);
             } else {
-                params.put(pair[0], "");
+                key = URLDecoder.decode(pair, StandardCharsets.UTF_8);
+                value = "";
             }
+            params.put(key, value);
         }
         return params;
     }
+
 }

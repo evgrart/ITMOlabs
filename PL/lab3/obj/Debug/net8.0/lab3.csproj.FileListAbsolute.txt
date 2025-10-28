@@ -1,0 +1,15 @@
+/home/evgrart/ITMO/PL/lab3/bin/Debug/net8.0/lab3
+/home/evgrart/ITMO/PL/lab3/bin/Debug/net8.0/lab3.deps.json
+/home/evgrart/ITMO/PL/lab3/bin/Debug/net8.0/lab3.runtimeconfig.json
+/home/evgrart/ITMO/PL/lab3/bin/Debug/net8.0/lab3.dll
+/home/evgrart/ITMO/PL/lab3/bin/Debug/net8.0/lab3.pdb
+/home/evgrart/ITMO/PL/lab3/obj/Debug/net8.0/lab3.GeneratedMSBuildEditorConfig.editorconfig
+/home/evgrart/ITMO/PL/lab3/obj/Debug/net8.0/lab3.AssemblyInfoInputs.cache
+/home/evgrart/ITMO/PL/lab3/obj/Debug/net8.0/lab3.AssemblyInfo.cs
+/home/evgrart/ITMO/PL/lab3/obj/Debug/net8.0/lab3.csproj.CoreCompileInputs.cache
+/home/evgrart/ITMO/PL/lab3/obj/Debug/net8.0/lab3.sourcelink.json
+/home/evgrart/ITMO/PL/lab3/obj/Debug/net8.0/lab3.dll
+/home/evgrart/ITMO/PL/lab3/obj/Debug/net8.0/refint/lab3.dll
+/home/evgrart/ITMO/PL/lab3/obj/Debug/net8.0/lab3.pdb
+/home/evgrart/ITMO/PL/lab3/obj/Debug/net8.0/lab3.genruntimeconfig.cache
+/home/evgrart/ITMO/PL/lab3/obj/Debug/net8.0/ref/lab3.dll

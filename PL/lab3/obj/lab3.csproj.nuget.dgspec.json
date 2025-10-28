@@ -1,0 +1,61 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/evgrart/ITMO/PL/lab3/lab3.csproj": {}
+  },
+  "projects": {
+    "/home/evgrart/ITMO/PL/lab3/lab3.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/evgrart/ITMO/PL/lab3/lab3.csproj",
+        "projectName": "lab3",
+        "projectPath": "/home/evgrart/ITMO/PL/lab3/lab3.csproj",
+        "packagesPath": "/home/evgrart/.nuget/packages/",
+        "outputPath": "/home/evgrart/ITMO/PL/lab3/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/evgrart/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.121/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

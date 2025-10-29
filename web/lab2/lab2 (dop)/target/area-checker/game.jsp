@@ -15,7 +15,7 @@
         <source src="images/background.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
-    <img id="cursor-arrow" src="images/red-arrow.png" alt="Стрелка курсора">
+    <img id="cursor-arrow" src="images/cursor.png" alt="Стрелка курсора">
 
     <a href="index.jsp" class="backbutton">
         НАЗАД

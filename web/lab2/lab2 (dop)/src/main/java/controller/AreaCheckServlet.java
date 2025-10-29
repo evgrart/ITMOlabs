@@ -97,13 +97,17 @@ public class AreaCheckServlet extends HttpServlet {
             }
             HttpSession session = request.getSession();
             session.setAttribute("result", result);
-            response.sendRedirect(request.getContextPath() + "/result.jsp");
+            if (hit) {
+                response.sendRedirect(request.getContextPath() + "/result1.jsp");
+            } else {
+                response.sendRedirect(request.getContextPath() + "/result0.jsp");
+            }
 
 
         } catch (Exception e) {
             HttpSession session = request.getSession();
             session.setAttribute("error", e.getMessage());
-            response.sendRedirect(request.getContextPath() + "/result.jsp");
+            response.sendRedirect(request.getContextPath() + "/result1.jsp");
             //request.getRequestDispatcher("/game.jsp").forward(request, response);
         }
     }

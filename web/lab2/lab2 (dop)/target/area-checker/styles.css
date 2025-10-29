@@ -281,10 +281,10 @@
 
     position: absolute; 
 
-    width: 30px;
-    height: 30px;
+    width: 70px;
+    height: 70px;
 
-    z-index: 9999; 
+    z-index: 5; 
     pointer-events: none; 
 }
 

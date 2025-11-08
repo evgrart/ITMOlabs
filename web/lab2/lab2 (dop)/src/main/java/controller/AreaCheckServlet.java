@@ -34,9 +34,9 @@ public class AreaCheckServlet extends HttpServlet {
         try (InputStream is = getClass().getClassLoader().getResourceAsStream("kmeans-tribuo.model");
              ObjectInputStream ois = new ObjectInputStream(is)) {
             this.kMeansModel = (KMeansModel) ois.readObject();
-            System.out.println("Tribuo K-Means модель успешно загружена.");
+            System.out.println("Модель загружена");
         } catch (Exception e) {
-            throw new ServletException("Ошибка загрузки Tribuo K-Means модели", e);
+            throw new ServletException("Ошибка с моделью: ", e);
         }
     }
 
@@ -71,7 +71,7 @@ public class AreaCheckServlet extends HttpServlet {
                     clusterId = prediction.getID();
 
                 } catch (Exception e) {
-                    System.err.println("Ошибка предсказания кластера Tribuo: " + e.getMessage());
+                    System.err.println("Ошибка предсказания: " + e.getMessage());
                     clusterId = -1;
                 }
             }
@@ -107,7 +107,7 @@ public class AreaCheckServlet extends HttpServlet {
         } catch (Exception e) {
             HttpSession session = request.getSession();
             session.setAttribute("error", e.getMessage());
-            response.sendRedirect(request.getContextPath() + "/result1.jsp");
+            response.sendRedirect(request.getContextPath() + "/result1.jsp"); // на уровне клиента
             //request.getRequestDispatcher("/game.jsp").forward(request, response);
         }
     }

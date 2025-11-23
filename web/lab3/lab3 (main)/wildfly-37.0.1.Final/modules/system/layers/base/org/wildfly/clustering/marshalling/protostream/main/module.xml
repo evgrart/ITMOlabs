@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright The WildFly Authors
+  ~ SPDX-License-Identifier: Apache-2.0
+  -->
+<module name="org.wildfly.clustering.marshalling.protostream" xmlns="urn:jboss:module:1.9">
+
+    <properties>
+        <property name="jboss.api" value="private"/>
+    </properties>
+
+    <resources>
+        <resource-root path="wildfly-clustering-marshalling-protostream-7.0.12.Final.jar"/>
+        <resource-root path="wildfly-clustering-marshalling-protostream-37.0.1.Final.jar"/>
+    </resources>
+
+    <dependencies>
+        <module name="java.sql"/>
+
+        <module name="org.infinispan.protostream"/>
+        <module name="org.jboss.modules"/>
+        <module name="org.wildfly.clustering.function"/>
+        <module name="org.wildfly.clustering.marshalling.spi"/>
+    </dependencies>
+</module>

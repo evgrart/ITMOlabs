@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright The WildFly Authors
+  ~ SPDX-License-Identifier: Apache-2.0
+  -->
+<module name="org.jboss.threads" xmlns="urn:jboss:module:1.9">
+
+   <properties>
+       <property name="jboss.api" value="private"/>
+   </properties>
+
+    <resources>
+        <resource-root path="jboss-threads-3.9.1.jar"/>
+    </resources>
+
+    <dependencies>
+        <module name="java.management"/>
+        <module name="jdk.unsupported"/>
+        <!-- declared in the JBoss Threads module-info,
+             but not actually used
+        <module name="io.smallrye.common.annotation"/>
+        -->
+        <module name="io.smallrye.common.constraint"/>
+        <module name="io.smallrye.common.cpu"/>
+        <module name="io.smallrye.common.function"/>
+        <module name="org.wildfly.common"/>
+        <module name="org.jboss.logging"/>
+    </dependencies>
+</module>

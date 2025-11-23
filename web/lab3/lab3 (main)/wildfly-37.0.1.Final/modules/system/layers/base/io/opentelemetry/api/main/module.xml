@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright The WildFly Authors
+  ~ SPDX-License-Identifier: Apache-2.0
+  -->
+<module name="io.opentelemetry.api" xmlns="urn:jboss:module:1.9">
+    <properties>
+        <property name="jboss.api" value="private"/>
+    </properties>
+
+    <resources>
+        <resource-root path="opentelemetry-api-1.42.1.jar"/>
+        <resource-root path="opentelemetry-api-incubator-1.42.1-alpha.jar"/>
+    </resources>
+
+    <dependencies>
+        <module name="io.opentelemetry.context"/>
+        <module name="io.opentelemetry.instrumentation.annotations"/>
+        <module name="io.opentelemetry.instrumentation.api"/>
+        <module name="io.opentelemetry.semconv"/>
+        <module name="io.smallrye.opentelemetry" services="export"/>
+
+        <module name="java.logging"/>
+        <module name="java.management"/>
+        <module name="jdk.management"/>
+        <module name="jakarta.interceptor.api"/>
+    </dependencies>
+</module>

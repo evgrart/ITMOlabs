@@ -1,0 +1,16 @@
+---
+schemaVersion: "2.0.0"
+name: "wildfly"
+repositories:
+  - id: "jboss-public-repository-group"
+    url: "https://repository.jboss.org/nexus/content/groups/public/"
+  - id: "central"
+    url: "https://repo.maven.apache.org/maven2"
+  - id: "jboss-ga-repository"
+    url: "https://maven.repository.redhat.com/ga/"
+manifest:
+  maven:
+    groupId: "org.wildfly.channels"
+    artifactId: "wildfly"
+    version: "37.0.1.Final"
+resolve-if-no-stream: "none"

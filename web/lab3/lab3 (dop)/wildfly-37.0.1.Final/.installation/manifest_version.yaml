@@ -1,0 +1,7 @@
+---
+schemaVersion: "1.0.0"
+maven:
+- groupId: "org.wildfly.channels"
+  artifactId: "wildfly"
+  version: "37.0.1.Final"
+  description: "WildFly 37.0.1.Final"

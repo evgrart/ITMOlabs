@@ -1,0 +1,213 @@
+2025-11-26 23:36:27,587 INFO  [org.jboss.modules] (main) JBoss Modules version 2.1.6.Final
+2025-11-26 23:36:28,577 INFO  [org.jboss.msc] (main) JBoss MSC version 1.5.6.Final
+2025-11-26 23:36:28,598 INFO  [org.jboss.threads] (main) JBoss Threads version 3.9.1
+2025-11-26 23:36:28,783 INFO  [org.jboss.as] (MSC service thread 1-2) WFLYSRV0049: WildFly 37.0.1.Final (WildFly Core 29.0.1.Final) starting
+2025-11-26 23:36:28,785 DEBUG [org.jboss.as.config] (MSC service thread 1-2) Configured system properties:
+	[Standalone] = 
+	file.encoding = UTF-8
+	file.separator = /
+	java.awt.headless = true
+	java.class.path = /home/evgrart/bebra/wildfly-37.0.1.Final/jboss-modules.jar
+	java.class.version = 65.0
+	java.home = /usr/lib/jvm/java-21-openjdk-amd64
+	java.io.tmpdir = /tmp
+	java.library.path = /usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+	java.net.preferIPv4Stack = true
+	java.runtime.name = OpenJDK Runtime Environment
+	java.runtime.version = 21.0.9+10-Ubuntu-124.04
+	java.specification.name = Java Platform API Specification
+	java.specification.vendor = Oracle Corporation
+	java.specification.version = 21
+	java.util.logging.manager = org.jboss.logmanager.LogManager
+	java.vendor = Ubuntu
+	java.vendor.url = https://ubuntu.com/
+	java.vendor.url.bug = https://bugs.launchpad.net/ubuntu/+source/openjdk-21
+	java.version = 21.0.9
+	java.version.date = 2025-10-21
+	java.vm.compressedOopsMode = 32-bit
+	java.vm.info = mixed mode, sharing
+	java.vm.name = OpenJDK 64-Bit Server VM
+	java.vm.specification.name = Java Virtual Machine Specification
+	java.vm.specification.vendor = Oracle Corporation
+	java.vm.specification.version = 21
+	java.vm.vendor = Ubuntu
+	java.vm.version = 21.0.9+10-Ubuntu-124.04
+	javax.management.builder.initial = org.jboss.as.jmx.PluggableMBeanServerBuilder
+	jboss.home.dir = /home/evgrart/bebra/wildfly-37.0.1.Final
+	jboss.host.name = evgrart-linux
+	jboss.modules.system.pkgs = org.jboss.byteman
+	jboss.node.name = evgrart-linux
+	jboss.qualified.host.name = evgrart-linux
+	jboss.server.base.dir = /home/evgrart/bebra/wildfly-37.0.1.Final/standalone
+	jboss.server.config.dir = /home/evgrart/bebra/wildfly-37.0.1.Final/standalone/configuration
+	jboss.server.data.dir = /home/evgrart/bebra/wildfly-37.0.1.Final/standalone/data
+	jboss.server.log.dir = /home/evgrart/bebra/wildfly-37.0.1.Final/standalone/log
+	jboss.server.name = evgrart-linux
+	jboss.server.persist.config = true
+	jboss.server.temp.dir = /home/evgrart/bebra/wildfly-37.0.1.Final/standalone/tmp
+	jboss.threads.eqe.statistics = true
+	jdk.debug = release
+	jdk.serialFilter = maxbytes=10485760;maxdepth=128;maxarray=100000;maxrefs=300000
+	line.separator = 
+
+	logging.configuration = file:/home/evgrart/bebra/wildfly-37.0.1.Final/standalone/configuration/logging.properties
+	module.path = /home/evgrart/bebra/wildfly-37.0.1.Final/modules
+	native.encoding = UTF-8
+	org.jboss.boot.log.file = /home/evgrart/bebra/wildfly-37.0.1.Final/standalone/log/server.log
+	org.jboss.resolver.warning = true
+	os.arch = amd64
+	os.name = Linux
+	os.version = 6.14.0-36-generic
+	path.separator = :
+	stderr.encoding = UTF-8
+	stdout.encoding = UTF-8
+	sun.arch.data.model = 64
+	sun.boot.library.path = /usr/lib/jvm/java-21-openjdk-amd64/lib
+	sun.cpu.endian = little
+	sun.io.unicode.encoding = UnicodeLittle
+	sun.java.command = /home/evgrart/bebra/wildfly-37.0.1.Final/jboss-modules.jar -mp /home/evgrart/bebra/wildfly-37.0.1.Final/modules org.jboss.as.standalone -Djboss.home.dir=/home/evgrart/bebra/wildfly-37.0.1.Final -Djboss.server.base.dir=/home/evgrart/bebra/wildfly-37.0.1.Final/standalone
+	sun.java.launcher = SUN_STANDARD
+	sun.jnu.encoding = UTF-8
+	sun.management.compiler = HotSpot 64-Bit Tiered Compilers
+	user.country = US
+	user.dir = /home/evgrart/bebra/wildfly-37.0.1.Final/bin
+	user.home = /home/evgrart
+	user.language = en
+	user.name = evgrart
+	user.timezone = Europe/Moscow
+2025-11-26 23:36:28,786 DEBUG [org.jboss.as.config] (MSC service thread 1-2) VM Arguments: -D[Standalone] -Djdk.serialFilter=maxbytes=10485760;maxdepth=128;maxarray=100000;maxrefs=300000 -Xms64m -Xmx512m -Djava.net.preferIPv4Stack=true -Djboss.modules.system.pkgs=org.jboss.byteman -Djava.awt.headless=true --add-exports=java.desktop/sun.awt=ALL-UNNAMED --add-exports=java.naming/com.sun.jndi.ldap=ALL-UNNAMED --add-exports=java.naming/com.sun.jndi.url.ldap=ALL-UNNAMED --add-exports=java.naming/com.sun.jndi.url.ldaps=ALL-UNNAMED --add-exports=jdk.naming.dns/com.sun.jndi.dns=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.io=ALL-UNNAMED --add-opens=java.base/java.net=ALL-UNNAMED --add-opens=java.base/java.security=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.util.concurrent=ALL-UNNAMED --add-opens=java.management/javax.management=ALL-UNNAMED --add-opens=java.naming/javax.naming=ALL-UNNAMED -Dorg.jboss.boot.log.file=/home/evgrart/bebra/wildfly-37.0.1.Final/standalone/log/server.log -Dlogging.configuration=file:/home/evgrart/bebra/wildfly-37.0.1.Final/standalone/configuration/logging.properties 
+2025-11-26 23:36:30,182 INFO  [org.wildfly.security] (Controller Boot Thread) ELY00001: WildFly Elytron version 2.6.4.Final
+2025-11-26 23:36:30,950 INFO  [org.jboss.as.server] (Controller Boot Thread) WFLYSRV0039: Creating http management service using socket-binding (management-http)
+2025-11-26 23:36:30,974 INFO  [org.xnio] (MSC service thread 1-6) XNIO version 3.8.16.Final
+2025-11-26 23:36:30,984 INFO  [org.xnio.nio] (MSC service thread 1-6) XNIO NIO Implementation Version 3.8.16.Final
+2025-11-26 23:36:31,050 INFO  [org.jboss.as.clustering.infinispan] (ServerService Thread Pool -- 56) WFLYCLINF0001: Activating Infinispan subsystem.
+2025-11-26 23:36:31,055 INFO  [org.wildfly.extension.elytron.oidc._private] (ServerService Thread Pool -- 54) WFLYOIDC0001: Activating WildFly Elytron OIDC Subsystem
+2025-11-26 23:36:31,062 INFO  [org.jboss.as.jaxrs] (ServerService Thread Pool -- 58) WFLYRS0016: RESTEasy version 6.2.12.Final
+2025-11-26 23:36:31,067 INFO  [org.jboss.remoting] (MSC service thread 1-6) JBoss Remoting version 5.0.31.Final
+2025-11-26 23:36:31,062 INFO  [org.wildfly.extension.io] (ServerService Thread Pool -- 57) WFLYIO001: Worker 'default' has auto-configured to 16 IO threads with 128 max task threads based on your 8 available processors
+2025-11-26 23:36:31,066 INFO  [org.wildfly.extension.microprofile.config.smallrye] (ServerService Thread Pool -- 66) WFLYCONF0001: Activating MicroProfile Config Subsystem
+2025-11-26 23:36:31,079 INFO  [org.wildfly.extension.microprofile.jwt.smallrye] (ServerService Thread Pool -- 67) WFLYJWT0001: Activating MicroProfile JWT Subsystem
+2025-11-26 23:36:31,091 INFO  [org.wildfly.extension.health] (ServerService Thread Pool -- 55) WFLYHEALTH0001: Activating Base Health Subsystem
+2025-11-26 23:36:31,093 WARN  [org.jboss.as.txn] (ServerService Thread Pool -- 75) WFLYTX0013: The node-identifier attribute on the /subsystem=transactions is set to the default value. This is a danger for environments running multiple servers. Please make sure the attribute value is unique.
+2025-11-26 23:36:31,093 INFO  [org.jboss.as.jsf] (ServerService Thread Pool -- 63) WFLYJSF0007: Activated the following Jakarta Server Faces Implementations: [main]
+2025-11-26 23:36:31,093 INFO  [org.wildfly.extension.metrics] (ServerService Thread Pool -- 65) WFLYMETRICS0001: Activating Base Metrics Subsystem
+2025-11-26 23:36:31,124 INFO  [org.jboss.as.webservices] (ServerService Thread Pool -- 77) WFLYWS0002: Activating WebServices Extension
+2025-11-26 23:36:31,124 INFO  [org.jboss.as.naming] (ServerService Thread Pool -- 68) WFLYNAM0001: Activating Naming Subsystem
+2025-11-26 23:36:31,156 INFO  [org.jboss.as.connector] (MSC service thread 1-5) WFLYJCA0009: Starting Jakarta Connectors Subsystem (WildFly/IronJacamar 3.0.14.Final)
+2025-11-26 23:36:31,240 INFO  [org.jboss.as.connector.subsystems.datasources] (ServerService Thread Pool -- 45) WFLYJCA0004: Deploying JDBC-compliant driver class org.h2.Driver (version 2.2)
+2025-11-26 23:36:31,281 INFO  [org.jboss.as.mail.extension] (MSC service thread 1-8) WFLYMAIL0001: Bound mail session [java:jboss/mail/Default]
+2025-11-26 23:36:31,283 INFO  [org.jboss.as.naming] (MSC service thread 1-6) WFLYNAM0003: Starting Naming Service
+2025-11-26 23:36:31,289 INFO  [org.jboss.as.connector.deployers.jdbc] (MSC service thread 1-3) WFLYJCA0018: Started Driver service with driver-name = h2
+2025-11-26 23:36:31,298 WARN  [org.wildfly.extension.elytron] (MSC service thread 1-9) WFLYELY00023: KeyStore file '/home/evgrart/bebra/wildfly-37.0.1.Final/standalone/configuration/application.keystore' does not exist. Used blank.
+2025-11-26 23:36:31,360 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-3) WFLYUT0003: Undertow 2.3.18.Final starting
+2025-11-26 23:36:31,365 WARN  [org.wildfly.extension.elytron] (MSC service thread 1-3) WFLYELY01084: KeyStore /home/evgrart/bebra/wildfly-37.0.1.Final/standalone/configuration/application.keystore not found, it will be auto-generated on first use with a self-signed certificate for host localhost
+2025-11-26 23:36:31,368 INFO  [org.jboss.as.connector.subsystems.datasources] (ServerService Thread Pool -- 45) WFLYJCA0005: Deploying non-JDBC-compliant driver class org.postgresql.Driver (version 42.7)
+2025-11-26 23:36:31,419 INFO  [org.jboss.as.connector.deployers.jdbc] (MSC service thread 1-2) WFLYJCA0018: Started Driver service with driver-name = postgresql
+2025-11-26 23:36:31,537 INFO  [org.wildfly.extension.undertow] (ServerService Thread Pool -- 76) WFLYUT0014: Creating file handler for path '/home/evgrart/bebra/wildfly-37.0.1.Final/welcome-content' with options [directory-listing: 'false', follow-symlink: 'false', case-sensitive: 'true', safe-symlink-paths: '[]']
+2025-11-26 23:36:31,546 INFO  [org.jboss.as.ejb3] (MSC service thread 1-9) WFLYEJB0482: Strict pool mdb-strict-max-pool is using a max instance size of 32 (per class), which is derived from the number of CPUs on this host.
+2025-11-26 23:36:31,546 INFO  [org.jboss.as.ejb3] (MSC service thread 1-6) WFLYEJB0481: Strict pool slsb-strict-max-pool is using a max instance size of 128 (per class), which is derived from thread worker pool sizing.
+2025-11-26 23:36:31,599 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-4) WFLYUT0012: Started server default-server.
+2025-11-26 23:36:31,609 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-6) Queuing requests.
+2025-11-26 23:36:31,617 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-6) WFLYUT0018: Host default-host starting
+2025-11-26 23:36:31,793 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-7) WFLYUT0006: Undertow HTTP listener default listening on 127.0.0.1:8080
+2025-11-26 23:36:31,931 INFO  [org.jboss.as.ejb3] (MSC service thread 1-3) WFLYEJB0493: Jakarta Enterprise Beans subsystem suspension complete
+2025-11-26 23:36:31,943 INFO  [org.jboss.as.server.deployment] (MSC service thread 1-2) WFLYSRV0027: Starting deployment of "ROOT.war" (runtime-name: "ROOT.war")
+2025-11-26 23:36:31,955 INFO  [org.jboss.as.server.deployment.scanner] (MSC service thread 1-5) WFLYDS0013: Started FileSystemDeploymentService for directory /home/evgrart/bebra/wildfly-37.0.1.Final/standalone/deployments
+2025-11-26 23:36:31,960 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-7) WFLYUT0006: Undertow HTTPS listener https listening on 127.0.0.1:8443
+2025-11-26 23:36:32,066 INFO  [org.jboss.as.connector.subsystems.datasources] (MSC service thread 1-7) WFLYJCA0001: Bound data source [java:jboss/datasources/ExampleDS]
+2025-11-26 23:36:32,067 INFO  [org.jboss.as.connector.subsystems.datasources] (MSC service thread 1-7) WFLYJCA0001: Bound data source [java:/jdbc/studs]
+2025-11-26 23:36:32,184 INFO  [org.jboss.ws.common.management] (MSC service thread 1-5) JBWS022052: Starting JBossWS 7.3.3.Final (Apache CXF 4.0.9) 
+2025-11-26 23:36:34,106 INFO  [org.jboss.as.jpa] (MSC service thread 1-2) WFLYJPA0002: Read persistence.xml for default
+2025-11-26 23:36:34,330 INFO  [org.jipijapa] (MSC service thread 1-4) JIPIORMV6020260: Second level cache enabled for ROOT.war#default
+2025-11-26 23:36:34,534 INFO  [org.jboss.weld.deployer] (MSC service thread 1-9) WFLYWELD0003: Processing weld deployment ROOT.war
+2025-11-26 23:36:34,953 INFO  [org.hibernate.validator.internal.util.Version] (MSC service thread 1-9) HV000001: Hibernate Validator 8.0.2.Final
+2025-11-26 23:36:35,358 INFO  [org.infinispan.CONTAINER] (ServerService Thread Pool -- 79) ISPN000556: Starting user marshaller 'org.wildfly.clustering.cache.infinispan.marshalling.UserMarshaller'
+2025-11-26 23:36:35,539 INFO  [org.jipijapa] (MSC service thread 1-6) JIPIORMV6020260: Second level cache enabled for ROOT.war#default
+2025-11-26 23:36:35,845 INFO  [org.jboss.as.connector.deployers.jdbc] (MSC service thread 1-6) WFLYJCA0005: Deploying non-JDBC-compliant driver class org.postgresql.Driver (version 42.6)
+2025-11-26 23:36:35,900 INFO  [org.jboss.weld.Version] (MSC service thread 1-6) WELD-000900: 5.1.6 (Final)
+2025-11-26 23:36:36,044 INFO  [org.jboss.as.connector.deployers.jdbc] (MSC service thread 1-5) WFLYJCA0018: Started Driver service with driver-name = ROOT.war_org.postgresql.Driver_42_6
+2025-11-26 23:36:36,053 INFO  [org.jboss.as.clustering.infinispan] (ServerService Thread Pool -- 79) Started hibernate cache container
+2025-11-26 23:36:36,070 INFO  [org.jboss.as.jpa] (ServerService Thread Pool -- 79) WFLYJPA0010: Starting Persistence Unit (phase 1 of 2) Service 'ROOT.war#default'
+2025-11-26 23:36:36,114 INFO  [org.hibernate.jpa.internal.util.LogHelper] (ServerService Thread Pool -- 79) HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-26 23:36:36,247 INFO  [org.hibernate.Version] (ServerService Thread Pool -- 79) HHH000412: Hibernate ORM core version 6.6.26.Final
+2025-11-26 23:36:37,063 WARN  [org.hibernate.orm.deprecation] (ServerService Thread Pool -- 79) HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-26 23:36:37,116 INFO  [org.hibernate.orm.connections.pooling] (ServerService Thread Pool -- 79) HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'org.jboss.as.connector.subsystems.datasources.WildFlyDataSource@4a429b20']
+	Database driver: undefined/unknown
+	Database version: 16.4
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-26 23:36:37,126 INFO  [org.hibernate.cache.internal.RegionFactoryInitiator] (ServerService Thread Pool -- 79) HHH000025: Second-level cache region factory [org.infinispan.hibernate.cache.v62.InfinispanRegionFactory]
+2025-11-26 23:36:37,229 INFO  [org.hibernate.envers.boot.internal.EnversServiceImpl] (ServerService Thread Pool -- 79) Envers integration enabled? : true
+2025-11-26 23:36:37,565 INFO  [org.jboss.as.jpa] (ServerService Thread Pool -- 79) WFLYJPA0010: Starting Persistence Unit (phase 2 of 2) Service 'ROOT.war#default'
+2025-11-26 23:36:40,337 INFO  [jakarta.enterprise.resource.webcontainer.faces.config] (ServerService Thread Pool -- 84) Initializing Mojarra 4.0.11 for context ''
+2025-11-26 23:36:41,722 INFO  [org.primefaces.webapp.PostConstructApplicationEventListener] (ServerService Thread Pool -- 84) Running on PrimeFaces 13.0.0
+2025-11-26 23:36:41,724 INFO  [org.primefaces.extensions.application.PostConstructApplicationEventListener] (ServerService Thread Pool -- 84) Running on PrimeFaces Extensions 13.0.0
+2025-11-26 23:36:41,747 INFO  [org.wildfly.extension.undertow] (ServerService Thread Pool -- 84) WFLYUT0021: Registered web context: '/' for server 'default-server'
+2025-11-26 23:36:41,853 INFO  [org.jboss.as.server] (Controller Boot Thread) WFLYSRV0010: Deployed "ROOT.war" (runtime-name : "ROOT.war")
+2025-11-26 23:36:41,932 INFO  [org.jboss.as.server] (Controller Boot Thread) WFLYSRV0212: Resuming server
+2025-11-26 23:36:41,941 INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0060: Http management interface listening on http://127.0.0.1:9990/management
+2025-11-26 23:36:41,942 INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0051: Admin console listening on http://127.0.0.1:9990
+2025-11-26 23:36:41,945 INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0025: WildFly 37.0.1.Final (WildFly Core 29.0.1.Final) started in 15116ms - Started 517 of 707 services (336 services are lazy, passive or on-demand) - Server configuration file in use: standalone.xml - Minimum feature stability level: community
+2025-11-26 23:37:35,607 INFO  [org.jboss.as.connector.deployers.jdbc] (MSC service thread 1-4) WFLYJCA0019: Stopped Driver service with driver-name = ROOT.war_org.postgresql.Driver_42_6
+2025-11-26 23:37:35,612 INFO  [org.wildfly.extension.undertow] (ServerService Thread Pool -- 14) WFLYUT0022: Unregistered web context: '/' from server 'default-server'
+2025-11-26 23:37:35,634 INFO  [org.jboss.as.jpa] (ServerService Thread Pool -- 93) WFLYJPA0011: Stopping Persistence Unit (phase 2 of 2) Service 'ROOT.war#default'
+2025-11-26 23:37:35,642 INFO  [org.jboss.as.jpa] (ServerService Thread Pool -- 93) WFLYJPA0011: Stopping Persistence Unit (phase 1 of 2) Service 'ROOT.war#default'
+2025-11-26 23:37:35,661 INFO  [org.jboss.as.clustering.infinispan] (ServerService Thread Pool -- 93) Stopped hibernate cache container
+2025-11-26 23:37:35,693 INFO  [org.jboss.as.server.deployment] (MSC service thread 1-7) WFLYSRV0028: Stopped deployment ROOT.war (runtime-name: ROOT.war) in 87ms
+2025-11-26 23:37:35,780 INFO  [org.jboss.as.server] (External Management Request Threads -- 2) WFLYSRV0009: Undeployed "ROOT.war" (runtime-name: "ROOT.war")
+2025-11-26 23:37:35,791 INFO  [org.jboss.as.repository] (External Management Request Threads -- 2) WFLYDR0002: Content removed from location /home/evgrart/bebra/wildfly-37.0.1.Final/standalone/data/content/9e/0b5591236fabc6fdf8f8f5ed4a45a1bf186bc2/content
+2025-11-26 23:37:43,376 INFO  [org.jboss.as.repository] (External Management Request Threads -- 2) WFLYDR0001: Content added at location /home/evgrart/bebra/wildfly-37.0.1.Final/standalone/data/content/ca/762468764052be4d2ebd34fadfdb8e7ce786eb/content
+2025-11-26 23:37:43,380 INFO  [org.jboss.as.server.deployment] (MSC service thread 1-9) WFLYSRV0027: Starting deployment of "ROOT.war" (runtime-name: "ROOT.war")
+2025-11-26 23:37:45,298 INFO  [org.jboss.as.jpa] (MSC service thread 1-7) WFLYJPA0002: Read persistence.xml for default
+2025-11-26 23:37:45,433 INFO  [org.jipijapa] (MSC service thread 1-6) JIPIORMV6020260: Second level cache enabled for ROOT.war#default
+2025-11-26 23:37:45,470 INFO  [org.infinispan.CONTAINER] (ServerService Thread Pool -- 93) ISPN000556: Starting user marshaller 'org.wildfly.clustering.cache.infinispan.marshalling.UserMarshaller'
+2025-11-26 23:37:45,487 INFO  [org.jboss.weld.deployer] (MSC service thread 1-5) WFLYWELD0003: Processing weld deployment ROOT.war
+2025-11-26 23:37:45,507 INFO  [org.jboss.as.clustering.infinispan] (ServerService Thread Pool -- 93) Started hibernate cache container
+2025-11-26 23:37:45,512 INFO  [org.jboss.as.jpa] (ServerService Thread Pool -- 93) WFLYJPA0010: Starting Persistence Unit (phase 1 of 2) Service 'ROOT.war#default'
+2025-11-26 23:37:45,514 INFO  [org.hibernate.jpa.internal.util.LogHelper] (ServerService Thread Pool -- 93) HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-26 23:37:45,534 INFO  [org.jboss.as.ejb3.deployment] (MSC service thread 1-5) WFLYEJB0473: JNDI bindings for session bean named 'FlywayConfig' in deployment unit 'deployment "ROOT.war"' are as follows:
+
+	java:global/ROOT/FlywayConfig!com.example.lab3.config.FlywayConfig
+	java:app/ROOT/FlywayConfig!com.example.lab3.config.FlywayConfig
+	java:module/FlywayConfig!com.example.lab3.config.FlywayConfig
+	java:global/ROOT/FlywayConfig
+	java:app/ROOT/FlywayConfig
+	java:module/FlywayConfig
+
+2025-11-26 23:37:45,540 WARN  [org.hibernate.orm.deprecation] (ServerService Thread Pool -- 93) HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-26 23:37:45,577 INFO  [org.hibernate.orm.connections.pooling] (ServerService Thread Pool -- 93) HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'org.jboss.as.connector.subsystems.datasources.WildFlyDataSource@4a429b20']
+	Database driver: undefined/unknown
+	Database version: 16.4
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-26 23:37:45,578 INFO  [org.hibernate.cache.internal.RegionFactoryInitiator] (ServerService Thread Pool -- 93) HHH000025: Second-level cache region factory [org.infinispan.hibernate.cache.v62.InfinispanRegionFactory]
+2025-11-26 23:37:45,588 INFO  [org.hibernate.envers.boot.internal.EnversServiceImpl] (ServerService Thread Pool -- 93) Envers integration enabled? : true
+2025-11-26 23:37:45,693 INFO  [org.jipijapa] (MSC service thread 1-7) JIPIORMV6020260: Second level cache enabled for ROOT.war#default
+2025-11-26 23:37:45,965 INFO  [org.jboss.as.connector.deployers.jdbc] (MSC service thread 1-7) WFLYJCA0005: Deploying non-JDBC-compliant driver class org.postgresql.Driver (version 42.6)
+2025-11-26 23:37:46,026 INFO  [org.jboss.as.connector.deployers.jdbc] (MSC service thread 1-5) WFLYJCA0018: Started Driver service with driver-name = ROOT.war_org.postgresql.Driver_42_6
+2025-11-26 23:37:46,046 INFO  [org.jboss.as.jpa] (ServerService Thread Pool -- 93) WFLYJPA0010: Starting Persistence Unit (phase 2 of 2) Service 'ROOT.war#default'
+2025-11-26 23:37:46,851 INFO  [org.flywaydb.core.internal.license.VersionPrinter] (ServerService Thread Pool -- 89) Flyway Community Edition 9.22.3 by Redgate
+2025-11-26 23:37:46,862 INFO  [org.flywaydb.core.internal.license.VersionPrinter] (ServerService Thread Pool -- 89) See release notes here: https://rd.gt/416ObMi
+2025-11-26 23:37:46,862 INFO  [org.flywaydb.core.internal.license.VersionPrinter] (ServerService Thread Pool -- 89) 
+2025-11-26 23:37:46,945 INFO  [org.flywaydb.core.FlywayExecutor] (ServerService Thread Pool -- 89) Database: jdbc:postgresql://localhost:5432/studs (PostgreSQL 16.4)
+2025-11-26 23:37:47,080 WARN  [org.flywaydb.core.internal.database.base.Database] (ServerService Thread Pool -- 89) Flyway upgrade recommended: PostgreSQL 16.4 is newer than this version of Flyway and support has not been tested. The latest supported version of PostgreSQL is 15.
+2025-11-26 23:37:47,156 INFO  [org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory] (ServerService Thread Pool -- 89) Schema history table "s465826"."flyway_schema_history" does not exist yet
+2025-11-26 23:37:47,166 INFO  [org.flywaydb.core.internal.command.DbValidate] (ServerService Thread Pool -- 89) Successfully validated 1 migration (execution time 00:00.056s)
+2025-11-26 23:37:47,334 INFO  [org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory] (ServerService Thread Pool -- 89) Creating Schema History table "s465826"."flyway_schema_history" with baseline ...
+2025-11-26 23:37:47,573 INFO  [org.flywaydb.core.internal.command.DbBaseline] (ServerService Thread Pool -- 89) Successfully baselined schema with version: 1
+2025-11-26 23:37:47,983 INFO  [org.flywaydb.core.internal.command.DbMigrate] (ServerService Thread Pool -- 89) Current version of schema "s465826": 1
+2025-11-26 23:37:47,989 INFO  [org.flywaydb.core.internal.command.DbMigrate] (ServerService Thread Pool -- 89) Schema "s465826" is up to date. No migration necessary.
+2025-11-26 23:37:48,111 INFO  [stdout] (ServerService Thread Pool -- 89) Flyway migration completed successfully.
+2025-11-26 23:37:48,125 INFO  [jakarta.enterprise.resource.webcontainer.faces.config] (ServerService Thread Pool -- 89) Initializing Mojarra 4.0.11 for context ''
+2025-11-26 23:37:49,115 INFO  [org.primefaces.webapp.PostConstructApplicationEventListener] (ServerService Thread Pool -- 89) Running on PrimeFaces 13.0.0
+2025-11-26 23:37:49,117 INFO  [org.primefaces.extensions.application.PostConstructApplicationEventListener] (ServerService Thread Pool -- 89) Running on PrimeFaces Extensions 13.0.0
+2025-11-26 23:37:49,119 INFO  [org.wildfly.extension.undertow] (ServerService Thread Pool -- 89) WFLYUT0021: Registered web context: '/' for server 'default-server'
+2025-11-26 23:37:49,183 INFO  [org.jboss.as.server] (External Management Request Threads -- 2) WFLYSRV0010: Deployed "ROOT.war" (runtime-name : "ROOT.war")
+2025-11-26 23:38:27,454 INFO  [stdout] (default task-2) Hibernate: select cr1_0.id,cr1_0.hit,cr1_0.r,cr1_0.request_time,cr1_0.x,cr1_0.y from check_results cr1_0 order by cr1_0.request_time desc
+2025-11-26 23:38:29,966 INFO  [stdout] (default task-2) Hibernate: insert into check_results (hit,r,request_time,x,y) values (?,?,?,?,?)

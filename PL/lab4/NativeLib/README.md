@@ -1,0 +1,1 @@
+Запуск из директории /NovaFractalApp - LD_LIBRARY_PATH=$LD_LIBRARY_PATH:. dotnet run

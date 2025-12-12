@@ -1,0 +1,53 @@
+@import "primeng/resources/themes/vela-blue/theme.css";
+@import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Courier New', Courier, monospace;
+    overflow: hidden;
+    background: transparent; 
+}
+
+.background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1; 
+    opacity: 0.8;
+    
+    transform: translateZ(0); 
+    will-change: transform; 
+}
+
+app-root {
+    position: relative;
+    z-index: 1; 
+    display: block;
+    height: 100%;
+}
+
+.center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.main-wrapper {
+    position: relative;
+}
+
+.p-card, .p-button {
+    position: relative;
+}
+
+.p-button {
+    background: #8B0000 !important;
+    border: 1px solid #FF0000 !important;
+}

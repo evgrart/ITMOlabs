@@ -1,0 +1,124 @@
+.main-wrapper {
+    padding: 20px;
+    height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 1px solid #8B0000;
+}
+
+.content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    min-height: 80vh; 
+}
+
+:host ::ng-deep .control-panel {
+    background-color: rgba(20, 20, 20, 0.9) !important;
+    color: white;
+    border: 1px solid #555;
+    width: 300px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.field label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #ccc;
+}
+
+.graph-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.table-container {
+    width: 100%; 
+    max-width: 500px;
+    background: rgba(20, 20, 20, 0.9);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.row-hit {
+    background-color: rgba(0, 255, 0, 0.1) !important;
+    color: #afa;
+}
+.row-miss {
+    background-color: rgba(255, 0, 0, 0.1) !important;
+    color: #faa;
+}
+
+@media screen and (min-width: 1209px) {
+    .content-container {
+        flex-direction: row;            
+        justify-content: space-between; 
+        align-items: center;           
+        padding: 0 50px;        
+        box-sizing: border-box;
+    }
+
+    :host ::ng-deep .control-panel, 
+    .table-container {
+        transform: translateY(-80px);
+    }
+
+    .table-container {
+        width: 400px;
+    }
+}
+
+@media screen and (min-width: 878px) and (max-width: 1209px) {
+    .content-container {
+        flex-direction: column;
+        justify-content: center;
+    }
+    .table-container {
+        width: 80%;
+        max-width: none;
+    }
+    :host ::ng-deep .control-panel, 
+    .table-container {
+        transform: none;
+    }
+}
+
+@media screen and (max-width: 878px) {
+    .content-container {
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+    }
+    .control-panel, .graph-container, .table-container {
+        width: 100%;
+        max-width: 100%;
+        transform: none;
+    }
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+    .field {
+        grid-column: span 1 !important;
+    }
+}

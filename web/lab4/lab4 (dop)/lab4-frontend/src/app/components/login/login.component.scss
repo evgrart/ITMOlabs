@@ -1,0 +1,33 @@
+.field {
+    margin-bottom: 25px;
+    margin-top: 10px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+:host ::ng-deep .login-card {
+    background-color: rgba(20, 20, 20, 0.85) !important; 
+    border: 2px solid #8B0000; 
+    color: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+}
+
+:host ::ng-deep .p-card-title {
+    color: #ffffff;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+:host ::ng-deep .p-inputtext {
+    background-color: #2b2b2b;
+    color: white;
+    border-color: #555;
+}
+
+:host ::ng-deep .p-password input {
+    width: 100%;
+}

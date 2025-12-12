@@ -1,0 +1,28 @@
+<div class="center-container">
+    <p-card header="ИДЕНТИФИКАЦИЯ" [style]="{ width: '400px', 'text-align': 'center' }" styleClass="login-card">
+        <ng-template pTemplate="header">
+             <div style="background-color: #8B0000; height: 10px;"></div>
+        </ng-template>
+        
+        <div class="field">
+            <span class="p-float-label">
+                <input pInputText id="username" [(ngModel)]="username" style="width: 100%" />
+                <label for="username">Имя бойца</label>
+            </span>
+        </div>
+
+        <div class="field">
+            <span class="p-float-label">
+                <p-password id="password" [(ngModel)]="password" [toggleMask]="true" [feedback]="false" [style]="{'width':'100%'}" inputStyleClass="w-full"></p-password>
+                <label for="password">Пароль доступа</label>
+            </span>
+        </div>
+
+        <ng-template pTemplate="footer">
+            <div class="buttons">
+                <p-button label="ВХОД" icon="pi pi-sign-in" (onClick)="onLogin()"></p-button>
+                <p-button label="РЕГИСТРАЦИЯ" icon="pi pi-user-plus" styleClass="p-button-secondary" (onClick)="onRegister()"></p-button>
+            </div>
+        </ng-template>
+    </p-card>
+</div>

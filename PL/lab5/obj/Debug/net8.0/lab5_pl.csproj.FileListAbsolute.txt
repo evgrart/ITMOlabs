@@ -1,0 +1,14 @@
+/home/evgrart/lab5_pl/bin/Debug/net8.0/lab5_pl
+/home/evgrart/lab5_pl/bin/Debug/net8.0/lab5_pl.deps.json
+/home/evgrart/lab5_pl/bin/Debug/net8.0/lab5_pl.runtimeconfig.json
+/home/evgrart/lab5_pl/bin/Debug/net8.0/lab5_pl.dll
+/home/evgrart/lab5_pl/bin/Debug/net8.0/lab5_pl.pdb
+/home/evgrart/lab5_pl/obj/Debug/net8.0/lab5_pl.GeneratedMSBuildEditorConfig.editorconfig
+/home/evgrart/lab5_pl/obj/Debug/net8.0/lab5_pl.AssemblyInfoInputs.cache
+/home/evgrart/lab5_pl/obj/Debug/net8.0/lab5_pl.AssemblyInfo.cs
+/home/evgrart/lab5_pl/obj/Debug/net8.0/lab5_pl.csproj.CoreCompileInputs.cache
+/home/evgrart/lab5_pl/obj/Debug/net8.0/lab5_pl.dll
+/home/evgrart/lab5_pl/obj/Debug/net8.0/refint/lab5_pl.dll
+/home/evgrart/lab5_pl/obj/Debug/net8.0/lab5_pl.pdb
+/home/evgrart/lab5_pl/obj/Debug/net8.0/lab5_pl.genruntimeconfig.cache
+/home/evgrart/lab5_pl/obj/Debug/net8.0/ref/lab5_pl.dll

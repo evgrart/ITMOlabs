@@ -17,7 +17,7 @@ int main() {
     long long int n = 1;
     while (iss >> val) {
         n *= val;
-        dims.push_back(val);           
+        dims.push_back(val);
     }
     vector<long double> v1;
     long double x;

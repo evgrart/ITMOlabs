@@ -43,7 +43,8 @@ double ode_variant_1(double x, double y) {
 }
 
 double ode_variant_2(double x, double y) {
-    return x + y * y;
+    (void)x;
+    return 1.0 + y * y;
 }
 
 double ode_variant_3(double x, double y) {
@@ -51,7 +52,7 @@ double ode_variant_3(double x, double y) {
 }
 
 double exact_solution_variant_1(double x) {
-    return -1.0 / (x + 1.0);
+    return -1.0 / x;
 }
 
 double exact_solution_variant_2(double x) {
@@ -59,7 +60,7 @@ double exact_solution_variant_2(double x) {
 }
 
 double exact_solution_variant_3(double x) {
-    return x * x + 2 * x + 2 - 0.4 * exp(x);
+    return x * x + 2 * x + 1 + exp(x);
 }
 
 class OdeSolver {
@@ -72,7 +73,7 @@ class ImprovedEuler : public OdeSolver {
 public:
     Solution solve(ODE_Function f, double x0, double y0, double xn, double h) override {
         Solution sol;
-        int n = static_cast<int>((xn - x0) / h) + 1;
+        int n = static_cast<int>(floor((xn - x0) / h + 1e-9)) + 1;
         
         double x = x0;
         double y = y0;
@@ -96,7 +97,7 @@ class RungeKutta4 : public OdeSolver {
 public:
     Solution solve(ODE_Function f, double x0, double y0, double xn, double h) override {
         Solution sol;
-        int n = static_cast<int>((xn - x0) / h) + 1;
+        int n = static_cast<int>(floor((xn - x0) / h + 1e-9)) + 1;
         
         double x = x0;
         double y = y0;
@@ -127,7 +128,7 @@ private:
 public:
     Solution solve(ODE_Function f, double x0, double y0, double xn, double h) override {
         Solution sol;
-        int n = static_cast<int>((xn - x0) / h) + 1;
+        int n = static_cast<int>(floor((xn - x0) / h + 1e-9)) + 1;
         
         double x = x0;
         double y = y0;
@@ -151,11 +152,11 @@ public:
         for (int i = 4; i < n; i++) {
             double x_i = sol.x.back();
             
-            double y_pred = sol.y[i - 4] + (4.0 * h / 3.0) * (2.0 * f_vals[i - 3] - f_vals[i - 2] + 2.0 * f_vals[i - 1]);
+            double y_pred = sol.y[i - 4] + (4.0 * h / 3.0) * (2.0 * f_vals[1] - f_vals[2] + 2.0 * f_vals[3]);
             
             double f_pred = f(x_i + h, y_pred);
             
-            double y_corr = sol.y[i - 2] + (h / 3.0) * (f_vals[i - 2] + 4.0 * f_vals[i - 1] + f_pred);
+            double y_corr = sol.y[i - 2] + (h / 3.0) * (f_vals[2] + 4.0 * f_vals[3] + f_pred);
             
             sol.x.push_back(x_i + h);
             sol.y.push_back(y_corr);
@@ -170,6 +171,14 @@ public:
 
 double runge_rule(double y_h, double y_h_half, int p) {
     return abs(y_h - y_h_half) / (pow(2.0, p) - 1.0);
+}
+
+double max_abs_error(const Solution& sol, double (*exact)(double)) {
+    double max_error = 0.0;
+    for (size_t i = 0; i < sol.x.size(); i++) {
+        max_error = max(max_error, abs(sol.y[i] - exact(sol.x[i])));
+    }
+    return max_error;
 }
 
 void print_solution_table(const Solution& sol, const string& method_name, 
@@ -308,7 +317,7 @@ void test_different_odes() {
     Solution sol = solver.solve(ode_variant_1, 1.0, -1.0, 1.5, 0.1);
     cout << "✓ Решено. Конечное y: " << sol.y.back() << "\n";
     
-    cout << "\nОДУ 2: y' = x + y^2, y(0) = 0\n";
+    cout << "\nОДУ 2: y' = 1 + y^2, y(0) = 0\n";
     sol = solver.solve(ode_variant_2, 0.0, 0.0, 0.4, 0.1);
     cout << "✓ Решено. Конечное y: " << sol.y.back() << "\n";
     
@@ -421,7 +430,7 @@ int main() {
         
         cout << "\n=== ВЫБОР ОДУ ===\n";
         cout << "1 - y' = y + (1+x)*y^2, y(1) = -1 на [1, 1.5]\n";
-        cout << "2 - y' = x + y^2, y(0) = 0 на [0, 0.4]\n";
+        cout << "2 - y' = 1 + y^2, y(0) = 0 на [0, 0.4]\n";
         cout << "3 - y' = y - x^2 + 1, y(0) = 2 на [0, 1]\n";
         
         int ode_choice = get_input<int>("Выбор ОДУ: ");
@@ -455,13 +464,14 @@ int main() {
             default_xn = 1.0;
         }
         
-        double x0, y0, xn, h;
+        double x0, y0, xn, h, eps;
         
         while (true) {
             x0 = get_input<double>("x0 (начало интервала): ");
             y0 = get_input<double>("y0 (начальное условие): ");
             xn = get_input<double>("xn (конец интервала): ");
             h = get_input<double>("h (шаг): ");
+            eps = get_input<double>("epsilon (точность): ");
             
             bool valid = true;
             if (x0 >= xn) {
@@ -470,6 +480,10 @@ int main() {
             }
             if (h <= 0) {
                 cout << "Ошибка: h должно быть положительным\n";
+                valid = false;
+            }
+            if (eps <= 0) {
+                cout << "Ошибка: epsilon должно быть положительным\n";
                 valid = false;
             }
             if ((xn - x0) / h > 10000) {
@@ -496,6 +510,20 @@ int main() {
         print_solution_table(sol_euler, "Улучшенный метод Эйлера", f, exact);
         print_solution_table(sol_rk4, "Метод Рунге-Кутта 4-го порядка", f, exact);
         print_solution_table(sol_milne, "Метод Милна", f, exact);
+        
+        Solution sol_euler_half = euler.solve(f, x0, y0, xn, h / 2.0);
+        Solution sol_rk4_half = rk4.solve(f, x0, y0, xn, h / 2.0);
+        double runge_euler = runge_rule(sol_euler.y.back(), sol_euler_half.y.back(), 2);
+        double runge_rk4 = runge_rule(sol_rk4.y.back(), sol_rk4_half.y.back(), 4);
+        double milne_error = max_abs_error(sol_milne, exact);
+        
+        cout << "\nОценка точности:\n";
+        cout << "Улучшенный метод Эйлера (правило Рунге, p=2): " << runge_euler
+             << (runge_euler <= eps ? " <= epsilon\n" : " > epsilon\n");
+        cout << "Метод Рунге-Кутта 4-го порядка (правило Рунге, p=4): " << runge_rk4
+             << (runge_rk4 <= eps ? " <= epsilon\n" : " > epsilon\n");
+        cout << "Метод Милна (max |y_exact - y_i|): " << milne_error
+             << (milne_error <= eps ? " <= epsilon\n" : " > epsilon\n");
         
         int plot_choice;
         while (true) {

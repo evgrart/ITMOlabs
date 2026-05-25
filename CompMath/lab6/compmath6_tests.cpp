@@ -18,7 +18,8 @@ double ode_variant_1(double x, double y) {
 }
 
 double ode_variant_2(double x, double y) {
-    return x + y * y;
+    (void)x;
+    return 1.0 + y * y;
 }
 
 double ode_variant_3(double x, double y) {
@@ -29,7 +30,7 @@ class ImprovedEuler {
 public:
     Solution solve(ODE_Function f, double x0, double y0, double xn, double h) {
         Solution sol;
-        int n = static_cast<int>((xn - x0) / h) + 1;
+        int n = static_cast<int>(floor((xn - x0) / h + 1e-9)) + 1;
         
         double x = x0;
         double y = y0;
@@ -53,7 +54,7 @@ class RungeKutta4 {
 public:
     Solution solve(ODE_Function f, double x0, double y0, double xn, double h) {
         Solution sol;
-        int n = static_cast<int>((xn - x0) / h) + 1;
+        int n = static_cast<int>(floor((xn - x0) / h + 1e-9)) + 1;
         
         double x = x0;
         double y = y0;
@@ -84,7 +85,7 @@ private:
 public:
     Solution solve(ODE_Function f, double x0, double y0, double xn, double h) {
         Solution sol;
-        int n = static_cast<int>((xn - x0) / h) + 1;
+        int n = static_cast<int>(floor((xn - x0) / h + 1e-9)) + 1;
         
         double x = x0;
         double y = y0;
@@ -108,11 +109,11 @@ public:
         for (int i = 4; i < n; i++) {
             double x_i = sol.x.back();
             
-            double y_pred = sol.y[i - 4] + (4.0 * h / 3.0) * (2.0 * f_vals[i - 3] - f_vals[i - 2] + 2.0 * f_vals[i - 1]);
+            double y_pred = sol.y[i - 4] + (4.0 * h / 3.0) * (2.0 * f_vals[1] - f_vals[2] + 2.0 * f_vals[3]);
             
             double f_pred = f(x_i + h, y_pred);
             
-            double y_corr = sol.y[i - 2] + (h / 3.0) * (f_vals[i - 2] + 4.0 * f_vals[i - 1] + f_pred);
+            double y_corr = sol.y[i - 2] + (h / 3.0) * (f_vals[2] + 4.0 * f_vals[3] + f_pred);
             
             sol.x.push_back(x_i + h);
             sol.y.push_back(y_corr);
@@ -150,7 +151,7 @@ void test_zero_initial_condition() {
     ImprovedEuler euler;
     Solution sol = euler.solve(ode_variant_2, 0.0, 0.0, 0.3, 0.1);
     assert(sol.y[0] == 0.0);
-    assert(abs(sol.y.back()) < 0.01);
+    assert(abs(sol.y.back() - tan(0.3)) < 0.005);
     cout << "✓ Пройден, конечное y = " << sol.y.back() << "\n";
 }
 

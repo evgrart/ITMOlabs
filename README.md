@@ -2,4 +2,3 @@
 
 ТГ - @evgrart_st
 
-ISU - 465826

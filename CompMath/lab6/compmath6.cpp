@@ -4,6 +4,7 @@
 #include <iomanip>
 #include <string>
 #include <limits>
+#include <cstdlib>
 #include <fstream>
 #include <algorithm>
 
@@ -25,10 +26,15 @@ T get_input(const string& prompt) {
     while (true) {
         cout << prompt;
         if (cin >> value) {
-            if (cin.peek() == '\n' || cin.peek() == ' ') {
+            int next = cin.peek();
+            if (next == char_traits<char>::eof() || next == '\n' || next == ' ' || next == '\t') {
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 return value;
             }
+        }
+        if (cin.eof()) {
+            cout << "\nВвод завершен\n";
+            exit(1);
         }
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -181,8 +187,15 @@ double max_abs_error(const Solution& sol, double (*exact)(double)) {
     return max_error;
 }
 
+bool has_integer_step_count(double x0, double xn, double h) {
+    double steps = (xn - x0) / h;
+    double rounded_steps = round(steps);
+    return abs(steps - rounded_steps) <= 1e-9 * max(1.0, abs(rounded_steps));
+}
+
 void print_solution_table(const Solution& sol, const string& method_name, 
                          ODE_Function f, double (*exact)(double)) {
+    (void)f;
     cout << "\n" << method_name << ":\n";
     cout << string(80, '-') << "\n";
     cout << left << setw(12) << "x_i" << setw(20) << "y_i" << setw(20) << "Точное" 
@@ -228,49 +241,65 @@ void plot_solution(const vector<Solution>& solutions, const vector<string>& labe
     plt::title(title);
     plt::legend();
     plt::grid(true);
+    plt::save("compmath6_graph.png", 200);
+    cout << "\nГрафик сохранен в файл: compmath6_graph.png\n";
     plt::show();
+    plt::close();
     #else
+    (void)solutions;
+    (void)labels;
+    (void)exact;
+    (void)x0;
+    (void)xn;
+    (void)title;
     cout << "\nГрафики недоступны (не скомпилировано с matplotlib)\n";
-    cout << "Решение сохранено в памяти.\n";
     #endif
 }
 
 void test_input_validation() {
-    cout << "\n=== ТЕСТИРОВАНИЕ ПРОВЕРКИ ВВОДА ===\n";
+    cout << "\nТестирование проверки ввода\n";
     
-    cout << "\nТест 1: Некорректные диапазоны (x0 >= xn)\n";
-    double x0 = 1.0, xn = 0.5, h = 0.1, y0 = 1.0;
+    cout << "\nТест 1: некорректные диапазоны (x0 >= xn)\n";
+    double x0 = 1.0, xn = 0.5, h = 0.1;
     if (x0 >= xn) {
-        cout << "✓ Ошибка корректно выявлена: x0 >= xn\n";
+        cout << "ошибка корректно выявлена: x0 >= xn\n";
     }
     
     cout << "\nТест 2: Отрицательный шаг при возрастающем интервале\n";
     h = -0.1;
     x0 = 0.0; xn = 1.0;
     if ((xn - x0) * h < 0) {
-        cout << "✓ Ошибка корректно выявлена: несоответствие знака шага\n";
+        cout << "Ошибка корректно выявлена: несоответствие знака шага\n";
     }
     
     cout << "\nТест 3: Слишком большой шаг\n";
     h = 10.0;
     if (h > (xn - x0)) {
-        cout << "✓ Предупреждение: шаг больше интервала\n";
+        cout << "Ошибка корректно выявлена: шаг больше интервала\n";
     }
     
     cout << "\nТест 4: Нулевой шаг\n";
     h = 0.0;
     if (h == 0.0) {
-        cout << "✓ Ошибка корректно выявлена: шаг равен нулю\n";
+        cout << "Ошибка корректно выявлена: шаг равен нулю\n";
+    }
+
+    cout << "\nТест 5: Шаг не делит интервал на целое число частей\n";
+    x0 = 0.0;
+    xn = 1.0;
+    h = 0.3;
+    if (!has_integer_step_count(x0, xn, h)) {
+        cout << "Ошибка корректно выявлена: шаг не попадает в конец интервала\n";
     }
 }
 
 void test_edge_cases() {
-    cout << "\n=== ТЕСТИРОВАНИЕ ГРАНИЧНЫХ СЛУЧАЕВ ===\n";
+    cout << "\nТест граничных случаев\n";
     
     cout << "\nТест 1: Очень малый шаг (h = 0.001)\n";
     ImprovedEuler solver;
     Solution sol = solver.solve(ode_variant_1, 1.0, -1.0, 1.3, 0.001);
-    cout << "✓ Решение получено. Количество точек: " << sol.x.size() << "\n";
+    cout << "Решение получено. Количество точек: " << sol.x.size() << "\n";
     cout << "  Начальное y: " << sol.y.front() << ", Конечное y: " << sol.y.back() << "\n";
     
     cout << "\nТест 2: Единственный шаг (h = 0.3)\n";
@@ -282,11 +311,11 @@ void test_edge_cases() {
     cout << "✓ При y0=0: Конечное y = " << sol.y.back() << "\n";
     
     sol = solver.solve(ode_variant_3, 0.0, 2.0, 0.5, 0.1);
-    cout << "✓ При y0=2.0: Конечное y = " << sol.y.back() << "\n";
+    cout << "При y0=2.0: Конечное y = " << sol.y.back() << "\n";
 }
 
 void test_comparison_methods() {
-    cout << "\n=== СРАВНЕНИЕ МЕТОДОВ ===\n";
+    cout << "\nСравнение методов\n";
     
     double x0 = 1.0, y0 = -1.0, xn = 1.5, h = 0.1;
     
@@ -310,24 +339,24 @@ void test_comparison_methods() {
 }
 
 void test_different_odes() {
-    cout << "\n=== ТЕСТИРОВАНИЕ НА РАЗНЫХ ОДУ ===\n";
+    cout << "\nТестирование на разных ОДУ\n";
     
     cout << "\nОДУ 1: y' = y + (1+x)*y^2, y(1) = -1\n";
     ImprovedEuler solver;
     Solution sol = solver.solve(ode_variant_1, 1.0, -1.0, 1.5, 0.1);
-    cout << "✓ Решено. Конечное y: " << sol.y.back() << "\n";
+    cout << "Решено. Конечное y: " << sol.y.back() << "\n";
     
     cout << "\nОДУ 2: y' = 1 + y^2, y(0) = 0\n";
     sol = solver.solve(ode_variant_2, 0.0, 0.0, 0.4, 0.1);
-    cout << "✓ Решено. Конечное y: " << sol.y.back() << "\n";
+    cout << "Решено. Конечное y: " << sol.y.back() << "\n";
     
     cout << "\nОДУ 3: y' = y - x^2 + 1, y(0) = 2\n";
     sol = solver.solve(ode_variant_3, 0.0, 2.0, 1.0, 0.1);
-    cout << "✓ Решено. Конечное y: " << sol.y.back() << "\n";
+    cout << "Решено. Конечное y: " << sol.y.back() << "\n";
 }
 
 void test_runge_rule() {
-    cout << "\n=== ТЕСТИРОВАНИЕ ПРАВИЛА РУНГЕ ===\n";
+    cout << "\nТестирование правила Рунге\n";
     
     ImprovedEuler solver;
     
@@ -344,11 +373,11 @@ void test_runge_rule() {
     cout << "y(h=0.1):     " << fixed << setprecision(8) << y_h << "\n";
     cout << "y(h=0.05):    " << y_h_half << "\n";
     cout << "Оценка ошибки (правило Рунге): " << error_est << "\n";
-    cout << "✓ Оценка вычислена\n";
+    cout << "Оценка вычислена\n";
 }
 
 void test_numerical_stability() {
-    cout << "\n=== ТЕСТИРОВАНИЕ ЧИСЛЕННОЙ УСТОЙЧИВОСТИ ===\n";
+    cout << "\nТестирование численной устойчивости\n";
     
     ImprovedEuler euler;
     RungeKutta4 rk4;
@@ -363,9 +392,8 @@ void test_numerical_stability() {
 }
 
 int main() {
-    cout << "ЧИСЛЕННОЕ РЕШЕНИЕ ОБЫКНОВЕННЫХ ДИФФЕРЕНЦИАЛЬНЫХ УРАВНЕНИЙ\n";
+    cout << "Численное решение дифф уравнений\n";
     cout << "Вариант 2: Усовершенствованный метод Эйлера, Рунге-Кутта 4, Метод Милна\n";
-    cout << "==========================================================================\n";
     
     int menu_choice;
     while (true) {
@@ -428,7 +456,7 @@ int main() {
             continue;
         }
         
-        cout << "\n=== ВЫБОР ОДУ ===\n";
+        cout << "\nВыбор ОДУ\n";
         cout << "1 - y' = y + (1+x)*y^2, y(1) = -1 на [1, 1.5]\n";
         cout << "2 - y' = 1 + y^2, y(0) = 0 на [0, 0.4]\n";
         cout << "3 - y' = y - x^2 + 1, y(0) = 2 на [0, 1]\n";
@@ -442,26 +470,15 @@ int main() {
         
         ODE_Function f;
         double (*exact)(double);
-        double default_x0, default_y0, default_xn;
-        
         if (ode_choice == 1) {
             f = ode_variant_1;
             exact = exact_solution_variant_1;
-            default_x0 = 1.0;
-            default_y0 = -1.0;
-            default_xn = 1.5;
         } else if (ode_choice == 2) {
             f = ode_variant_2;
             exact = exact_solution_variant_2;
-            default_x0 = 0.0;
-            default_y0 = 0.0;
-            default_xn = 0.4;
         } else {
             f = ode_variant_3;
             exact = exact_solution_variant_3;
-            default_x0 = 0.0;
-            default_y0 = 2.0;
-            default_xn = 1.0;
         }
         
         double x0, y0, xn, h, eps;
@@ -491,7 +508,12 @@ int main() {
                 valid = false;
             }
             if (h > (xn - x0)) {
-                cout << "Предупреждение: шаг больше интервала\n";
+                cout << "Ошибка: шаг больше интервала\n";
+                valid = false;
+            }
+            if (h > 0 && x0 < xn && !has_integer_step_count(x0, xn, h)) {
+                cout << "Ошибка: шаг должен делить интервал на целое число частей\n";
+                valid = false;
             }
             
             if (valid) break;
@@ -500,9 +522,7 @@ int main() {
         ImprovedEuler euler;
         RungeKutta4 rk4;
         Milne milne;
-        
-        cout << "\nВычисление...\n";
-        
+                
         Solution sol_euler = euler.solve(f, x0, y0, xn, h);
         Solution sol_rk4 = rk4.solve(f, x0, y0, xn, h);
         Solution sol_milne = milne.solve(f, x0, y0, xn, h);

@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.example.lab3"},{"l":"com.example.lab3.beans"},{"l":"com.example.lab3.model"},{"l":"com.example.lab3.service"},{"l":"com.example.lab3.util"}];updateSearchResults();

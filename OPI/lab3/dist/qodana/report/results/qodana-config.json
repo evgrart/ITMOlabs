@@ -1,0 +1,6 @@
+{
+  "local": {
+    "filename": "qodana.yaml",
+    "content": "version: \"1.0\"\nlinter: qodana-jvm-community\nprofile:\n  name: qodana.recommended\nprojectJDK: 17\nrootJavaProjects:\n  - pom.xml\n"
+  }
+}

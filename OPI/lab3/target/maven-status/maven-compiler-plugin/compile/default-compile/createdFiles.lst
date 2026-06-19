@@ -1,0 +1,6 @@
+com/example/lab3/beans/AreaCheckBean.class
+com/example/lab3/service/AreaHitService.class
+com/example/lab3/model/CheckResult.class
+com/example/lab3/util/HibernateUtil.class
+com/example/lab3/util/Messages.class
+com/example/lab3/App.class

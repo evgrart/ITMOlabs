@@ -1,0 +1,5 @@
+History build report
+Project root: /home/evgrart/opi3
+Build file: /home/evgrart/opi3/build.xml
+
+No .svn metadata found; history target supports SVN working copies only.

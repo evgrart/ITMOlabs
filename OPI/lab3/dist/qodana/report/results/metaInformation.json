@@ -1,0 +1,19 @@
+{
+  "version": "1.0",
+  "total": 0,
+  "tools inspection": {
+    "Code Inspection": 0
+  },
+  "linter": "QDJVM",
+  "attributes": {
+    "deviceId": "200820300000000-0000-0000-0000-000000000000",
+    "jobUrl": "",
+    "vcs": {
+      "sarifIdea": {
+        "projectDirBaseURI": "opi3/"
+      }
+    },
+    "repoUrl": ""
+  },
+  "linterVersion": "261.24091"
+}

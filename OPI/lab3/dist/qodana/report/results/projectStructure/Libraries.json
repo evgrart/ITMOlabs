@@ -1,0 +1,347 @@
+{
+  "libraries": [
+    {
+      "name": "Maven: jakarta.platform:jakarta.jakartaee-web-api:10.0.0",
+      "roots": [
+        "jar://$MAVEN_REPOSITORY$/jakarta/platform/jakarta.jakartaee-web-api/10.0.0/jakarta.jakartaee-web-api-10.0.0.jar!/"
+      ],
+      "properties": {}
+    },
+    {
+      "name": "Maven: jakarta.servlet:jakarta.servlet-api:6.0.0",
+      "roots": [
+        "jar://$MAVEN_REPOSITORY$/jakarta/servlet/jakarta.servlet-api/6.0.0/jakarta.servlet-api-6.0.0.jar!/"
+      ],
+      "properties": {}
+    },
+    {
+      "name": "Maven: jakarta.servlet.jsp:jakarta.servlet.jsp-api:3.1.0",
+      "roots": [
+        "jar://$MAVEN_REPOSITORY$/jakarta/servlet/jsp/jakarta.servlet.jsp-api/3.1.0/jakarta.servlet.jsp-api-3.1.0.jar!/"
+      ],
+      "properties": {}
+    },
+    {
+      "name": "Maven: jakarta.el:jakarta.el-api:5.0.1",
+      "roots": [
+        "jar://$MAVEN_REPOSITORY$/jakarta/el/jakarta.el-api/5.0.1/jakarta.el-api-5.0.1.jar!/"
+      ],
+      "properties": {}
+    },
+    {
+      "name": "Maven: jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.0",
+      "roots": [
+        "jar://$MAVEN_REPOSITORY$/jakarta/servlet/jsp/jstl/jakarta.servlet.jsp.jstl-api/3.0.0/jakarta.servlet.jsp.jstl-api-3.0.0.jar!/"
+      ],
+      "properties": {}
+    },
+    {
+      "name": "Maven: jakarta.faces:jakarta.faces-api:4.0.1",
+      "roots": [
+        "jar://$MAVEN_REPOSITORY$/jakarta/faces/jakarta.faces-api/4.0.1/jakarta.faces-api-4.0.1.jar!/"
+      ],
+      "properties": {}
+    },
+    {
+      "name": "Maven: jakarta.ws.rs:jakarta.ws.rs-api:3.1.0",
+      "roots": [
+        "jar://$MAVEN_REPOSITORY$/jakarta/ws/rs/jakarta.ws.rs-api/3.1.0/jakarta.ws.rs-api-3.1.0.jar!/"
+      ],
+      "properties": {}
+    },
+    {
+      "name": "Maven: jakarta.websocket:jakarta.websocket-api:2.1.0",
+      "roots": [
+        "jar://$MAVEN_REPOSITORY$/jakarta/websocket/jakarta.websocket-api/2.1.0/jakarta.websocket-api-2.1.0.jar!/"
+      ],
+      "properties": {}
+    },
+    {
+      "name": "Maven: jakarta.websocket:jakarta.websocket-client-api:2.1.0",
+      "roots": [
+        "jar://$MAVEN_REPOSITORY$/jakarta/websocket/jakarta.websocket-client-api/2.1.0/jakarta.websocket-client-api-2.1.0.jar!/"
+      ],
+      "properties": {}
+    },
+    {
+      "name": "Maven: jakarta.json:jakarta.json-api:2.1.0",
+      "roots": [
+        "jar://$MAVEN_REPOSITORY$/jakarta/json/jakarta.json-api/2.1.0/jakarta.json-api-2.1.0.jar!/"
+      ],
+      "properties": {}
+    },
+    {
+      "name": "Maven: jakarta.json.bind:jakarta.json.bind-api:3.0.0",
+      "roots": [
+        "jar://$MAVEN_REPOSITORY$/jakarta/json/bind/jakarta.json.bind-api/3.0.0/jakarta.json.bind-api-3.0.0.jar!/"
+      ],
+      "properties": {}
+    },
+    {
+      "name": "Maven: jakarta.annotation:jakarta.annotation-api:2.1.1",
+      "roots": [
+        "jar://$MAVEN_REPOSITORY$/jakarta/annotation/jakarta.annotation-api/2.1.1/jakarta.annotation-api-2.1.1.jar!/"
+      ],
+      "properties": {}
+    },
+    {
+      "name": "Maven: jakarta.ejb:jakarta.ejb-api:4.0.1",
+      "roots": [
+        "jar://$MAVEN_REPOSITORY$/jakarta/ejb/jakarta.ejb-api/4.0.1/jakarta.ejb-api-4.0.1.jar!/"
+      ],
+      "properties": {}
+    },
+    {
+      "name": "Maven: jakarta.transaction:jakarta.transaction-api:2.0.1",
+      "roots": [
+        "jar://$MAVEN_REPOSITORY$/jakarta/transaction/jakarta.transaction-api/2.0.1/jakarta.transaction-api-2.0.1.jar!/"
+      ],
+      "properties": {}
+    },
+    {
+      "name": "Maven: jakarta.persistence:jakarta.persistence-api:3.1.0",
+      "roots": [
+        "jar://$MAVEN_REPOSITORY$/jakarta/persistence/jakarta.persistence-api/3.1.0/jakarta.persistence-api-3.1.0.jar!/"
+      ],
+      "properties": {}
+    },
+    {
+      "name": "Maven: jakarta.validation:jakarta.validation-api:3.0.2",
+      "roots": [
+        "jar://$MAVEN_REPOSITORY$/jakarta/validation/jakarta.validation-api/3.0.2/jakarta.validation-api-3.0.2.jar!/"
+      ],
+      "properties": {}
+    },
+    {
+      "name": "Maven: jakarta.interceptor:jakarta.interceptor-api:2.1.0",
+      "roots": [
+        "jar://$MAVEN_REPOSITORY$/jakarta/interceptor/jakarta.interceptor-api/2.1.0/jakarta.interceptor-api-2.1.0.jar!/"
+      ],
+      "properties": {}
+    },
+    {
+      "name": "Maven: jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1",
+      "roots": [
+        "jar://$MAVEN_REPOSITORY$/jakarta/enterprise/jakarta.enterprise.cdi-api/4.0.1/jakarta.enterprise.cdi-api-4.0.1.jar!/"
+      ],
+      "properties": {}
+    },
+    {
+      "name": "Maven: jakarta.enterprise:jakarta.enterprise.lang-model:4.0.1",
+      "roots": [
+        "jar://$MAVEN_REPOSITORY$/jakarta/enterprise/jakarta.enterprise.lang-model/4.0.1/jakarta.enterprise.lang-model-4.0.1.jar!/"
+      ],
+      "properties": {}
+    },
+    {
+      "name": "Maven: jakarta.inject:jakarta.inject-api:2.0.1",
+      "roots": [
+        "jar://$MAVEN_REPOSITORY$/jakarta/inject/jakarta.inject-api/2.0.1/jakarta.inject-api-2.0.1.jar!/"
+      ],
+      "properties": {}
+    },
+    {
+      "name": "Maven: jakarta.authentication:jakarta.authentication-api:3.0.0",
+      "roots": [
+        "jar://$MAVEN_REPOSITORY$/jakarta/authentication/jakarta.authentication-api/3.0.0/jakarta.authentication-api-3.0.0.jar!/"
+      ],
+      "properties": {}
+    },
+    {
+      "name": "Maven: jakarta.security.enterprise:jakarta.security.enterprise-api:3.0.0",
+      "roots": [
+        "jar://$MAVEN_REPOSITORY$/jakarta/security/enterprise/jakarta.security.enterprise-api/3.0.0/jakarta.security.enterprise-api-3.0.0.jar!/"
+      ],
+      "properties": {}
+    },
+    {
+      "name": "Maven: org.primefaces:primefaces:jakarta:13.0.0",
+      "roots": [
+        "jar://$MAVEN_REPOSITORY$/org/primefaces/primefaces/13.0.0/primefaces-13.0.0-jakarta.jar!/"
+      ],
+      "properties": {}
+    },
+    {
+      "name": "Maven: org.hibernate.orm:hibernate-core:6.2.7.Final",
+      "roots": [
+        "jar://$MAVEN_REPOSITORY$/org/hibernate/orm/hibernate-core/6.2.7.Final/hibernate-core-6.2.7.Final.jar!/"
+      ],
+      "properties": {}
+    },
+    {
+      "name": "Maven: org.jboss.logging:jboss-logging:3.5.0.Final",
+      "roots": [
+        "jar://$MAVEN_REPOSITORY$/org/jboss/logging/jboss-logging/3.5.0.Final/jboss-logging-3.5.0.Final.jar!/"
+      ],
+      "properties": {}
+    },
+    {
+      "name": "Maven: org.hibernate.common:hibernate-commons-annotations:6.0.6.Final",
+      "roots": [
+        "jar://$MAVEN_REPOSITORY$/org/hibernate/common/hibernate-commons-annotations/6.0.6.Final/hibernate-commons-annotations-6.0.6.Final.jar!/"
+      ],
+      "properties": {}
+    },
+    {
+      "name": "Maven: io.smallrye:jandex:3.0.5",
+      "roots": [
+        "jar://$MAVEN_REPOSITORY$/io/smallrye/jandex/3.0.5/jandex-3.0.5.jar!/"
+      ],
+      "properties": {}
+    },
+    {
+      "name": "Maven: com.fasterxml:classmate:1.5.1",
+      "roots": [
+        "jar://$MAVEN_REPOSITORY$/com/fasterxml/classmate/1.5.1/classmate-1.5.1.jar!/"
+      ],
+      "properties": {}
+    },
+    {
+      "name": "Maven: net.bytebuddy:byte-buddy:1.12.18",
+      "roots": [
+        "jar://$MAVEN_REPOSITORY$/net/bytebuddy/byte-buddy/1.12.18/byte-buddy-1.12.18.jar!/"
+      ],
+      "properties": {}
+    },
+    {
+      "name": "Maven: jakarta.xml.bind:jakarta.xml.bind-api:4.0.0",
+      "roots": [
+        "jar://$MAVEN_REPOSITORY$/jakarta/xml/bind/jakarta.xml.bind-api/4.0.0/jakarta.xml.bind-api-4.0.0.jar!/"
+      ],
+      "properties": {}
+    },
+    {
+      "name": "Maven: jakarta.activation:jakarta.activation-api:2.1.0",
+      "roots": [
+        "jar://$MAVEN_REPOSITORY$/jakarta/activation/jakarta.activation-api/2.1.0/jakarta.activation-api-2.1.0.jar!/"
+      ],
+      "properties": {}
+    },
+    {
+      "name": "Maven: org.glassfish.jaxb:jaxb-runtime:4.0.2",
+      "roots": [
+        "jar://$MAVEN_REPOSITORY$/org/glassfish/jaxb/jaxb-runtime/4.0.2/jaxb-runtime-4.0.2.jar!/"
+      ],
+      "properties": {}
+    },
+    {
+      "name": "Maven: org.glassfish.jaxb:jaxb-core:4.0.2",
+      "roots": [
+        "jar://$MAVEN_REPOSITORY$/org/glassfish/jaxb/jaxb-core/4.0.2/jaxb-core-4.0.2.jar!/"
+      ],
+      "properties": {}
+    },
+    {
+      "name": "Maven: org.eclipse.angus:angus-activation:2.0.0",
+      "roots": [
+        "jar://$MAVEN_REPOSITORY$/org/eclipse/angus/angus-activation/2.0.0/angus-activation-2.0.0.jar!/"
+      ],
+      "properties": {}
+    },
+    {
+      "name": "Maven: org.glassfish.jaxb:txw2:4.0.2",
+      "roots": [
+        "jar://$MAVEN_REPOSITORY$/org/glassfish/jaxb/txw2/4.0.2/txw2-4.0.2.jar!/"
+      ],
+      "properties": {}
+    },
+    {
+      "name": "Maven: com.sun.istack:istack-commons-runtime:4.1.1",
+      "roots": [
+        "jar://$MAVEN_REPOSITORY$/com/sun/istack/istack-commons-runtime/4.1.1/istack-commons-runtime-4.1.1.jar!/"
+      ],
+      "properties": {}
+    },
+    {
+      "name": "Maven: org.antlr:antlr4-runtime:4.10.1",
+      "roots": [
+        "jar://$MAVEN_REPOSITORY$/org/antlr/antlr4-runtime/4.10.1/antlr4-runtime-4.10.1.jar!/"
+      ],
+      "properties": {}
+    },
+    {
+      "name": "Maven: org.postgresql:postgresql:42.6.0",
+      "roots": [
+        "jar://$MAVEN_REPOSITORY$/org/postgresql/postgresql/42.6.0/postgresql-42.6.0.jar!/"
+      ],
+      "properties": {}
+    },
+    {
+      "name": "Maven: org.checkerframework:checker-qual:3.31.0",
+      "roots": [
+        "jar://$MAVEN_REPOSITORY$/org/checkerframework/checker-qual/3.31.0/checker-qual-3.31.0.jar!/"
+      ],
+      "properties": {}
+    },
+    {
+      "name": "Maven: com.google.code.gson:gson:2.10.1",
+      "roots": [
+        "jar://$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.10.1/gson-2.10.1.jar!/"
+      ],
+      "properties": {}
+    },
+    {
+      "name": "Maven: org.primefaces.extensions:primefaces-extensions:jakarta:13.0.0",
+      "roots": [
+        "jar://$MAVEN_REPOSITORY$/org/primefaces/extensions/primefaces-extensions/13.0.0/primefaces-extensions-13.0.0-jakarta.jar!/"
+      ],
+      "properties": {}
+    },
+    {
+      "name": "Maven: org.junit.jupiter:junit-jupiter:5.10.2",
+      "roots": [
+        "jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter/5.10.2/junit-jupiter-5.10.2.jar!/"
+      ],
+      "properties": {}
+    },
+    {
+      "name": "Maven: org.junit.jupiter:junit-jupiter-api:5.10.2",
+      "roots": [
+        "jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter-api/5.10.2/junit-jupiter-api-5.10.2.jar!/"
+      ],
+      "properties": {}
+    },
+    {
+      "name": "Maven: org.opentest4j:opentest4j:1.3.0",
+      "roots": [
+        "jar://$MAVEN_REPOSITORY$/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar!/"
+      ],
+      "properties": {}
+    },
+    {
+      "name": "Maven: org.junit.platform:junit-platform-commons:1.10.2",
+      "roots": [
+        "jar://$MAVEN_REPOSITORY$/org/junit/platform/junit-platform-commons/1.10.2/junit-platform-commons-1.10.2.jar!/"
+      ],
+      "properties": {}
+    },
+    {
+      "name": "Maven: org.apiguardian:apiguardian-api:1.1.2",
+      "roots": [
+        "jar://$MAVEN_REPOSITORY$/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar!/"
+      ],
+      "properties": {}
+    },
+    {
+      "name": "Maven: org.junit.jupiter:junit-jupiter-params:5.10.2",
+      "roots": [
+        "jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter-params/5.10.2/junit-jupiter-params-5.10.2.jar!/"
+      ],
+      "properties": {}
+    },
+    {
+      "name": "Maven: org.junit.jupiter:junit-jupiter-engine:5.10.2",
+      "roots": [
+        "jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter-engine/5.10.2/junit-jupiter-engine-5.10.2.jar!/"
+      ],
+      "properties": {}
+    },
+    {
+      "name": "Maven: org.junit.platform:junit-platform-engine:1.10.2",
+      "roots": [
+        "jar://$MAVEN_REPOSITORY$/org/junit/platform/junit-platform-engine/1.10.2/junit-platform-engine-1.10.2.jar!/"
+      ],
+      "properties": {}
+    }
+  ]
+}

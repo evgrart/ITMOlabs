@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Main-Class: @main.class@
+Implementation-Title: @project.name@
+Implementation-Version: @project.version@
+Built-By: Apache Ant

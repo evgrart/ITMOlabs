@@ -1,0 +1,8 @@
+{
+  "modules": [
+    {
+      "name": "lab3",
+      "languageLevel": 17
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.10.14
+Created-By: 21.0.10+7-Ubuntu-124.04 (Ubuntu)
+Main-Class: com.example.lab3.App
+Implementation-Title: lab3
+Implementation-Version: 1.0.0
+Built-By: Apache Ant
+Class-Path: lib/angus-activation-2.0.0.jar lib/antlr4-runtime-4.10.1.j
+ ar lib/byte-buddy-1.12.18.jar lib/checker-qual-3.31.0.jar lib/classma
+ te-1.5.1.jar lib/gson-2.10.1.jar lib/hibernate-commons-annotations-6.
+ 0.6.Final.jar lib/hibernate-core-6.2.7.Final.jar lib/istack-commons-r
+ untime-4.1.1.jar lib/jakarta.activation-api-2.1.0.jar lib/jakarta.ann
+ otation-api-2.1.1.jar lib/jakarta.authentication-api-3.0.0.jar lib/ja
+ karta.ejb-api-4.0.1.jar lib/jakarta.el-api-5.0.1.jar lib/jakarta.ente
+ rprise.cdi-api-4.0.1.jar lib/jakarta.enterprise.lang-model-4.0.1.jar 
+ lib/jakarta.faces-api-4.0.1.jar lib/jakarta.inject-api-2.0.1.jar lib/
+ jakarta.interceptor-api-2.1.0.jar lib/jakarta.jakartaee-web-api-10.0.
+ 0.jar lib/jakarta.json-api-2.1.0.jar lib/jakarta.json.bind-api-3.0.0.
+ jar lib/jakarta.persistence-api-3.1.0.jar lib/jakarta.security.enterp
+ rise-api-3.0.0.jar lib/jakarta.servlet-api-6.0.0.jar lib/jakarta.serv
+ let.jsp-api-3.1.0.jar lib/jakarta.servlet.jsp.jstl-api-3.0.0.jar lib/
+ jakarta.transaction-api-2.0.1.jar lib/jakarta.validation-api-3.0.2.ja
+ r lib/jakarta.websocket-api-2.1.0.jar lib/jakarta.websocket-client-ap
+ i-2.1.0.jar lib/jakarta.ws.rs-api-3.1.0.jar lib/jakarta.xml.bind-api-
+ 4.0.0.jar lib/jandex-3.0.5.jar lib/jaxb-core-4.0.2.jar lib/jaxb-runti
+ me-4.0.2.jar lib/jboss-logging-3.5.0.Final.jar lib/postgresql-42.6.0.
+ jar lib/primefaces-13.0.0-jakarta.jar lib/primefaces-extensions-13.0.
+ 0-jakarta.jar lib/txw2-4.0.2.jar
+

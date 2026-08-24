@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="lab4-ant-scenario" default="build" basedir=".">
+    <property file="ant/params.properties"/>
+    <property environment="env"/>
+
+    <target name="init">
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${classes.dir}"/>
+        <mkdir dir="${dist.dir}"/>
+        <mkdir dir="${dist.lib.dir}"/>
+        <mkdir dir="${checksums.dir}"/>
+        <mkdir dir="${javadoc.dir}"/>
+        <mkdir dir="${native.dest.dir}"/>
+        <mkdir dir="${history.report.dir}"/>
+    </target>
+
+    <target name="resolve-main-dependencies" depends="init">
+        <exec executable="${maven.bin}" failonerror="true" dir="${basedir}">
+            <arg line="${maven.resolve.compile.args}"/>
+        </exec>
+        <exec executable="${maven.bin}" failonerror="true" dir="${basedir}">
+            <arg line="${maven.resolve.runtime.args}"/>
+        </exec>
+    </target>
+
+    <target name="compile" depends="resolve-main-dependencies">
+        <javac srcdir="${src.main.dir}"
+               destdir="${classes.dir}"
+               includeantruntime="false"
+               encoding="${source.encoding}"
+               release="${javac.release}">
+            <classpath>
+                <fileset dir="${lib.dir}" includes="*.jar"/>
+            </classpath>
+        </javac>
+
+        <copy todir="${classes.dir}">
+            <fileset dir="${src.resources.dir}" excludes="**/*.java"/>
+        </copy>
+    </target>
+
+    <target name="build" depends="compile">
+        <copy file="${manifest.template}" tofile="${manifest.file}" filtering="true">
+            <filterset>
+                <filter token="project.name" value="${project.name}"/>
+                <filter token="project.version" value="${project.version}"/>
+                <filter token="main.class" value="${main.class}"/>
+            </filterset>
+        </copy>
+
+        <copy todir="${dist.lib.dir}">
+            <fileset dir="${lib.dir}" includes="*.jar"/>
+        </copy>
+
+        <path id="dist.libs.path">
+            <fileset dir="${dist.lib.dir}" includes="*.jar"/>
+        </path>
+
+        <pathconvert property="jar.classpath" pathsep=" ">
+            <path refid="dist.libs.path"/>
+            <mapper>
+                <chainedmapper>
+                    <flattenmapper/>
+                    <globmapper from="*" to="lib/*"/>
+                </chainedmapper>
+            </mapper>
+        </pathconvert>
+
+        <manifest file="${manifest.file}" mode="update">
+            <attribute name="Class-Path" value="${jar.classpath}"/>
+        </manifest>
+
+        <jar destfile="${dist.jar.file}" basedir="${classes.dir}" manifest="${manifest.file}"/>
+    </target>
+
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+        <delete dir="${dist.dir}"/>
+    </target>
+
+    <target name="test" depends="build">
+        <exec executable="${maven.bin}" failonerror="true" dir="${basedir}">
+            <arg line="${maven.test.args}"/>
+        </exec>
+    </target>
+
+    <target name="package-war" depends="init">
+        <exec executable="${maven.bin}" failonerror="true" dir="${basedir}">
+            <arg line="${maven.package.args}"/>
+        </exec>
+        <copy file="${maven.war.file}" tofile="${dist.root.war.file}" overwrite="true"/>
+    </target>
+
+    <target name="native2ascii" depends="init">
+        <native2ascii src="${native.src.dir}"
+                      dest="${native.dest.dir}"
+                      includes="${native.file.default},${native.file.ru}"
+                      encoding="${native.encoding}"/>
+    </target>
+
+    <target name="scp" depends="package-war">
+        <condition property="scp.upload.enabled">
+            <equals arg1="${scp.enabled}" arg2="true"/>
+        </condition>
+        <antcall target="scp-upload"/>
+        <antcall target="scp-skip"/>
+    </target>
+
+    <target name="scp-upload" if="scp.upload.enabled">
+        <exec executable="${scp.bin}" failonerror="true">
+            <arg value="-P"/>
+            <arg value="${scp.port}"/>
+            <arg value="-i"/>
+            <arg value="${scp.identity.file}"/>
+            <arg value="${dist.root.war.file}"/>
+            <arg value="${scp.user}@${scp.host}:${scp.remote.dir}/${scp.remote.war.name}"/>
+        </exec>
+        <condition property="scp.redeploy.touch.active">
+            <equals arg1="${scp.redeploy.touch.enabled}" arg2="true"/>
+        </condition>
+        <antcall target="scp-redeploy-touch"/>
+        <antcall target="scp-redeploy-skip"/>
+    </target>
+
+    <target name="scp-redeploy-touch" if="scp.redeploy.touch.active">
+        <exec executable="${scp.ssh.bin}" failonerror="true">
+            <arg value="-p"/>
+            <arg value="${scp.port}"/>
+            <arg value="-i"/>
+            <arg value="${scp.identity.file}"/>
+            <arg value="${scp.user}@${scp.host}"/>
+            <arg value="${scp.redeploy.command}"/>
+        </exec>
+    </target>
+
+    <target name="scp-redeploy-skip" unless="scp.redeploy.touch.active">
+        <echo message="redeploy marker disabled: set scp.redeploy.touch.enabled=true to touch ROOT.war.dodeploy"/>
+    </target>
+
+    <target name="scp-skip" unless="scp.upload.enabled">
+        <echo message="scp disabled: set scp.enabled=true in ant/params.properties to upload artifact."/>
+    </target>
+
+    <target name="doc" depends="build">
+        <javadoc sourcepath="${src.main.dir}"
+                 destdir="${javadoc.dir}"
+                 encoding="${source.encoding}"
+                 source="${javac.release}"
+                 useexternalfile="true">
+            <classpath>
+                <fileset dir="${lib.dir}" includes="*.jar"/>
+            </classpath>
+        </javadoc>
+
+        <jar destfile="${javadoc.jar.file}" basedir="${javadoc.dir}"/>
+
+        <checksum file="${manifest.file}" algorithm="${checksum.md5.algorithm}" fileext=".md5" todir="${checksums.dir}"/>
+        <checksum file="${manifest.file}" algorithm="${checksum.sha1.algorithm}" fileext=".sha1" todir="${checksums.dir}"/>
+
+        <zip destfile="${doc.archive.file}">
+            <fileset file="${dist.jar.file}"/>
+            <fileset file="${javadoc.jar.file}"/>
+            <fileset file="${manifest.file}"/>
+            <fileset dir="${checksums.dir}" includes="*"/>
+        </zip>
+    </target>
+
+    <target name="history" depends="init">
+        <exec executable="${history.shell.bin}" failonerror="false" dir="${basedir}">
+            <arg value="${history.script}"/>
+            <arg value="${basedir}"/>
+            <arg value="${history.report.file}"/>
+            <arg value="${ant.file}"/>
+        </exec>
+    </target>
+
+    <target name="validate" depends="build">
+        <condition property="qodana.cli.available">
+            <or>
+                <available file="${qodana.bin}"/>
+                <available file="${qodana.bin}" filepath="${env.PATH}"/>
+            </or>
+        </condition>
+
+        <antcall target="validate-qodana"/>
+        <antcall target="validate-qodana-missing"/>
+    </target>
+
+    <target name="validate-qodana" if="qodana.cli.available">
+        <mkdir dir="${qodana.results.dir}"/>
+        <mkdir dir="${qodana.report.dir}"/>
+        <exec executable="${qodana.bin}" failonerror="true" dir="${basedir}">
+            <arg value="scan"/>
+            <arg value="--project-dir"/>
+            <arg value="${basedir}"/>
+            <arg value="--config"/>
+            <arg value="${qodana.config.file}"/>
+            <arg value="--linter"/>
+            <arg value="${qodana.linter}"/>
+            <arg value="--within-docker"/>
+            <arg value="${qodana.within.docker}"/>
+            <arg value="--results-dir"/>
+            <arg value="${qodana.results.dir}"/>
+            <arg value="--report-dir"/>
+            <arg value="${qodana.report.dir}"/>
+            <arg line="${qodana.extra.args}"/>
+        </exec>
+    </target>
+
+    <target name="validate-qodana-missing" unless="qodana.cli.available">
+        <fail message="Qodana CLI is not installed or is not available in PATH. Install it and run 'ant validate' again. Current executable: ${qodana.bin}"/>
+    </target>
+
+    <target name="env" depends="build">
+        <exec executable="${env.java.home}/bin/java" failonerror="true" dir="${basedir}">
+            <arg line="${env.jvm.args}"/>
+            <arg value="-jar"/>
+            <arg value="${dist.jar.file}"/>
+        </exec>
+    </target>
+
+    <target name="report" depends="test">
+        <mkdir dir="${report.copy.dir}"/>
+        <copy todir="${report.copy.dir}">
+            <fileset dir="${report.junit.source.dir}" includes="${report.junit.includes}"/>
+        </copy>
+
+        <condition property="report.git.commit.active">
+            <equals arg1="${report.git.commit.enabled}" arg2="true"/>
+        </condition>
+        <antcall target="report-git-commit"/>
+        <antcall target="report-git-skip"/>
+    </target>
+
+    <target name="report-git-commit" if="report.git.commit.active">
+        <exec executable="${git.bin}" failonerror="true" dir="${report.git.repo}">
+            <arg value="--no-pager"/>
+            <arg value="add"/>
+            <arg value="${report.git.pathspec}"/>
+        </exec>
+        <exec executable="${git.bin}" failonerror="false" dir="${report.git.repo}">
+            <arg value="--no-pager"/>
+            <arg value="commit"/>
+            <arg value="-m"/>
+            <arg value="${report.git.commit.message}"/>
+        </exec>
+    </target>
+
+    <target name="report-git-skip" unless="report.git.commit.active">
+        <echo message="report commit disabled: set report.git.commit.enabled=true to add XML report and commit."/>
+    </target>
+</project>

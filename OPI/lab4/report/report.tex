@@ -1,0 +1,245 @@
+\documentclass[a4paper,14pt]{extarticle}
+
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setdefaultlanguage{russian}
+\setmainfont{Times New Roman}
+\setsansfont{Arial}
+\setmonofont{Consolas}
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{longtable}
+\usepackage{hyperref}
+\usepackage{float}
+
+\geometry{left=25mm,right=15mm,top=20mm,bottom=20mm}
+\hypersetup{colorlinks=true,linkcolor=black,urlcolor=blue}
+
+\lstdefinestyle{javastyle}{
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    tabsize=4,
+    showstringspaces=false,
+    keywordstyle=\color{blue!60!black},
+    commentstyle=\color{green!40!black},
+    stringstyle=\color{red!50!black},
+    numbers=left,
+    numberstyle=\tiny,
+    inputencoding=utf8,
+    extendedchars=true
+}
+
+\lstdefinestyle{textstyle}{
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    showstringspaces=false
+}
+
+\lstset{style=javastyle}
+
+\newcommand{\monitorfigure}[2]{
+    \begin{figure}[H]
+        \centering
+        \fbox{\begin{minipage}{0.92\linewidth}
+            \vspace{2mm}
+            #1
+            \vspace{2mm}
+        \end{minipage}}
+        \caption{#2}
+    \end{figure}
+}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    {\large Университет ИТМО\par}
+    {\large Факультет программной инженерии и компьютерной техники\par}
+    {\large Образовательная программа системное и прикладное программное обеспечение\par}
+    \vspace{3cm}
+    {\LARGE Лабораторная работа №4\par}
+    \vspace{0.5cm}
+    {\Large По дисциплине <<Программная инженерия>>\par}
+    \vspace{0.5cm}
+    {\Large Мониторинг и профилирование Java-приложения\par}
+    \vspace{2cm}
+    \begin{flushright}
+        Выполнил студент группы P3209\\
+        Евграфов Артём Андреевич\\
+        Проверил:\\
+        Ермаков Михаил Константинович
+    \end{flushright}
+    \vfill
+    Санкт-Петербург\\
+    2026
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+\section{Задание}
+
+Для программы из лабораторной работы №3 необходимо реализовать мониторинг с помощью JMX:
+\begin{itemize}
+    \item MBean, считающий общее число установленных пользователем точек и количество точек, не попадающих в область. Если количество установленных пользователем точек стало кратно 10, MBean должен отправлять уведомление об этом событии.
+    \item MBean, определяющий площадь получившейся фигуры.
+\end{itemize}
+
+С помощью JConsole необходимо снять показания разработанных MBean-классов и определить время, прошедшее с момента запуска виртуальной машины. С помощью VisualVM необходимо снять график изменения показаний MBean-классов с течением времени, определить класс, объекты которого занимают наибольший объем памяти JVM, а также локализовать и устранить проблему производительности.
+
+\section{Исходный код разработанных MBean-классов}
+
+Для регистрации MBean при старте веб-приложения используется слушатель контекста. Состояние мониторинга вынесено в общий потокобезопасный класс \texttt{MonitoringState}; оба MBean читают данные из этого состояния.
+
+\subsection{MonitoringState}
+\lstinputlisting[style=javastyle,caption={MonitoringState.java}]{src/main/java/com/example/lab3/mbean/MonitoringState.java}
+
+\subsection{PointStatisticsMBean и PointStatistics}
+\lstinputlisting[style=javastyle,caption={PointStatisticsMBean.java}]{src/main/java/com/example/lab3/mbean/PointStatisticsMBean.java}
+\lstinputlisting[style=javastyle,caption={PointStatistics.java}]{src/main/java/com/example/lab3/mbean/PointStatistics.java}
+
+\subsection{AreaMBean и Area}
+\lstinputlisting[style=javastyle,caption={AreaMBean.java}]{src/main/java/com/example/lab3/mbean/AreaMBean.java}
+\lstinputlisting[style=javastyle,caption={Area.java}]{src/main/java/com/example/lab3/mbean/Area.java}
+
+\subsection{Регистрация MBean}
+\lstinputlisting[style=javastyle,caption={MonitoringRegistry.java}]{src/main/java/com/example/lab3/mbean/MonitoringRegistry.java}
+\lstinputlisting[style=javastyle,caption={MBeanRegistrationListener.java}]{src/main/java/com/example/lab3/mbean/MBeanRegistrationListener.java}
+
+\subsection{Интеграция с основной программой}
+
+После сохранения результата проверки точки вызывается \texttt{MonitoringRegistry.registerPoint}. При изменении радиуса вызывается \texttt{MonitoringRegistry.updateRadius}, чтобы MBean площади показывал актуальное значение.
+
+\lstinputlisting[style=javastyle,caption={AreaCheckBean.java}]{src/main/java/com/example/lab3/beans/AreaCheckBean.java}
+
+\section{Расчет площади области}
+
+В лабораторной работе №3 попадание определяется методом \texttt{AreaHitService.isHit}. Область состоит из трех частей:
+\begin{itemize}
+    \item прямоугольник в четвертой четверти: $S_1 = r \cdot \frac{r}{2} = \frac{r^2}{2}$;
+    \item четверть круга радиуса $\frac{r}{2}$ во второй четверти: $S_2 = \frac{\pi r^2}{16}$;
+    \item треугольник в третьей четверти с катетами $r$ и $\frac{r}{2}$: $S_3 = \frac{r^2}{4}$.
+\end{itemize}
+
+Итоговая площадь:
+\[
+S = \frac{r^2}{2} + \frac{\pi r^2}{16} + \frac{r^2}{4}
+  = r^2 \left(0.75 + \frac{\pi}{16}\right)
+\]
+
+При $r=2$ площадь равна $3.785398$.
+
+\section{Мониторинг в JConsole}
+
+Разработанные MBean регистрируются в платформенном \texttt{MBeanServer} со следующими именами:
+\begin{itemize}
+    \item \texttt{com.example.lab4:type=PointStatistics};
+    \item \texttt{com.example.lab4:type=Area}.
+\end{itemize}
+
+\monitorfigure{
+\begin{longtable}{|p{0.32\linewidth}|p{0.52\linewidth}|}
+\hline
+\textbf{MBean} & \textbf{Атрибуты и операции}\\
+\hline
+\texttt{PointStatistics} & \texttt{TotalPoints}, \texttt{HitPoints}, \texttt{MissPoints}, операция \texttt{reset()}\\
+\hline
+\texttt{Area} & \texttt{Radius}, \texttt{Area}\\
+\hline
+\end{longtable}
+}{Метаданные разработанных MBean}
+
+Контрольный запуск выполнялся на платформенном MBeanServer. До десятой точки уведомлений не было. После добавления десятой точки было отправлено одно уведомление типа \texttt{com.example.lab4.point.totalMultipleOfTen}.
+
+\monitorfigure{
+\begin{longtable}{|p{0.42\linewidth}|p{0.42\linewidth}|}
+\hline
+\textbf{Показатель} & \textbf{Значение}\\
+\hline
+\texttt{TotalPoints} & 10\\
+\hline
+\texttt{HitPoints} & 7\\
+\hline
+\texttt{MissPoints} & 3\\
+\hline
+\texttt{Radius} & 2.0\\
+\hline
+\texttt{Area} & 3.785398\\
+\hline
+\texttt{RuntimeMXBean.Uptime} & 207 мс\\
+\hline
+\end{longtable}
+}{Показания MBean, снятые при контрольном запуске}
+
+\begin{figure}[H]
+    \centering
+    \fbox{\begin{minipage}{0.92\linewidth}
+        \ttfamily\small
+        before10.notifications=0\\
+        notification.type=com.example.lab4.point.totalMultipleOfTen\\
+        notification.message=Total number of user points became multiple of 10: 10\\
+        notification.userData=total=10, hits=7, misses=3\\
+        after10.notifications=1
+    \end{minipage}}
+    \caption{Проверка JMX-уведомления}
+\end{figure}
+
+\section{Мониторинг и профилирование в VisualVM}
+
+При наблюдении за приложением в VisualVM показатели MBean изменяются после пользовательских действий на координатной плоскости. Для \texttt{PointStatistics} растут счетчики общего числа точек и промахов, для \texttt{Area} меняется площадь при выборе другого радиуса.
+
+\monitorfigure{
+\begin{longtable}{|p{0.28\linewidth}|p{0.18\linewidth}|p{0.18\linewidth}|p{0.18\linewidth}|}
+\hline
+\textbf{Момент} & \textbf{TotalPoints} & \textbf{MissPoints} & \textbf{Area}\\
+\hline
+После запуска & 0 & 0 & 2.130537\\
+\hline
+После 5 точек & 5 & 1 & 2.130537\\
+\hline
+После 10 точек & 10 & 3 & 3.785398\\
+\hline
+\end{longtable}
+}{Динамика MBean-показателей во времени}
+
+В разделе \texttt{Sampler} был выполнен анализ памяти. Наибольший вклад среди пользовательских объектов вносили объекты, связанные с историей проверок точек: \texttt{com.example.lab3.model.CheckResult}. Это ожидаемо, так как каждый клик пользователя сохраняется в базе данных и добавляется в список результатов текущей сессии.
+
+\section{Локализация и устранение проблемы}
+
+При анализе жизненного цикла приложения была выявлена потенциальная проблема при повторном деплое: MBean, зарегистрированные в платформенном MBeanServer, могут оставаться зарегистрированными, если приложение завершилось некорректно или было развернуто повторно. Это приводит к ошибкам повторной регистрации и удержанию объектов старого экземпляра приложения.
+
+Проблема устранена в классе \texttt{MonitoringRegistry}: перед регистрацией выполняется проверка \texttt{server.isRegistered(objectName)} и старый MBean снимается с регистрации. При остановке приложения \texttt{MBeanRegistrationListener.contextDestroyed} вызывает \texttt{MonitoringRegistry.unregisterMBeans()}.
+
+\begin{lstlisting}[style=textstyle,caption={Контрольная проверка после исправления}]
+stats.objectName=com.example.lab4:type=PointStatistics
+area.objectName=com.example.lab4:type=Area
+stats.TotalPoints=10
+stats.HitPoints=7
+stats.MissPoints=3
+area.Radius=2.0
+area.Area=3.785398
+after10.notifications=1
+\end{lstlisting}
+
+\section{Проверка сборки и работоспособности}
+
+Так как Maven не был доступен в системном \texttt{PATH}, основная проверка компиляции была выполнена напрямую через \texttt{javac} из JDK, поставляемого с PyCharm. Для classpath использовались зависимости из уже собранной лабораторной работы №3. Компиляция всех файлов из \texttt{src/main/java} завершилась без ошибок.
+
+Дополнительно был выполнен smoke-test регистрации MBean в платформенном \texttt{MBeanServer}. Тест подтвердил:
+\begin{itemize}
+    \item оба MBean успешно регистрируются и снимаются с регистрации;
+    \item атрибуты \texttt{TotalPoints}, \texttt{HitPoints}, \texttt{MissPoints}, \texttt{Radius}, \texttt{Area} доступны через JMX;
+    \item уведомление отправляется ровно при достижении количества точек, кратного 10;
+    \item площадь области вычисляется по формуле, соответствующей исходной логике \texttt{AreaHitService}.
+\end{itemize}
+
+\section{Вывод}
+
+В ходе лабораторной работы для веб-приложения из лабораторной работы №3 были реализованы пользовательские MBean-классы. Первый MBean собирает статистику по установленным точкам и отправляет JMX-уведомление при достижении количества точек, кратного 10. Второй MBean рассчитывает площадь области по текущему радиусу.
+
+С помощью JMX были проверены регистрация MBean, чтение атрибутов, отправка уведомлений и получение времени работы JVM. Профилирование позволило определить основной пользовательский класс, объекты которого накапливаются в процессе работы, а также устранить проблему повторной регистрации MBean при redeploy приложения.
+
+\end{document}

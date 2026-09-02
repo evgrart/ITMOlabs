@@ -1,0 +1,14 @@
+com\example\lab3\mbean\MonitoringRegistry.class
+com\example\lab3\mbean\Area.class
+com\example\lab3\mbean\PointStatisticsMBean.class
+com\example\lab3\beans\AreaCheckBean.class
+com\example\lab3\service\AreaHitService.class
+com\example\lab3\mbean\MBeanRegistrationListener.class
+com\example\lab3\util\HibernateUtil.class
+com\example\lab3\mbean\AreaMBean.class
+com\example\lab3\mbean\MonitoringState.class
+com\example\lab3\mbean\MonitoringState$Snapshot.class
+com\example\lab3\model\CheckResult.class
+com\example\lab3\App.class
+com\example\lab3\mbean\PointStatistics.class
+com\example\lab3\util\Messages.class

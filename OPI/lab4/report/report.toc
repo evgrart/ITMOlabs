@@ -1,0 +1,21 @@
+\xpg@aux {}{russian}
+\contentsline {section}{\numberline {1}Цель работы}{2}{section.1}%
+\contentsline {section}{\numberline {2}Техническое задание}{2}{section.2}%
+\contentsline {section}{\numberline {3}Порядок выполнения работы}{2}{section.3}%
+\contentsline {section}{\numberline {4}Подключение к JVM для мониторинга}{3}{section.4}%
+\contentsline {section}{\numberline {5}Исходный код разработанных MBean-классов}{3}{section.5}%
+\contentsline {subsection}{\numberline {5.1}MonitoringState}{3}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}PointStatisticsMBean и PointStatistics}{4}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}AreaMBean и Area}{6}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Регистрация MBean}{7}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5}Интеграция с основным приложением}{9}{subsection.5.5}%
+\contentsline {section}{\numberline {6}Расчёт площади области}{11}{section.6}%
+\contentsline {section}{\numberline {7}Мониторинг приложения в JConsole}{12}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Регистрация и атрибуты MBean}{12}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Проверка JMX-уведомления}{13}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Время работы виртуальной машины}{13}{subsection.7.3}%
+\contentsline {section}{\numberline {8}Мониторинг и профилирование в VisualVM}{13}{section.8}%
+\contentsline {section}{\numberline {9}Локализация и устранение проблемы}{15}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Алгоритм локализации}{15}{subsection.9.1}%
+\contentsline {section}{\numberline {10}Проверка сборки и работоспособности}{16}{section.10}%
+\contentsline {section}{\numberline {11}Вывод}{16}{section.11}%

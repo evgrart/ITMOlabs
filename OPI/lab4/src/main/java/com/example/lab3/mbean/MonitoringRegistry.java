@@ -55,7 +55,7 @@ public final class MonitoringRegistry {
                 server.unregisterMBean(name);
             }
         } catch (JMException ignored) {
-            // Application shutdown must not be blocked by JMX cleanup.
+            // Ошибка очистки MBean не должна мешать остановке приложения.
         }
     }
 }

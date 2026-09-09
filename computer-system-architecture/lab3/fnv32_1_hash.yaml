@@ -1,0 +1,30 @@
+name: "assert fnv32_1_hash('abc\0') == 1134309195"
+limit: 2000
+memory_size: 0x1000
+memory_mapped_io:
+  0x80: [97, 98, 99, 0]
+  0x84: []
+reports:
+  - name: Step-by-step
+    slice: all
+    view: |
+      Hash={S1:hex} Char={T0:dec} Product={T1:hex}
+      {pc:hex}: {instruction:next} {pc:label}
+  - name: VLIW statistics
+    slice: last
+    view: |
+      Total bundles executed: {sim:instruction-count}
+      Total code size:        {layout:sections-size}
+      Slot utilization:       {vliw:load-percent}
+      Average active slots:   {vliw:avg-load}
+      Bundles by load:        {vliw:bundles-by-load}
+  - name: Check results
+    slice: last
+    filter:
+      - state
+    view: |
+      numio[0x80]: {io:0x80:dec}
+      numio[0x84]: {io:0x84:dec}
+    assert: |
+      numio[0x80]: [] >>> []
+      numio[0x84]: [] >>> [1134309195]

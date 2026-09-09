@@ -1,0 +1,32 @@
+name: "assert gcd_many(2, 48, 18) == [6]"
+limit: 2000
+memory_size: 0x1000
+memory_mapped_io:
+  0x80: [2, 48, 18]
+  0x84: []
+
+reports:
+  - name: Step-by-step
+    slice: all
+    view: |
+      A0={A0:dec} A1={A1:dec} | S1(left)={S1:dec} S3(gcd)={S3:dec}
+      Sp={Sp:hex} Ra={Ra:hex} | {pc:hex}: {instruction:next} {pc:label}
+
+  - name: Execution stats
+    slice: last
+    view: |
+      Total instructions executed: {sim:instruction-count}
+      Total code and data size:    {layout:sections-size}
+      Data memory accessed:        {mem:data-ranges}
+      I/O memory accessed:         {mem:io-ranges}
+
+  - name: Check results
+    slice: last
+    filter:
+      - state
+    view: |
+      numio[0x80]: {io:0x80:dec}
+      numio[0x84]: {io:0x84:dec}
+    assert: |
+      numio[0x80]: [] >>> []
+      numio[0x84]: [] >>> [6]

@@ -1,0 +1,178 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1940" height="1120" viewBox="0 0 1940 1120" role="img" aria-labelledby="title desc">
+<title id="title">ACC32-HARV</title>
+<desc id="desc">ACC32-HARV fixed 32-bit instruction format chosen for this schematic. Every instruction occupies four bytes in byte-addressed IM; IM returns one 32-bit instruction word. Absolute: opcode[31:24], operand[23:0]. Relative: opcode[31:24], reserved[23:16], offset[15:0]. IR latches IWORD[31:24]; OP is a 24-bit register and latches IWORD[23:0] in the same fetch cycle. OP has one output bus, which forks to SX16 (low 16 bits, sign bit 15) and SX24 (all 24 bits, sign bit 23). Each SX is fixed wiring for sign extension to 32 bits. There is no direct OP bypass, byte assembly, byte write enable, or OP clear. AC has one 32-bit output bus, branching outside the register to the ALU A mux and the memory/I/O write-data interface. ALU A selects PC or AC; ALU B selects rdata, SX16 or SX24. The B mux inputs from top to bottom are rdata=0, SX16=1, SX24=2. PC remains at the current instruction until completion. Relative addressing uses AR=PC+SX16(OP) in one ALU operation. Normal completion advances PC by a fixed +4 incrementer; taken absolute branches select the ALU PASS B result SX24(OP) instead. HALT holds PC. The AR-to-ALU feedback and the constant 3 are absent. Absolute address formation uses AR=SX24(OP); load_acc uses AR=AC. store_ind execution after fetch: AR=SX24(OP), then AR=MEM32[AR] through read MUX and ALU PASS B, then MEM32[AR]=AC and PC=PC+4. AR output drives the shared data address interface and address decoder only. One main ALU; Harvard IM and DM are separate. CU is an opaque hardwired control block with internal instruction sequencing and branch predicates. ALU and its attached N/Z/V/C cells form one functional unit. Flags are formed internally from the ALU operation: N is result bit 31, Z tests the 32-bit result for zero, and V/C come from the operation's overflow/carry logic. There is no separate AC-to-flags connection or external flag-generation circuit. N/Z latch when an ALU result is committed to AC, so address calculations do not overwrite accumulator condition flags. The four-bit flag output feeds CU. Flag update/clear control is implicit. V/C update only for ADD/SUB/MUL or explicit clear; address calculations, fetch, loads and stores preserve them. Memory and devices share addr/wdata/rdata/rd/wr; DEC gates DM, input data register ID at 0x80, output data register OD at 0x84 and Read MUX selection. MMIO addresses are excluded from DM. Reads are combinational; writes and I/O side effects occur once at a clock edge. All data/address paths are 32 bit except the labelled instruction fields and OP bus. This requested fixed-length hardware encoding differs from Wrench 0.0.5.0 variable-length encoding; see acc32-harv-notes.md. Dots indicate junctions or labelled bit-field taps; bridges indicate unconnected crossings.</desc>
+<defs>
+ <marker id="arrow" viewBox="0 0 8 8" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L8 4 L0 8 Z" fill="#111"/></marker>
+ <style>
+ text { fill:#111; font-family:Arial,Helvetica,sans-serif; }
+ .block { fill:white; stroke:#111; stroke-width:2; }
+ .frame { fill:none; stroke:#111; stroke-width:1.5; }
+ .title { font-size:26px; font-weight:600; }
+ .mux { font-size:21px; }
+ .small { font-size:18px; }
+ .label,.signal { font-size:17px; paint-order:stroke; stroke:white; stroke-width:5px; stroke-linejoin:round; }
+ .bus { fill:none; stroke:#111; stroke-width:2.4; }
+ .control { fill:none; stroke:#111; stroke-width:1.5; stroke-dasharray:6 4; }
+ .junction { fill:#111; }
+ </style>
+</defs>
+<rect width="1940" height="1120" fill="white"/>
+<rect id="memory-and-io" x="1375.2" y="285.6" width="529.2" height="770.1" class="frame"/>
+<g id="pc"><rect x="230.4" y="163.2" width="115.2" height="71.4" class="block"/></g>
+<g id="pc-incrementer"><rect x="230.4" y="270.3" width="115.2" height="51" class="block"/></g>
+<g id="instruction-memory" data-width="32"><rect x="424.8" y="112.2" width="201.6" height="183.6" class="block"/></g>
+<g id="instruction-register" data-width="8"><rect x="720" y="122.4" width="165.6" height="71.4" class="block"/></g>
+<g id="operand-register" data-width="24"><rect x="720" y="249.9" width="165.6" height="96.9" class="block"/></g>
+<g id="mar"><rect x="1202.4" y="438.6" width="100.8" height="81.6" class="block"/></g>
+<g id="accumulator"><rect x="237.6" y="739.5" width="129.6" height="81.6" class="block"/></g>
+<g id="address-decoder"><rect x="1425.6" y="423.3" width="172.8" height="214.2" class="block"/></g>
+<g id="data-memory"><rect x="1699.2" y="392.7" width="180" height="183.6" class="block"/></g>
+<g id="input-device"><rect x="1699.2" y="663" width="180" height="86.7" class="block"/></g>
+<g id="output-device"><rect x="1699.2" y="851.7" width="180" height="86.7" class="block"/></g>
+<g id="control-unit"><rect x="1029.6" y="102" width="273.6" height="234.6" class="block"/></g>
+<polygon id="pc-mux" points="108,132.6 187.2,158.1 187.2,239.7 108,265.2" class="block"/>
+<polygon id="alu-a-mux" points="684,387.6 763.2,413.1 763.2,498.9 684,524.4" class="block"/>
+<polygon id="alu-b-mux" points="684,612 828,637.5 828,821.1 684,846.6" class="block"/>
+<polygon id="read-mux" points="1497.6,810.9 1580.4,785.4 1580.4,958.8 1497.6,933.3" class="block"/>
+<g id="sx16"><rect x="468" y="699.3" width="136.8" height="60" class="block"/></g>
+<g id="sx24"><rect x="468" y="775.8" width="136.8" height="60" class="block"/></g>
+<g id="alu-unit">
+<polygon id="alu" points="864,663 1029.6,663 1080,744.6 1029.6,826.2 864,826.2 885.6,744.6" class="block"/>
+<g id="flags"><rect x="880" y="826.2" width="144" height="36" class="block"/><path d="M916 826.2 V862.2" fill="none" stroke="#111" stroke-width="2"/><path d="M952 826.2 V862.2" fill="none" stroke="#111" stroke-width="2"/><path d="M988 826.2 V862.2" fill="none" stroke="#111" stroke-width="2"/></g>
+</g>
+
+<path id="pc-incrementer-input" data-net="PC" d="M288 234.6 L288 270.3" class="bus" marker-end="url(#arrow)"/>
+<path id="pc-input" data-net="PC_next" d="M187.2 198.9 L230.4 198.9" class="bus" marker-end="url(#arrow)"/>
+<path id="pc-imem" data-net="PC" d="M345.6 198.9 L424.8 198.9" class="bus" marker-end="url(#arrow)"/>
+<path id="pc-to-alu" data-net="PC" d="M374.4 198.9 L374.4 326.4 L658.8 326.4 L658.8 418.2 L684 418.2" class="bus" marker-end="url(#arrow)"/>
+<path id="pc-increment" data-net="PC_plus_4" d="M230.4 295.8 L64.8 295.8 L64.8 163.2 L108 163.2" class="bus" marker-end="url(#arrow)"/>
+<path id="instruction-word" data-net="IWORD" d="M626.4 204 L669.6 204" class="bus"/>
+<path id="instruction-opcode" data-net="IWORD_hi8" d="M669.6 204 L669.6 158.1 L720 158.1" class="bus" marker-end="url(#arrow)"/>
+<path id="instruction-operand" data-net="IWORD_lo24" d="M669.6 204 L669.6 295.8 L720 295.8" class="bus" marker-end="url(#arrow)"/>
+<path id="acc-output" data-net="AC" d="M367.2 780.3 L396 780.3" class="bus"/>
+<path id="acc-to-alu" data-net="AC" d="M396 780.3 L396 494 L684 494" class="bus" marker-end="url(#arrow)"/>
+<path id="alu-a" data-net="ALU_A" d="M763.2 456 L842.4 456 L842.4 693.6 L872.1 693.6" class="bus" marker-end="url(#arrow)"/>
+<path id="alu-b" data-net="ALU_B" d="M828 729.3 L849.6 729.3 L849.6 795.6 L872.1 795.6" class="bus" marker-end="url(#arrow)"/>
+<path id="alu-result" data-net="RESULT" d="M1080 744.6 L1108.8 744.6 L1108.8 1060.8 L205.2 1060.8 L205.2 780.3 L237.6 780.3" class="bus" marker-end="url(#arrow)"/>
+<path id="result-to-mar" data-net="RESULT" d="M1108.8 744.6 L1108.8 479.4 L1202.4 479.4" class="bus" marker-end="url(#arrow)"/>
+<path id="result-to-pc" data-net="RESULT" d="M205.2 1060.8 L46.8 1060.8 L46.8 234.6 L108 234.6" class="bus" marker-end="url(#arrow)"/>
+<path id="memory-address" data-net="AR" d="M1303.2 479.4 L1375.2 479.4" class="bus" marker-end="url(#arrow)"/>
+<path id="address-to-decoder" data-net="AR" d="M1375.2 479.4 L1425.6 479.4" class="bus" marker-end="url(#arrow)"/>
+<path id="address-to-ram" data-net="AR" d="M1396.8 479.4 L1396.8 362.1 L1742.4 362.1 L1742.4 392.7" class="bus" marker-end="url(#arrow)"/>
+<path id="memory-write" data-net="AC" d="M396 780.3 L396 969 L1375.2 969" class="bus" marker-end="url(#arrow)"/>
+<path id="write-to-ram" data-net="AC" d="M1375.2 969 L1893.6 969 L1893.6 525.3 L1879.2 525.3" class="bus" marker-end="url(#arrow)"/>
+<path id="write-to-device" data-net="AC" d="M1893.6 895.56 L1879.2 895.56" class="bus" marker-end="url(#arrow)"/>
+<path id="memory-read-to-alu" data-net="RDATA" d="M1375.2 887.4 L1353.6 887.4 L1353.6 1020 L633.6 1020 L633.6 652.8 L684 652.8" class="bus" marker-end="url(#arrow)"/>
+<path id="read-interface" data-net="RDATA" d="M1497.6 872.1 L1396.8 872.1 L1396.8 887.4 L1375.2 887.4" class="bus" marker-end="url(#arrow)"/>
+<path id="ram-read" data-net="RAM_DATA" d="M1699.2 520.2 L1648.8 520.2 L1648.8 821.1 L1580.4 821.1" class="bus" marker-end="url(#arrow)"/>
+<path id="device-read" data-net="IN_DATA" d="M1699.2 705.84 L1666.8 705.84 L1666.8 923.1 L1580.4 923.1" class="bus" marker-end="url(#arrow)"/>
+<path id="memory-read-request" data-net="mem_rd" d="M1339.2 550.8 L1425.6 550.8" class="control" marker-end="url(#arrow)"/>
+<path id="memory-write-request" data-net="mem_wr" d="M1339.2 601.8 L1425.6 601.8" class="control" marker-end="url(#arrow)"/>
+<path id="ram-read-enable" data-net="RAM_rd" d="M1598.4 459 L1627.2 459 L1627.2 418.2 L1699.2 418.2" class="control" marker-end="url(#arrow)"/>
+<path id="ram-write-enable" data-net="RAM_wr" d="M1598.4 494.7 L1638 494.7 L1638 459 L1699.2 459" class="control" marker-end="url(#arrow)"/>
+<path id="input-enable" data-net="IN_rd" d="M1598.4 525.3 L1627.2 525.3 L1627.2 637.5 L1771.2 637.5 L1771.2 663" class="control" marker-end="url(#arrow)"/>
+<path id="output-enable" data-net="OUT_wr" d="M1555.2 637.5 L1555.2 765 L1792.8 765 L1792.8 851.7" class="control" marker-end="url(#arrow)"/>
+<path id="read-select" data-net="READ_sel" d="M1468.8 637.5 L1468.8 754.8 L1519.2 754.8 L1519.2 804.25" class="control" marker-end="url(#arrow)"/>
+<path id="opcode-to-cu" data-net="OPCODE" d="M885.6 158.1 L1029.6 158.1" class="bus" marker-end="url(#arrow)"/>
+<path id="pc-source-select" data-net="PC_src" d="M147.6 290.7 L147.6 252.45" class="control" marker-end="url(#arrow)"/>
+<path id="ir-write" data-net="IR_wr" d="M802.8 96.9 L802.8 122.4" class="control" marker-end="url(#arrow)"/>
+<path id="operand-write" data-net="OP_wr" d="M802.8 214.2 L802.8 249.9" class="control" marker-end="url(#arrow)"/>
+<path id="mar-write" data-net="AR_wr" d="M1252.8 397.8 L1252.8 438.6" class="control" marker-end="url(#arrow)"/>
+<path id="acc-write" data-net="AC_wr" d="M302.4 698.7 L302.4 739.5" class="control" marker-end="url(#arrow)"/>
+<path id="alu-a-select" data-net="ALUA_sel" d="M723.6 549 L723.6 511.65" class="control" marker-end="url(#arrow)"/>
+<path id="alu-b-select" data-net="ALUB_sel[1:0]" d="M756 877.2 L756 833.85" class="control" marker-end="url(#arrow)"/>
+<path id="alu-operation" data-net="ALU_op" d="M972 623 L972 663" class="control" marker-end="url(#arrow)"/>
+<path id="pc-write" data-net="PC_wr" d="M288 102 L288 163.2" class="control" marker-end="url(#arrow)"/>
+<path id="operand-output" data-net="OP" d="M792 346.8 L792 380 L440 380 L440 729.3" class="bus"/>
+<path id="operand-to-sx16" data-net="OP" d="M440 729.3 L468 729.3" class="bus" marker-end="url(#arrow)"/>
+<path id="operand-to-sx24" data-net="OP" d="M440 729.3 L440 805.8 L468 805.8" class="bus" marker-end="url(#arrow)"/>
+<path id="sx16-to-alu" data-net="SX16" d="M604.8 729.3 L684 729.3" class="bus" marker-end="url(#arrow)"/>
+<path id="sx24-to-alu" data-net="SX24" d="M604.8 805.8 L684 805.8" class="bus" marker-end="url(#arrow)"/>
+<path id="flags-to-cu" data-net="NZVC" d="M1024 844.2 L1174 844.2 L1174 336.6" class="bus" marker-end="url(#arrow)"/>
+<g data-crossing="operand-output / pc-to-alu"><path d="M652.8 380 H664.8" fill="none" stroke="white" stroke-width="6"/><path d="M658.8 375 V385" class="bus"/><path d="M652.8 380 Q658.8 369 664.8 380" fill="none" stroke="white" stroke-width="6"/><path d="M652.8 380 Q658.8 369 664.8 380" class="bus"/></g>
+<g data-crossing="result-to-pc / pc-increment"><path d="M58.8 234.6 H70.8" fill="none" stroke="white" stroke-width="6"/><path d="M64.8 229.6 V239.6" class="bus"/><path d="M58.8 234.6 Q64.8 223.6 70.8 234.6" fill="none" stroke="white" stroke-width="6"/><path d="M58.8 234.6 Q64.8 223.6 70.8 234.6" class="bus"/></g>
+<g data-crossing="acc-to-alu / operand-output"><path d="M434 494 H446" fill="none" stroke="white" stroke-width="6"/><path d="M440 489 V499" class="bus"/><path d="M434 494 Q440 483 446 494" fill="none" stroke="white" stroke-width="6"/><path d="M434 494 Q440 483 446 494" class="bus"/></g>
+<g data-crossing="memory-write / alu-result"><path d="M1102.8 969 H1114.8" fill="none" stroke="white" stroke-width="6"/><path d="M1108.8 964 V974" class="bus"/><path d="M1102.8 969 Q1108.8 958 1114.8 969" fill="none" stroke="white" stroke-width="6"/><path d="M1102.8 969 Q1108.8 958 1114.8 969" class="bus"/></g>
+<g data-crossing="memory-read-to-alu / alu-result"><path d="M1102.8 1020 H1114.8" fill="none" stroke="white" stroke-width="6"/><path d="M1108.8 1015 V1025" class="bus"/><path d="M1102.8 1020 Q1108.8 1009 1114.8 1020" fill="none" stroke="white" stroke-width="6"/><path d="M1102.8 1020 Q1108.8 1009 1114.8 1020" class="bus"/></g>
+<g data-crossing="flags-to-cu / alu-result"><path d="M1102.8 844.2 H1114.8" fill="none" stroke="white" stroke-width="6"/><path d="M1108.8 839.2 V849.2" class="bus"/><path d="M1102.8 844.2 Q1108.8 833.2 1114.8 844.2" fill="none" stroke="white" stroke-width="6"/><path d="M1102.8 844.2 Q1108.8 833.2 1114.8 844.2" class="bus"/></g>
+<g data-crossing="result-to-mar / flags-to-cu"><path d="M1168 479.4 H1180" fill="none" stroke="white" stroke-width="6"/><path d="M1174 474.4 V484.4" class="bus"/><path d="M1168 479.4 Q1174 468.4 1180 479.4" fill="none" stroke="white" stroke-width="6"/><path d="M1168 479.4 Q1174 468.4 1180 479.4" class="bus"/></g>
+<g data-crossing="memory-write / memory-read-to-alu"><path d="M1347.6 969 H1359.6" fill="none" stroke="white" stroke-width="6"/><path d="M1353.6 964 V974" class="bus"/><path d="M1347.6 969 Q1353.6 958 1359.6 969" fill="none" stroke="white" stroke-width="6"/><path d="M1347.6 969 Q1353.6 958 1359.6 969" class="bus"/></g>
+<g data-crossing="memory-write / memory-read-to-alu"><path d="M627.6 969 H639.6" fill="none" stroke="white" stroke-width="6"/><path d="M633.6 964 V974" class="bus"/><path d="M627.6 969 Q633.6 958 639.6 969" fill="none" stroke="white" stroke-width="6"/><path d="M627.6 969 Q633.6 958 639.6 969" class="bus"/></g>
+<g data-crossing="sx16-to-alu / memory-read-to-alu"><path d="M627.6 729.3 H639.6" fill="none" stroke="white" stroke-width="6"/><path d="M633.6 724.3 V734.3" class="bus"/><path d="M627.6 729.3 Q633.6 718.3 639.6 729.3" fill="none" stroke="white" stroke-width="6"/><path d="M627.6 729.3 Q633.6 718.3 639.6 729.3" class="bus"/></g>
+<g data-crossing="sx24-to-alu / memory-read-to-alu"><path d="M627.6 805.8 H639.6" fill="none" stroke="white" stroke-width="6"/><path d="M633.6 800.8 V810.8" class="bus"/><path d="M627.6 805.8 Q633.6 794.8 639.6 805.8" fill="none" stroke="white" stroke-width="6"/><path d="M627.6 805.8 Q633.6 794.8 639.6 805.8" class="bus"/></g>
+<g data-crossing="input-enable / ram-read"><path d="M1642.8 637.5 H1654.8" fill="none" stroke="white" stroke-width="6"/><path d="M1648.8 632.5 V642.5" class="bus"/><path d="M1642.8 637.5 Q1648.8 626.5 1654.8 637.5" fill="none" stroke="white" stroke-width="6"/><path d="M1642.8 637.5 Q1648.8 626.5 1654.8 637.5" class="control"/></g>
+<g data-crossing="output-enable / ram-read"><path d="M1642.8 765 H1654.8" fill="none" stroke="white" stroke-width="6"/><path d="M1648.8 760 V770" class="bus"/><path d="M1642.8 765 Q1648.8 754 1654.8 765" fill="none" stroke="white" stroke-width="6"/><path d="M1642.8 765 Q1648.8 754 1654.8 765" class="control"/></g>
+<g data-crossing="output-enable / device-read"><path d="M1660.8 765 H1672.8" fill="none" stroke="white" stroke-width="6"/><path d="M1666.8 760 V770" class="bus"/><path d="M1660.8 765 Q1666.8 754 1672.8 765" fill="none" stroke="white" stroke-width="6"/><path d="M1660.8 765 Q1666.8 754 1672.8 765" class="control"/></g>
+<circle cx="374.4" cy="198.9" r="3.5" class="junction"/>
+<circle cx="669.6" cy="204" r="3.5" class="junction"/>
+<circle cx="396" cy="780.3" r="3.5" class="junction"/>
+<circle cx="1108.8" cy="744.6" r="3.5" class="junction"/>
+<circle cx="205.2" cy="1060.8" r="3.5" class="junction"/>
+<circle cx="1396.8" cy="479.4" r="3.5" class="junction"/>
+<circle cx="1893.6" cy="895.56" r="3.5" class="junction"/>
+<circle cx="440" cy="729.3" r="3.5" class="junction"/>
+<text x="288" y="207.06" class="title" text-anchor="middle">PC</text>
+<text x="288" y="303.96" class="title" text-anchor="middle">+4</text>
+<text x="525.6" y="209.1" class="title" text-anchor="middle">IM</text>
+<text x="802.8" y="167.28" class="title" text-anchor="middle">IR</text>
+<text x="802.8" y="308.04" class="title" text-anchor="middle">OP</text>
+<text x="1252.8" y="487.56" class="title" text-anchor="middle">AR</text>
+<text x="302.4" y="788.46" class="title" text-anchor="middle">AC</text>
+<text x="1166.4" y="228" class="title" text-anchor="middle">CU</text>
+<text x="972" y="754.8" class="title" text-anchor="middle">ALU</text>
+<text x="1512" y="539.58" class="title" text-anchor="middle">DEC</text>
+<text x="1789.2" y="490.62" class="title" text-anchor="middle">DM</text>
+<text x="1789.2" y="697.68" class="title" text-anchor="middle">ID</text>
+<text x="1789.2" y="886.38" class="title" text-anchor="middle">OD</text>
+<text x="147.6" y="206.04" class="mux" text-anchor="middle">MUX</text>
+<text x="723.6" y="464" class="mux" text-anchor="middle">MUX</text>
+<text x="784" y="737.46" class="mux" text-anchor="middle">MUX</text>
+<text x="1539" y="880.26" class="mux" text-anchor="middle">MUX</text>
+<text x="1789.2" y="729.3" class="small" text-anchor="middle">0x80</text>
+<text x="1789.2" y="918" class="small" text-anchor="middle">0x84</text>
+<text x="1639.8" y="323.34" class="small" text-anchor="middle">Memory / IO</text>
+<text x="379.44" y="186.66" class="label" text-anchor="start">32</text>
+<text x="633.6" y="192.78" class="label" text-anchor="start">32</text>
+<text x="679.68" y="283.56" class="label" text-anchor="start">24</text>
+<text x="64.8" y="222.36" class="label" text-anchor="start">1</text>
+<text x="68.4" y="150.96" class="label" text-anchor="start">0</text>
+<text x="695.52" y="660.96" class="label" text-anchor="start">rdata</text>
+<text x="835.2" y="681.36" class="label" text-anchor="start">A</text>
+<text x="835.2" y="783.36" class="label" text-anchor="start">B</text>
+<text x="806.4" y="1047.54" class="label" text-anchor="start">32</text>
+<text x="1296" y="958.8" class="label" text-anchor="end">wdata</text>
+<text x="1296" y="1009.8" class="label" text-anchor="end">rdata</text>
+<text x="1342.8" y="465.12" class="label" text-anchor="middle">addr</text>
+<text x="1756.8" y="383.52" class="label" text-anchor="start">addr</text>
+<text x="1612.8" y="808.86" class="label" text-anchor="start">DM</text>
+<text x="1612.8" y="910.86" class="label" text-anchor="start">ID</text>
+<text x="295.2" y="133.62" class="signal" text-anchor="start">ld PC</text>
+<text x="156.96" y="285.6" class="signal" text-anchor="start">sel P</text>
+<text x="811.44" y="105.06" class="signal" text-anchor="start">ld IR</text>
+<text x="811.44" y="230.52" class="signal" text-anchor="start">ld OP</text>
+<text x="1262.88" y="417.18" class="signal" text-anchor="start">ld AR</text>
+<text x="312.48" y="718.08" class="signal" text-anchor="start">ld AC</text>
+<text x="734.4" y="543" class="signal" text-anchor="start">sel A</text>
+<text x="766.8" y="881.28" class="signal" text-anchor="start">sel B</text>
+<text x="984.24" y="646" class="signal" text-anchor="start">op</text>
+<text x="1396.8" y="537.54" class="signal" text-anchor="middle">rd</text>
+<text x="1396.8" y="588.54" class="signal" text-anchor="middle">wr</text>
+<text x="1656" y="406.98" class="signal" text-anchor="middle">rd</text>
+<text x="1656" y="447.78" class="signal" text-anchor="middle">wr</text>
+<text x="1782" y="655.86" class="signal" text-anchor="start">rd</text>
+<text x="1803.6" y="831.3" class="signal" text-anchor="start">wr</text>
+<text x="1458" y="723.18" class="signal" text-anchor="end">sel</text>
+<text x="680" y="146" class="label" text-anchor="start">8</text>
+<text x="806" y="371" class="label" text-anchor="start">24</text>
+<text x="536.4" y="724" class="mux" text-anchor="middle">SX16</text>
+<text x="536.4" y="747" class="small" text-anchor="middle">16 → 32</text>
+<text x="536.4" y="800.5" class="mux" text-anchor="middle">SX24</text>
+<text x="536.4" y="823.5" class="small" text-anchor="middle">24 → 32</text>
+<text x="695.52" y="737.46" class="label" text-anchor="start">SX16</text>
+<text x="695.52" y="813.96" class="label" text-anchor="start">SX24</text>
+<text x="1187" y="362" class="label" text-anchor="start">4</text>
+<text x="898" y="851.2" class="small" text-anchor="middle">N</text>
+<text x="934" y="851.2" class="small" text-anchor="middle">Z</text>
+<text x="970" y="851.2" class="small" text-anchor="middle">V</text>
+<text x="1006" y="851.2" class="small" text-anchor="middle">C</text>
+</svg>

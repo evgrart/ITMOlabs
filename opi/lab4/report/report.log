@@ -1,0 +1,814 @@
+This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.12) (preloaded format=xelatex 2026.6.19)  11 SEP 2026 18:49
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**./report/report.tex
+(report/report.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2025-12-24>
+
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/extsizes\extarticle.cls
+Document Class: extarticle 1996/10/08 v1.0 Non Standard LaTeX document class
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/extsizes\size14.clo
+File: size14.clo 1999/11/11 v1.4a NON-Standard LaTeX file (size option)
+)
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/base\exscale.sty
+Package: exscale 2025/06/05 v2.1i Standard LaTeX package exscale
+LaTeX Font Info:    Redeclaring symbol font `largesymbols' on input line 57.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> OMX/cmex/m/n on input line 57.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/cmex/m/n --> OMX/cmex/m/n on input line 57.
+\big@size=\dimen148
+)
+\c@part=\count271
+\c@section=\count272
+\c@subsection=\count273
+\c@subsubsection=\count274
+\c@paragraph=\count275
+\c@subparagraph=\count276
+\c@figure=\count277
+\c@table=\count278
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen149
+)
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/fontspec\fontspec.sty
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xparse\xpars
+e.sty
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\expl3.sty
+Package: expl3 2025-12-24 L3 programming layer (loader) 
+
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-xet
+ex.def
+File: l3backend-xetex.def 2025-10-09 L3 backend support: XeTeX
+\g__graphics_track_int=\count279
+\g__pdfannot_backend_int=\count280
+\g__pdfannot_backend_link_int=\count281
+))
+Package: xparse 2025-10-09 L3 Experimental document command parser
+)
+Package: fontspec 2025/09/29 v2.9g Font selection for XeLaTeX and LuaLaTeX
+
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/fontspec\fontspec-xetex
+.sty
+Package: fontspec-xetex 2025/09/29 v2.9g Font selection for XeLaTeX and LuaLaTe
+X
+\l__fontspec_script_int=\count282
+\l__fontspec_language_int=\count283
+\l__fontspec_strnum_int=\count284
+\l__fontspec_tmp_int=\count285
+\l__fontspec_tmpa_int=\count286
+\l__fontspec_tmpb_int=\count287
+\l__fontspec_tmpc_int=\count288
+\l__fontspec_em_int=\count289
+\l__fontspec_emdef_int=\count290
+\l__fontspec_strong_int=\count291
+\l__fontspec_strongdef_int=\count292
+\l__fontspec_tmpa_dim=\dimen150
+\l__fontspec_tmpb_dim=\dimen151
+\l__fontspec_tmpc_dim=\dimen152
+ (C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty
+Package: fontenc 2025/07/18 v2.1d Standard LaTeX package
+)
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/fontspec\fontspec.cfg))
+)
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/polyglossia\polyglossia
+.sty
+Package: polyglossia 2026/04/18 v2.10 Modern multilingual typesetting with XeLa
+TeX and LuaLaTeX
+
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbox.sty
+Package: etoolbox 2025/10/02 v2.5m e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count293
+)
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty
+Package: iftex 2024/12/12 v1.0g TeX engine tests
+)
+\l_xpg_alias_keyvals_int=\count294
+
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/polyglossia\gloss-latex
+.ldf
+File: gloss-latex.ldf polyglossia: module for default language
+))
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/polyglossia\gloss-russi
+an.ldf
+File: gloss-russian.ldf polyglossia: module for Russian
+
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/polyglossia\xpg-cyrilli
+cnumbers.sty
+Package: xpg-cyrillicnumbers 2019/11/15 v0.2 Formatting of Cyrillic alphabetic 
+numbers
+)
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/polyglossia\babelsh.def
+File: babelsh.def 2022/06/21 Babel common definitions for shorthands
+ Taken verbatim from babel files (2022/06/06 v3.76)
+)
+Package babel Info: Making " an active character on input line 120.
+)
+
+Package polyglossia Info: Default language is russian
+
+
+Package fontspec Info: 
+(fontspec)             Font family 'TimesNewRoman(0)' created for font 'Times
+(fontspec)             New Roman' with options [Ligatures=TeX].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.: <->"Times New
+(fontspec)             Roman/OT:script=latn;language=dflt;mapping=tex-text;"
+(fontspec)             - 'small caps'  (m/sc) with NFSS spec.: <->"Times New
+(fontspec)             Roman/OT:script=latn;language=dflt;+smcp;mapping=tex-tex
+t;"
+(fontspec)             - 'bold' (b/n) with NFSS spec.: <->"Times New
+(fontspec)             Roman/B/OT:script=latn;language=dflt;mapping=tex-text;"
+(fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: <->"Times
+(fontspec)             New
+(fontspec)             Roman/B/OT:script=latn;language=dflt;+smcp;mapping=tex-t
+ext;"
+(fontspec)             - 'italic' (m/it) with NFSS spec.: <->"Times New
+(fontspec)             Roman/I/OT:script=latn;language=dflt;mapping=tex-text;"
+(fontspec)             - 'italic small caps'  (m/scit) with NFSS spec.:
+(fontspec)             <->"Times New
+(fontspec)             Roman/I/OT:script=latn;language=dflt;+smcp;mapping=tex-t
+ext;"
+(fontspec)             - 'bold italic' (b/it) with NFSS spec.: <->"Times New
+(fontspec)             Roman/BI/OT:script=latn;language=dflt;mapping=tex-text;"
+
+(fontspec)             - 'bold italic small caps'  (b/scit) with NFSS spec.:
+(fontspec)             <->"Times New
+(fontspec)             Roman/BI/OT:script=latn;language=dflt;+smcp;mapping=tex-
+text;"
+
+
+Package fontspec Info: 
+(fontspec)             Font family 'Consolas(0)' created for font 'Consolas'
+(fontspec)             with options
+(fontspec)             [WordSpace={1,0,0},HyphenChar=None,PunctuationSpace=Word
+Space].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <->"Consolas/OT:script=latn;language=dflt;"
+(fontspec)             - 'bold' (b/n) with NFSS spec.:
+(fontspec)             <->"Consolas/B/OT:script=latn;language=dflt;"
+(fontspec)             - 'italic' (m/it) with NFSS spec.:
+(fontspec)             <->"Consolas/I/OT:script=latn;language=dflt;"
+(fontspec)             - 'bold italic' (b/it) with NFSS spec.:
+(fontspec)             <->"Consolas/BI/OT:script=latn;language=dflt;"
+
+
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.sty
+Package: geometry 2026/03/07 v6.0 Page Geometry
+
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks17
+)
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+)
+\Gm@cnth=\count295
+\Gm@cntv=\count296
+\c@Gm@tempcnt=\count297
+\Gm@bindingoffset=\dimen153
+\Gm@wd@mp=\dimen154
+\Gm@odd@mp=\dimen155
+\Gm@even@mp=\dimen156
+\Gm@layoutwidth=\dimen157
+\Gm@layoutheight=\dimen158
+\Gm@layouthoffset=\dimen159
+\Gm@layoutvoffset=\dimen160
+\Gm@dimlist=\toks18
+
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg))
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/xcolor\xcolor.sty
+Package: xcolor 2024/09/29 v3.02 LaTeX color extensions (UK)
+
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: xetex.def on input line 274.
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\xetex.def
+File: xetex.def 2025/11/01 v5.0p Graphics/color driver for xetex
+) (C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/graphics\mathcolor.lt
+x)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1349.
+Package xcolor Info: Model `RGB' extended on input line 1365.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1367.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1370.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1371.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1372.
+)
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.sty
+Package: graphicx 2024/12/31 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
+
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.sty
+Package: graphics 2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
+
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty
+Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
+)
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\graphics.c
+fg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: xetex.def on input line 106.
+)
+\Gin@req@height=\dimen161
+\Gin@req@width=\dimen162
+) (C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/float\float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count298
+\float@exts=\toks19
+\float@box=\box53
+\@float@everytoks=\toks20
+\@floatcapt=\box54
+)
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.sty
+\lst@mode=\count299
+\lst@gtempboxa=\box55
+\lst@token=\toks21
+\lst@length=\count300
+\lst@currlwidth=\dimen163
+\lst@column=\count301
+\lst@pos=\count302
+\lst@lostspace=\dimen164
+\lst@width=\dimen165
+\lst@newlines=\count303
+\lst@lineno=\count304
+\lst@maxwidth=\dimen166
+
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstpatch.sty
+File: lstpatch.sty 2025/11/14 1.11b (Carsten Heinz)
+)
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
+File: lstmisc.sty 2025/11/14 1.11b (Carsten Heinz)
+\c@lstnumber=\count305
+\lst@skipnumbers=\count306
+\lst@framebox=\box56
+)
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.cfg
+File: listings.cfg 2025/11/14 1.11b listings configuration
+))
+Package: listings 2025/11/14 1.11b (Carsten Heinz)
+==> First Aid for listings.sty no longer applied!
+    Expected:
+        2024/09/23 1.10c (Carsten Heinz)
+    but found:
+        2025/11/14 1.11b (Carsten Heinz)
+    so I'm assuming it got fixed.
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/enumitem\enumitem.sty
+Package: enumitem 2025/02/06 v3.11 Customized lists
+\labelindent=\skip51
+\enit@outerparindent=\dimen167
+\enit@toks=\toks22
+\enit@inbox=\box57
+\enit@count@id=\count307
+\enitdp@description=\count308
+)
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.sty
+Package: hyperref 2025-07-12 v7.01o Hypertext links for LaTeX
+
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/kvsetkeys\kvsetkeys.sty
+Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
+)
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/generic/kvdefinekeys\kvdefine
+keys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+)
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/generic/pdfescape\pdfescape.s
+ty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/generic/ltxcmds\ltxcmds.sty
+Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
+)
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/generic/pdftexcmds\pdftexcmds
+.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/generic/infwarerr\infwarerr.s
+ty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode not found.
+))
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/hycolor\hycolor.sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+)
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
+Package: nameref 2025-06-21 v2.57 Cross-referencing by name of section
+
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/refcount\refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+)
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/generic/gettitlestring\gettit
+lestring.sty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/kvoptions\kvoptions.sty
+Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
+))
+\c@section@level=\count309
+)
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/generic/stringenc\stringenc.s
+ty
+Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
+)
+)
+\@linkdim=\dimen168
+\Hy@linkcounter=\count310
+\Hy@pagecounter=\count311
+ (C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def
+File: pd1enc.def 2025-07-12 v7.01o Hyperref: PDFDocEncoding definition (HO)
+) (C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/generic/intcalc\intcalc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+)
+\Hy@SavedSpaceFactor=\count312
+ (C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\puenc.def
+File: puenc.def 2025-07-12 v7.01o Hyperref: PDF Unicode definition (HO)
+)
+Package hyperref Info: Hyper figures OFF on input line 4195.
+Package hyperref Info: Link nesting OFF on input line 4200.
+Package hyperref Info: Hyper index ON on input line 4203.
+Package hyperref Info: Plain pages OFF on input line 4210.
+Package hyperref Info: Backreferencing OFF on input line 4215.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4462.
+\c@Hy@tempcnt=\count313
+
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty
+\Urlmuskip=\muskip17
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 4801.
+\XeTeXLinkMargin=\dimen169
+
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/generic/bitset\bitset.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/generic/bigintcalc\bigintcalc
+.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
+)
+))
+\Fld@menulength=\count314
+\Field@Width=\dimen170
+\Fld@charsize=\dimen171
+Package hyperref Info: Hyper figures OFF on input line 6078.
+Package hyperref Info: Link nesting OFF on input line 6083.
+Package hyperref Info: Hyper index ON on input line 6086.
+Package hyperref Info: backreferencing OFF on input line 6093.
+Package hyperref Info: Link coloring OFF on input line 6098.
+Package hyperref Info: Link coloring with OCG OFF on input line 6103.
+Package hyperref Info: PDF/A mode OFF on input line 6108.
+\Hy@abspage=\count315
+\c@Item=\count316
+\c@Hfootnote=\count317
+)
+Package hyperref Info: Driver (autodetected): hxetex.
+
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hxetex.def
+File: hxetex.def 2025-07-12 v7.01o Hyperref driver for XeTeX
+\pdfm@box=\box58
+\c@Hy@AnnotLevel=\count318
+\HyField@AnnotCount=\count319
+\Fld@listcount=\count320
+\c@bookmark@seq@number=\count321
+
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/rerunfilecheck\rerunfil
+echeck.sty
+Package: rerunfilecheck 2025-06-21 v1.11 Rerun checks for auxiliary files (HO)
+
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/generic/uniquecounter\uniquec
+ounter.sty
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+84.
+)
+\Hy@SectionHShift=\skip52
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 21.
+
+Package fontspec Info: 
+(fontspec)             Font family 'TimesNewRoman(1)' created for font 'Times
+(fontspec)             New Roman' with options
+(fontspec)             [Ligatures=TeX,Script=Cyrillic].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.: <->"Times New
+(fontspec)             Roman/OT:script=cyrl;language=dflt;mapping=tex-text;"
+(fontspec)             - 'small caps'  (m/sc) with NFSS spec.: <->"Times New
+(fontspec)             Roman/OT:script=cyrl;language=dflt;+smcp;mapping=tex-tex
+t;"
+(fontspec)             - 'bold' (b/n) with NFSS spec.: <->"Times New
+(fontspec)             Roman/B/OT:script=cyrl;language=dflt;mapping=tex-text;"
+(fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: <->"Times
+(fontspec)             New
+(fontspec)             Roman/B/OT:script=cyrl;language=dflt;+smcp;mapping=tex-t
+ext;"
+(fontspec)             - 'italic' (m/it) with NFSS spec.: <->"Times New
+(fontspec)             Roman/I/OT:script=cyrl;language=dflt;mapping=tex-text;"
+(fontspec)             - 'italic small caps'  (m/scit) with NFSS spec.:
+(fontspec)             <->"Times New
+(fontspec)             Roman/I/OT:script=cyrl;language=dflt;+smcp;mapping=tex-t
+ext;"
+(fontspec)             - 'bold italic' (b/it) with NFSS spec.: <->"Times New
+(fontspec)             Roman/BI/OT:script=cyrl;language=dflt;mapping=tex-text;"
+
+(fontspec)             - 'bold italic small caps'  (b/scit) with NFSS spec.:
+(fontspec)             <->"Times New
+(fontspec)             Roman/BI/OT:script=cyrl;language=dflt;+smcp;mapping=tex-
+text;"
+
+ (D:\ITMO\ITMOlabs\opi\lab4\report\report.aux)
+\openout1 = `report.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+
+Package fontspec Info: 
+(fontspec)             Adjusting the maths setup (use [no-math] to avoid
+(fontspec)             this).
+
+\symlegacymaths=\mathgroup4
+LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 58.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 58.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 58.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 58.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 58.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 58.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 58.
+LaTeX Font Info:    Redeclaring math accent \check on input line 58.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 58.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 58.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 58.
+LaTeX Font Info:    Redeclaring math symbol \colon on input line 58.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 58.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 58.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 58.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 58.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 58.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 58.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 58.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 58.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 58.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 58.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 58.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 58.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 58.
+LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
+(Font)              `operators' in the math version `normal' on input line 58.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> TU/TimesNewRoman(0)/m/n on input line 5
+8.
+LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
+(Font)              `operators' in the math version `bold' on input line 58.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> TU/TimesNewRoman(0)/m/n on input line 
+58.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  TU/TimesNewRoman(0)/m/n --> TU/TimesNewRoman(0)/m/n on 
+input line 58.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> TU/TimesNewRoman(0)/m/it on input line
+ 58.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> TU/TimesNewRoman(0)/b/n on input line 
+58.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 58.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> TU/Consolas(0)/m/n on input line 58.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  TU/TimesNewRoman(0)/m/n --> TU/TimesNewRoman(0)/b/n on 
+input line 58.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> TU/TimesNewRoman(0)/b/it on input lin
+e 58.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 58.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> TU/Consolas(0)/b/n on input line 58.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: xetex
+*geometry* verbose mode - [ preamble ] result:
+* driver: xetex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(71.13188pt, 483.69687pt, 42.67912pt)
+* v-part:(T,H,B)=(56.9055pt, 731.23584pt, 56.9055pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=483.69687pt
+* \textheight=731.23584pt
+* \oddsidemargin=-1.1381pt
+* \evensidemargin=-1.1381pt
+* \topmargin=-54.36449pt
+* \headheight=14.0pt
+* \headsep=25.0pt
+* \topskip=14.0pt
+* \footskip=30.0pt
+* \marginparwidth=15.0pt
+* \marginparsep=10.0pt
+* \columnsep=10.0pt
+* \skip\footins=12.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+\c@lstlisting=\count322
+Package hyperref Info: Link coloring ON on input line 58.
+(D:\ITMO\ITMOlabs\opi\lab4\report\report.out)
+(D:\ITMO\ITMOlabs\opi\lab4\report\report.out)
+\@outlinefile=\write3
+\openout3 = `report.out'.
+
+ [1
+
+]
+(D:\ITMO\ITMOlabs\opi\lab4\report\report.toc
+LaTeX Font Info:    External font `cmex7' loaded for size
+(Font)              <7> on input line 4.
+)
+\tf@toc=\write4
+\openout4 = `report.toc'.
+
+ [1]
+Underfull \hbox (badness 2103) in paragraph at lines 101--102
+[]\TU/TimesNewRoman(1)/m/n/14.4 Для программы из лабораторной работы №3 по дисц
+иплине «Веб-
+ []
+
+[2]
+
+Package fontspec Info: 
+(fontspec)             Font family 'Consolas(1)' created for font 'Consolas'
+(fontspec)             with options
+(fontspec)             [WordSpace={1,0,0},HyphenChar=None,PunctuationSpace=Word
+Space,Script=Cyrillic].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <->"Consolas/OT:script=cyrl;language=dflt;"
+(fontspec)             - 'bold' (b/n) with NFSS spec.:
+(fontspec)             <->"Consolas/B/OT:script=cyrl;language=dflt;"
+(fontspec)             - 'italic' (m/it) with NFSS spec.:
+(fontspec)             <->"Consolas/I/OT:script=cyrl;language=dflt;"
+(fontspec)             - 'bold italic' (b/it) with NFSS spec.:
+(fontspec)             <->"Consolas/BI/OT:script=cyrl;language=dflt;"
+
+
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
+File: lstlang1.sty 2025/11/14 1.11b listings language file
+)
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
+nput line 137.
+
+(src/main/java/com/example/lab3/mbean/PointStatisticsMBean.java)
+(src/main/java/com/example/lab3/mbean/PointStatistics.java [3])
+(src/main/java/com/example/lab3/mbean/AreaMBean.java)
+(src/main/java/com/example/lab3/mbean/Area.java)
+(src/main/java/com/example/lab3/mbean/MonitoringState.java [4])
+(src/main/java/com/example/lab3/mbean/MonitoringRegistry.java [5])
+(src/main/java/com/example/lab3/mbean/MBeanRegistrationListener.java)
+Underfull \hbox (badness 10000) in paragraph at lines 169--170
+[]\TU/TimesNewRoman(1)/m/n/14.4 Регистрация новой точки выполняется по-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 169--170
+\TU/TimesNewRoman(1)/m/n/14.4 сле сохранения результата в базе данных вызовом
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 169--170
+\TU/Consolas(1)/m/n/14.4 MonitoringRegistry.registerPoint(result.isHit(),
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 169--170
+\TU/Consolas(1)/m/n/14.4 result.getR())\TU/TimesNewRoman(1)/m/n/14.4 . При изме
+нении радиуса вызывается
+ []
+
+[6]
+Underfull \hbox (badness 2368) in paragraph at lines 181--182
+[]\TU/TimesNewRoman(1)/m/n/14.4 Приложение развёрнуто на WildFly. Доступ к инте
+рфейсу управле-
+ []
+
+
+Underfull \hbox (badness 4556) in paragraph at lines 181--182
+\TU/TimesNewRoman(1)/m/n/14.4 ния выполнялся через SSH-туннель, а подключение к
+ JMX — по ад-
+ []
+
+
+Underfull \hbox (badness 1038) in paragraph at lines 181--182
+\TU/TimesNewRoman(1)/m/n/14.4 ресу \TU/Consolas(1)/m/n/14.4 service:jmx:remote+
+http://127.0.0.1:10990\TU/TimesNewRoman(1)/m/n/14.4 . В дереве MBeans
+ []
+
+File: report/screenshots/jconsole-metadata-area.png Graphic file (type bmp)
+<report/screenshots/jconsole-metadata-area.png>
+File: report/screenshots/jconsole-metadata-point-statistics.png Graphic file (t
+ype bmp)
+<report/screenshots/jconsole-metadata-point-statistics.png>
+[7]
+File: report/screenshots/jconsole-attributes-point-statistics.png Graphic file 
+(type bmp)
+<report/screenshots/jconsole-attributes-point-statistics.png>
+File: report/screenshots/jconsole-attributes-area.png Graphic file (type bmp)
+<report/screenshots/jconsole-attributes-area.png>
+File: report/screenshots/jconsole-vm-summary.png Graphic file (type bmp)
+<report/screenshots/jconsole-vm-summary.png>
+File: report/screenshots/jconsole-uptime.png Graphic file (type bmp)
+<report/screenshots/jconsole-uptime.png>
+ [8]
+File: report/screenshots/jconsole-notification.png Graphic file (type bmp)
+<report/screenshots/jconsole-notification.png>
+File: report/screenshots/jconsole-mbeans-graph-point-statistics.png Graphic fil
+e (type bmp)
+<report/screenshots/jconsole-mbeans-graph-point-statistics.png>
+File: report/screenshots/jconsole-mbeans-graph-area.png Graphic file (type bmp)
+
+<report/screenshots/jconsole-mbeans-graph-area.png>
+ [9]
+Underfull \hbox (badness 10000) in paragraph at lines 216--217
+[]\TU/TimesNewRoman(1)/m/n/14.4 В JConsole проверяется соответствие атрибутов \
+TU/Consolas(1)/m/n/14.4 TotalPoints\TU/TimesNewRoman(1)/m/n/14.4 ,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 216--217
+\TU/Consolas(1)/m/n/14.4 HitPoints \TU/TimesNewRoman(1)/m/n/14.4 и \TU/Consolas
+(1)/m/n/14.4 MissPoints \TU/TimesNewRoman(1)/m/n/14.4 действиям пользователя. Д
+ля каждой вы-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 216--217
+\TU/TimesNewRoman(1)/m/n/14.4 борки должно выполняться равенство \TU/Consolas(1
+)/m/n/14.4 TotalPoints = HitPoints
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 216--217
+\TU/Consolas(1)/m/n/14.4 + MissPoints\TU/TimesNewRoman(1)/m/n/14.4 . При перехо
+де общего счётчика к значению, крат-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 216--217
+\TU/TimesNewRoman(1)/m/n/14.4 ному 10, MBean \TU/Consolas(1)/m/n/14.4 PointStat
+istics \TU/TimesNewRoman(1)/m/n/14.4 отправляет уведомление типа
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 216--217
+\TU/Consolas(1)/m/n/14.4 com.example.lab4.point.totalMultipleOfTen\TU/TimesNewR
+oman(1)/m/n/14.4 . Время после запуска
+ []
+
+[10] [11]
+File: report/screenshots/visualvm-overview.png Graphic file (type bmp)
+<report/screenshots/visualvm-overview.png>
+File: report/screenshots/visualvm-mbeans-graph-point-statistics-1.png Graphic f
+ile (type bmp)
+<report/screenshots/visualvm-mbeans-graph-point-statistics-1.png>
+File: report/screenshots/visualvm-mbeans-graph-point-statistics-2.png Graphic f
+ile (type bmp)
+<report/screenshots/visualvm-mbeans-graph-point-statistics-2.png>
+ [12]
+File: report/screenshots/visualvm-mbeans-graph-area.png Graphic file (type bmp)
+
+<report/screenshots/visualvm-mbeans-graph-area.png>
+ [13]
+File: report/screenshots/visualvm-memory-classes.png Graphic file (type bmp)
+<report/screenshots/visualvm-memory-classes.png>
+File: report/screenshots/memory-user-classes.png Graphic file (type bmp)
+<report/screenshots/memory-user-classes.png>
+ [14]
+Underfull \hbox (badness 10000) in paragraph at lines 246--247
+[]\TU/TimesNewRoman(1)/m/n/14.4 При добавлении точек значения \TU/Consolas(1)/m
+/n/14.4 TotalPoints\TU/TimesNewRoman(1)/m/n/14.4 , \TU/Consolas(1)/m/n/14.4 Hit
+Points \TU/TimesNewRoman(1)/m/n/14.4 и
+ []
+
+
+Underfull \hbox (badness 4416) in paragraph at lines 246--247
+\TU/Consolas(1)/m/n/14.4 MissPoints \TU/TimesNewRoman(1)/m/n/14.4 изменяются в 
+соответствии с результатами проверки. При
+ []
+
+
+Underfull \hbox (badness 1571) in paragraph at lines 246--247
+\TU/TimesNewRoman(1)/m/n/14.4 78 экземпляров занимают 3744 B и удерживают 11064
+ B. Единственный
+ []
+
+[15]
+File: report/screenshots/visualvm-monitor.png Graphic file (type bmp)
+<report/screenshots/visualvm-monitor.png>
+
+Underfull \hbox (badness 3128) in paragraph at lines 259--260
+[]\TU/TimesNewRoman(1)/m/n/14.4 Подключиться к JVM приложения в VisualVM и откр
+ыть вкладку
+ []
+
+[16]
+Underfull \hbox (badness 10000) in paragraph at lines 269--270
+[]\TU/TimesNewRoman(1)/m/n/14.4 До исправления объект \TU/Consolas(1)/m/n/14.4 
+AreaCheckBean \TU/TimesNewRoman(1)/m/n/14.4 с областью видимости
+ []
+
+
+Underfull \hbox (badness 6575) in paragraph at lines 269--270
+\TU/Consolas(1)/m/n/14.4 SessionScoped \TU/TimesNewRoman(1)/m/n/14.4 хранил пол
+е \TU/Consolas(1)/m/n/14.4 List<CheckResult> results\TU/TimesNewRoman(1)/m/n/14
+.4 . При ини-
+ []
+
+
+Underfull \hbox (badness 1173) in paragraph at lines 269--270
+\TU/TimesNewRoman(1)/m/n/14.4 проверки новый объект добавлялся в начало списка 
+без удаления старых
+ []
+
+File: report/screenshots/memory-before.png Graphic file (type bmp)
+<report/screenshots/memory-before.png>
+File: report/screenshots/memory-retained-path.png Graphic file (type bmp)
+<report/screenshots/memory-retained-path.png>
+File: report/screenshots/memory-code-location.png Graphic file (type bmp)
+<report/screenshots/memory-code-location.png>
+[17]
+File: report/screenshots/memory-after.png Graphic file (type bmp)
+<report/screenshots/memory-after.png>
+ [18] [19] [20]
+Underfull \hbox (badness 1102) in paragraph at lines 282--283
+[]\TU/TimesNewRoman(1)/m/n/14.4 В ходе лабораторной работы были реализованы и з
+арегистрированы
+ []
+
+[21] (D:\ITMO\ITMOlabs\opi\lab4\report\report.aux)
+ ***********
+LaTeX2e <2025-11-01>
+L3 programming layer <2025-12-24>
+ ***********
+Package rerunfilecheck Info: File `report.out' has not changed.
+(rerunfilecheck)             Checksum: 5D332646AE8579F3C6EE809D1C531481;1165.
+ ) 
+Here is how much of TeX's memory you used:
+ 14428 strings out of 402986
+ 289601 string characters out of 5448503
+ 1128915 words of memory out of 5000000
+ 42909 multiletter control sequences out of 15000+600000
+ 629933 words of font info for 107 fonts, out of 8000000 for 9000
+ 1348 hyphenation exceptions out of 8191
+ 73i,6n,93p,719b,1919s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+Output written on D:\ITMO\ITMOlabs\opi\lab4\report\report.xdv (22 pages, 207380
+ bytes).

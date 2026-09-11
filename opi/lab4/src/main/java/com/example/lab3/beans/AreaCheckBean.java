@@ -18,7 +18,7 @@ import jakarta.transaction.Transactional;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -28,6 +28,7 @@ public class AreaCheckBean implements Serializable {
     private static final String REQUEST_PARAM_X_KEY = Messages.get("request.param.x");
     private static final String REQUEST_PARAM_Y_KEY = Messages.get("request.param.y");
     private static final String RESULTS_QUERY = Messages.get("query.results.desc");
+    private static final int MAX_RESULTS_IN_SESSION = 50;
 
     @PersistenceContext(unitName = "default")
     private EntityManager entityManager;
@@ -77,15 +78,19 @@ public class AreaCheckBean implements Serializable {
         MonitoringRegistry.registerPoint(result.isHit(), result.getR());
         if (results != null) {
             results.add(0, result);
+            if (results.size() > MAX_RESULTS_IN_SESSION) {
+                results.remove(results.size() - 1);
+            }
         }
     }
 
     private void loadResults() {
         try {
-            this.results = entityManager.createQuery(RESULTS_QUERY, CheckResult.class)
-                                        .getResultList();
+            this.results = new ArrayList<>(entityManager.createQuery(RESULTS_QUERY, CheckResult.class)
+                    .setMaxResults(MAX_RESULTS_IN_SESSION)
+                    .getResultList());
         } catch (Exception e) {
-            this.results = Collections.emptyList();
+            this.results = new ArrayList<>();
             System.err.println(Messages.get("error.results.load.prefix") + e.getMessage());
         }
     }

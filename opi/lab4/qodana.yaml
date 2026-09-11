@@ -2,6 +2,6 @@ version: "1.0"
 linter: qodana-jvm-community
 profile:
   name: qodana.recommended
-projectJDK: 25
+projectJDK: 17
 rootJavaProjects:
   - pom.xml

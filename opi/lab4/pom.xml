@@ -55,13 +55,6 @@
             <version>2.10.1</version>
         </dependency>
         <dependency>
-            <groupId>org.primefaces.extensions</groupId>
-            <artifactId>primefaces-extensions</artifactId>
-            <version>13.0.0</version>
-            <classifier>jakarta</classifier>
-        </dependency>
-
-        <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <version>${junit.version}</version>

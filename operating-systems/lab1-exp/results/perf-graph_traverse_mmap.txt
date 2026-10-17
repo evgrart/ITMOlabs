@@ -1,0 +1,15 @@
+Iteration 1/1 (write): traversing graph-rand.bin ... OK (436905 nodes processed)
+
+ Performance counter stats for './out/graph_traverse_mmap --write 1 graph-rand.bin':
+
+                24      context-switches                                                      
+                 0      cpu-migrations                                                        
+             2,782      page-faults                                                           
+           733,292      cache-misses                                                          
+
+       0.037087112 seconds time elapsed
+
+       0.031720000 seconds user
+       0.004956000 seconds sys
+
+

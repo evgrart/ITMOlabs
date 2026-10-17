@@ -1,0 +1,13 @@
+{
+  "N_per_config": 6,
+  "core": 2,
+  "iterations": 1,
+  "graph": "/home/evgrart/OS/os-course/lab/intro-exp/graph-rand.bin",
+  "graph_bytes": 10485760,
+  "kernel": "7.0.0-38-generic",
+  "governor": "performance",
+  "cache_policy": "fsync, then full buffered read before every run",
+  "order": "cyclic rotation of four configurations",
+  "discarded_warmups": 0,
+  "outliers": "keep all observations"
+}

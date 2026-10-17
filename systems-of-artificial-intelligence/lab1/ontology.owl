@@ -1,0 +1,806 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#"
+         xml:base="https://example.org/itmo/ai/lab1"
+         xmlns="https://example.org/itmo/ai/lab1#"
+         xmlns:swrl="http://www.w3.org/2003/11/swrl#">
+
+<owl:Ontology rdf:about="https://example.org/itmo/ai/lab1">
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ЛР1: вымышленные игры; полный перевод 25 унарных и 15 бинарных фактов Prolog. Библиотеки трёх профилей локально закрыты. Генератор: build_ontology.py.</rdfs:comment>
+</owl:Ontology>
+
+<owl:ObjectProperty rdf:about="#likes">
+  <rdfs:domain rdf:resource="#Player"/>
+  <rdfs:range rdf:resource="#Genre"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#owns">
+  <rdfs:domain rdf:resource="#Player"/>
+  <rdfs:range rdf:resource="#Game"/>
+  <owl:inverseOf rdf:resource="#ownedBy"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Полная библиотека только для anna, boris, vera; см. ограничения allValuesFrom/maxCardinality.</rdfs:comment>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#ownedBy">
+  <rdfs:domain rdf:resource="#Game"/>
+  <rdfs:range rdf:resource="#Player"/>
+  <owl:inverseOf rdf:resource="#owns"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#friendOf">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+  <rdfs:domain rdf:resource="#Player"/>
+  <rdfs:range rdf:resource="#Player"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Симметричное нетранзитивное отношение. В совместном запросе игроки должны различаться.</rdfs:comment>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#eligibleFor">
+  <rdfs:domain rdf:resource="#Player"/>
+  <rdfs:range rdf:resource="#Game"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#matchesGenre">
+  <rdfs:domain rdf:resource="#Player"/>
+  <rdfs:range rdf:resource="#Game"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#notOwned">
+  <rdfs:domain rdf:resource="#Player"/>
+  <rdfs:range rdf:resource="#Game"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Выводится из OWL-комплемента для именованных учебных профилей, не из отсутствия тройки owns.</rdfs:comment>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#recommendedGame">
+  <rdfs:domain rdf:resource="#Player"/>
+  <rdfs:range rdf:resource="#Game"/>
+</owl:ObjectProperty>
+
+<owl:DatatypeProperty rdf:about="#age">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#Player"/>
+  <rdfs:range>
+    <rdfs:Datatype>
+      <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+      <owl:withRestrictions>
+        <rdf:Description>
+          <rdf:first>
+            <rdf:Description>
+              <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</xsd:minInclusive>
+            </rdf:Description>
+          </rdf:first>
+          <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        </rdf:Description>
+      </owl:withRestrictions>
+    </rdfs:Datatype>
+  </rdfs:range>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#minimumAge">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#Game"/>
+  <rdfs:range>
+    <rdfs:Datatype>
+      <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+      <owl:withRestrictions>
+        <rdf:Description>
+          <rdf:first>
+            <rdf:Description>
+              <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</xsd:minInclusive>
+            </rdf:Description>
+          </rdf:first>
+          <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        </rdf:Description>
+      </owl:withRestrictions>
+    </rdfs:Datatype>
+  </rdfs:range>
+</owl:DatatypeProperty>
+
+<owl:Class rdf:about="#Entity">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Game">
+  <rdfs:subClassOf rdf:resource="#Entity"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#minimumAge"/>
+      <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+      <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Игра</rdfs:label>
+</owl:Class>
+
+<owl:Class rdf:about="#Player">
+  <rdfs:subClassOf rdf:resource="#Entity"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#age"/>
+      <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+      <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#likes"/>
+      <owl:onClass rdf:resource="#Genre"/>
+      <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Игрок</rdfs:label>
+</owl:Class>
+
+<owl:Class rdf:about="#Genre">
+  <rdfs:subClassOf rdf:resource="#Entity"/>
+  <owl:equivalentClass>
+    <owl:Class>
+      <owl:oneOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#rpg"/>
+        <rdf:Description rdf:about="#strategy"/>
+        <rdf:Description rdf:about="#puzzle"/>
+      </owl:oneOf>
+    </owl:Class>
+  </owl:equivalentClass>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Жанр</rdfs:label>
+</owl:Class>
+
+<owl:Class rdf:about="#GenreGame">
+  <rdfs:subClassOf rdf:resource="#Game"/>
+</owl:Class>
+
+<owl:Class rdf:about="#RPGGame">
+  <rdfs:subClassOf rdf:resource="#GenreGame"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ролевая игра</rdfs:label>
+</owl:Class>
+
+<owl:Class rdf:about="#StrategyGame">
+  <rdfs:subClassOf rdf:resource="#GenreGame"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Стратегия</rdfs:label>
+</owl:Class>
+
+<owl:Class rdf:about="#PuzzleGame">
+  <rdfs:subClassOf rdf:resource="#GenreGame"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Головоломка</rdfs:label>
+</owl:Class>
+
+<owl:Class rdf:about="#IndieGame">
+  <rdfs:subClassOf rdf:resource="#Game"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Независимая игра</rdfs:label>
+</owl:Class>
+
+<owl:Class rdf:about="#CooperativeGame">
+  <rdfs:subClassOf rdf:resource="#Game"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Кооперативная игра</rdfs:label>
+</owl:Class>
+
+<owl:Class rdf:about="#SinglePlayerGame">
+  <rdfs:subClassOf rdf:resource="#Game"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Игра с одиночным режимом</rdfs:label>
+</owl:Class>
+
+<owl:Class rdf:about="#AdultPlayer">
+  <rdfs:subClassOf rdf:resource="#Player"/>
+  <owl:equivalentClass>
+    <owl:Class>
+      <owl:intersectionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#Player"/>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#age"/>
+          <owl:someValuesFrom>
+            <rdfs:Datatype>
+              <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+              <owl:withRestrictions>
+                <rdf:Description>
+                  <rdf:first>
+                    <rdf:Description>
+                      <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">18</xsd:minInclusive>
+                    </rdf:Description>
+                  </rdf:first>
+                  <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                </rdf:Description>
+              </owl:withRestrictions>
+            </rdfs:Datatype>
+          </owl:someValuesFrom>
+        </owl:Restriction>
+      </owl:intersectionOf>
+    </owl:Class>
+  </owl:equivalentClass>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Совершеннолетний игрок</rdfs:label>
+</owl:Class>
+
+<owl:Class rdf:about="#SocialGame">
+  <rdfs:subClassOf rdf:resource="#Game"/>
+  <owl:equivalentClass>
+    <owl:Class>
+      <owl:intersectionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#Game"/>
+        <owl:Class>
+          <owl:unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="#CooperativeGame"/>
+            <rdf:Description rdf:about="#StrategyGame"/>
+          </owl:unionOf>
+        </owl:Class>
+      </owl:intersectionOf>
+    </owl:Class>
+  </owl:equivalentClass>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Социальная игра</rdfs:label>
+</owl:Class>
+
+<owl:Class rdf:about="#NotOwnedByAnnaGame">
+  <rdfs:subClassOf rdf:resource="#Game"/>
+  <owl:equivalentClass>
+    <owl:Class>
+      <owl:intersectionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#Game"/>
+        <owl:Class>
+          <owl:complementOf>
+            <owl:Restriction>
+              <owl:onProperty rdf:resource="#ownedBy"/>
+              <owl:hasValue rdf:resource="#anna"/>
+            </owl:Restriction>
+          </owl:complementOf>
+        </owl:Class>
+      </owl:intersectionOf>
+    </owl:Class>
+  </owl:equivalentClass>
+</owl:Class>
+
+<owl:Class rdf:about="#NotOwnedByBorisGame">
+  <rdfs:subClassOf rdf:resource="#Game"/>
+  <owl:equivalentClass>
+    <owl:Class>
+      <owl:intersectionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#Game"/>
+        <owl:Class>
+          <owl:complementOf>
+            <owl:Restriction>
+              <owl:onProperty rdf:resource="#ownedBy"/>
+              <owl:hasValue rdf:resource="#boris"/>
+            </owl:Restriction>
+          </owl:complementOf>
+        </owl:Class>
+      </owl:intersectionOf>
+    </owl:Class>
+  </owl:equivalentClass>
+</owl:Class>
+
+<owl:Class rdf:about="#NotOwnedByVeraGame">
+  <rdfs:subClassOf rdf:resource="#Game"/>
+  <owl:equivalentClass>
+    <owl:Class>
+      <owl:intersectionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#Game"/>
+        <owl:Class>
+          <owl:complementOf>
+            <owl:Restriction>
+              <owl:onProperty rdf:resource="#ownedBy"/>
+              <owl:hasValue rdf:resource="#vera"/>
+            </owl:Restriction>
+          </owl:complementOf>
+        </owl:Class>
+      </owl:intersectionOf>
+    </owl:Class>
+  </owl:equivalentClass>
+</owl:Class>
+
+<owl:NamedIndividual rdf:about="#rune_quest">
+  <rdf:type rdf:resource="#Game"/>
+  <rdf:type rdf:resource="#RPGGame"/>
+  <rdf:type rdf:resource="#IndieGame"/>
+  <rdf:type rdf:resource="#CooperativeGame"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">rune quest</rdfs:label>
+  <minimumAge rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">12</minimumAge>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#shadow_realm">
+  <rdf:type rdf:resource="#Game"/>
+  <rdf:type rdf:resource="#RPGGame"/>
+  <rdf:type rdf:resource="#SinglePlayerGame"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">shadow realm</rdfs:label>
+  <minimumAge rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">18</minimumAge>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#star_fleet">
+  <rdf:type rdf:resource="#Game"/>
+  <rdf:type rdf:resource="#StrategyGame"/>
+  <rdf:type rdf:resource="#IndieGame"/>
+  <rdf:type rdf:resource="#CooperativeGame"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">star fleet</rdfs:label>
+  <minimumAge rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</minimumAge>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#empire_builder">
+  <rdf:type rdf:resource="#Game"/>
+  <rdf:type rdf:resource="#StrategyGame"/>
+  <rdf:type rdf:resource="#CooperativeGame"/>
+  <rdf:type rdf:resource="#SinglePlayerGame"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">empire builder</rdfs:label>
+  <minimumAge rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">12</minimumAge>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#logic_garden">
+  <rdf:type rdf:resource="#Game"/>
+  <rdf:type rdf:resource="#PuzzleGame"/>
+  <rdf:type rdf:resource="#IndieGame"/>
+  <rdf:type rdf:resource="#SinglePlayerGame"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">logic garden</rdfs:label>
+  <minimumAge rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</minimumAge>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#anna">
+  <rdf:type rdf:resource="#Player"/>
+  <likes rdf:resource="#rpg"/>
+  <owns rdf:resource="#rune_quest"/>
+  <friendOf rdf:resource="#boris"/>
+  <rdf:type>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#owns"/>
+      <owl:allValuesFrom>
+        <owl:Class>
+          <owl:oneOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="#rune_quest"/>
+          </owl:oneOf>
+        </owl:Class>
+      </owl:allValuesFrom>
+    </owl:Restriction>
+  </rdf:type>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">anna</rdfs:label>
+  <age rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">20</age>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#boris">
+  <rdf:type rdf:resource="#Player"/>
+  <likes rdf:resource="#strategy"/>
+  <owns rdf:resource="#empire_builder"/>
+  <friendOf rdf:resource="#vera"/>
+  <rdf:type>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#owns"/>
+      <owl:allValuesFrom>
+        <owl:Class>
+          <owl:oneOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="#empire_builder"/>
+          </owl:oneOf>
+        </owl:Class>
+      </owl:allValuesFrom>
+    </owl:Restriction>
+  </rdf:type>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">boris</rdfs:label>
+  <age rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">12</age>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#vera">
+  <rdf:type rdf:resource="#Player"/>
+  <likes rdf:resource="#puzzle"/>
+  <rdf:type>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#owns"/>
+      <owl:onClass rdf:resource="#Game"/>
+      <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:maxQualifiedCardinality>
+    </owl:Restriction>
+  </rdf:type>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">vera</rdfs:label>
+  <age rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</age>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#rpg">
+  <rdf:type rdf:resource="#Genre"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">rpg</rdfs:label>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#strategy">
+  <rdf:type rdf:resource="#Genre"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">strategy</rdfs:label>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#puzzle">
+  <rdf:type rdf:resource="#Genre"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">puzzle</rdfs:label>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#eligible_rule">
+  <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+  <swrl:body>
+    <rdf:Description>
+      <rdf:first>
+        <swrl:ClassAtom>
+          <swrl:classPredicate rdf:resource="#Player"/>
+          <swrl:argument1 rdf:resource="urn:swrl#p"/>
+        </swrl:ClassAtom>
+      </rdf:first>
+      <rdf:rest>
+        <rdf:Description>
+          <rdf:first>
+            <swrl:ClassAtom>
+              <swrl:classPredicate rdf:resource="#Game"/>
+              <swrl:argument1 rdf:resource="urn:swrl#g"/>
+            </swrl:ClassAtom>
+          </rdf:first>
+          <rdf:rest>
+            <rdf:Description>
+              <rdf:first>
+                <swrl:DatavaluedPropertyAtom>
+                  <swrl:propertyPredicate rdf:resource="#age"/>
+                  <swrl:argument1 rdf:resource="urn:swrl#p"/>
+                  <swrl:argument2 rdf:resource="urn:swrl#a"/>
+                </swrl:DatavaluedPropertyAtom>
+              </rdf:first>
+              <rdf:rest>
+                <rdf:Description>
+                  <rdf:first>
+                    <swrl:DatavaluedPropertyAtom>
+                      <swrl:propertyPredicate rdf:resource="#minimumAge"/>
+                      <swrl:argument1 rdf:resource="urn:swrl#g"/>
+                      <swrl:argument2 rdf:resource="urn:swrl#m"/>
+                    </swrl:DatavaluedPropertyAtom>
+                  </rdf:first>
+                  <rdf:rest>
+                    <rdf:Description>
+                      <rdf:first>
+                        <swrl:BuiltinAtom>
+                          <swrl:builtin rdf:resource="http://www.w3.org/2003/11/swrlb#greaterThanOrEqual"/>
+                          <swrl:arguments>
+                            <rdf:Description>
+                              <rdf:first rdf:resource="urn:swrl#a"/>
+                              <rdf:rest>
+                                <rdf:Description>
+                                  <rdf:first rdf:resource="urn:swrl#m"/>
+                                  <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                </rdf:Description>
+                              </rdf:rest>
+                            </rdf:Description>
+                          </swrl:arguments>
+                        </swrl:BuiltinAtom>
+                      </rdf:first>
+                      <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                    </rdf:Description>
+                  </rdf:rest>
+                </rdf:Description>
+              </rdf:rest>
+            </rdf:Description>
+          </rdf:rest>
+        </rdf:Description>
+      </rdf:rest>
+    </rdf:Description>
+  </swrl:body>
+  <swrl:head>
+    <rdf:Description>
+      <rdf:first>
+        <swrl:IndividualPropertyAtom>
+          <swrl:propertyPredicate rdf:resource="#eligibleFor"/>
+          <swrl:argument1 rdf:resource="urn:swrl#p"/>
+          <swrl:argument2 rdf:resource="urn:swrl#g"/>
+        </swrl:IndividualPropertyAtom>
+      </rdf:first>
+      <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    </rdf:Description>
+  </swrl:head>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Player(?p), Game(?g), age(?p, ?a), minimumAge(?g, ?m), greaterThanOrEqual(?a, ?m) -&gt; eligibleFor(?p, ?g)</rdfs:comment>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#rpg_match_rule">
+  <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+  <swrl:body>
+    <rdf:Description>
+      <rdf:first>
+        <swrl:ClassAtom>
+          <swrl:classPredicate rdf:resource="#Player"/>
+          <swrl:argument1 rdf:resource="urn:swrl#p"/>
+        </swrl:ClassAtom>
+      </rdf:first>
+      <rdf:rest>
+        <rdf:Description>
+          <rdf:first>
+            <swrl:IndividualPropertyAtom>
+              <swrl:propertyPredicate rdf:resource="#likes"/>
+              <swrl:argument1 rdf:resource="urn:swrl#p"/>
+              <swrl:argument2 rdf:resource="#rpg"/>
+            </swrl:IndividualPropertyAtom>
+          </rdf:first>
+          <rdf:rest>
+            <rdf:Description>
+              <rdf:first>
+                <swrl:ClassAtom>
+                  <swrl:classPredicate rdf:resource="#RPGGame"/>
+                  <swrl:argument1 rdf:resource="urn:swrl#g"/>
+                </swrl:ClassAtom>
+              </rdf:first>
+              <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+          </rdf:rest>
+        </rdf:Description>
+      </rdf:rest>
+    </rdf:Description>
+  </swrl:body>
+  <swrl:head>
+    <rdf:Description>
+      <rdf:first>
+        <swrl:IndividualPropertyAtom>
+          <swrl:propertyPredicate rdf:resource="#matchesGenre"/>
+          <swrl:argument1 rdf:resource="urn:swrl#p"/>
+          <swrl:argument2 rdf:resource="urn:swrl#g"/>
+        </swrl:IndividualPropertyAtom>
+      </rdf:first>
+      <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    </rdf:Description>
+  </swrl:head>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Player(?p), likes(?p, rpg), RPGGame(?g) -&gt; matchesGenre(?p, ?g)</rdfs:comment>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#strategy_match_rule">
+  <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+  <swrl:body>
+    <rdf:Description>
+      <rdf:first>
+        <swrl:ClassAtom>
+          <swrl:classPredicate rdf:resource="#Player"/>
+          <swrl:argument1 rdf:resource="urn:swrl#p"/>
+        </swrl:ClassAtom>
+      </rdf:first>
+      <rdf:rest>
+        <rdf:Description>
+          <rdf:first>
+            <swrl:IndividualPropertyAtom>
+              <swrl:propertyPredicate rdf:resource="#likes"/>
+              <swrl:argument1 rdf:resource="urn:swrl#p"/>
+              <swrl:argument2 rdf:resource="#strategy"/>
+            </swrl:IndividualPropertyAtom>
+          </rdf:first>
+          <rdf:rest>
+            <rdf:Description>
+              <rdf:first>
+                <swrl:ClassAtom>
+                  <swrl:classPredicate rdf:resource="#StrategyGame"/>
+                  <swrl:argument1 rdf:resource="urn:swrl#g"/>
+                </swrl:ClassAtom>
+              </rdf:first>
+              <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+          </rdf:rest>
+        </rdf:Description>
+      </rdf:rest>
+    </rdf:Description>
+  </swrl:body>
+  <swrl:head>
+    <rdf:Description>
+      <rdf:first>
+        <swrl:IndividualPropertyAtom>
+          <swrl:propertyPredicate rdf:resource="#matchesGenre"/>
+          <swrl:argument1 rdf:resource="urn:swrl#p"/>
+          <swrl:argument2 rdf:resource="urn:swrl#g"/>
+        </swrl:IndividualPropertyAtom>
+      </rdf:first>
+      <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    </rdf:Description>
+  </swrl:head>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Player(?p), likes(?p, strategy), StrategyGame(?g) -&gt; matchesGenre(?p, ?g)</rdfs:comment>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#puzzle_match_rule">
+  <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+  <swrl:body>
+    <rdf:Description>
+      <rdf:first>
+        <swrl:ClassAtom>
+          <swrl:classPredicate rdf:resource="#Player"/>
+          <swrl:argument1 rdf:resource="urn:swrl#p"/>
+        </swrl:ClassAtom>
+      </rdf:first>
+      <rdf:rest>
+        <rdf:Description>
+          <rdf:first>
+            <swrl:IndividualPropertyAtom>
+              <swrl:propertyPredicate rdf:resource="#likes"/>
+              <swrl:argument1 rdf:resource="urn:swrl#p"/>
+              <swrl:argument2 rdf:resource="#puzzle"/>
+            </swrl:IndividualPropertyAtom>
+          </rdf:first>
+          <rdf:rest>
+            <rdf:Description>
+              <rdf:first>
+                <swrl:ClassAtom>
+                  <swrl:classPredicate rdf:resource="#PuzzleGame"/>
+                  <swrl:argument1 rdf:resource="urn:swrl#g"/>
+                </swrl:ClassAtom>
+              </rdf:first>
+              <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+          </rdf:rest>
+        </rdf:Description>
+      </rdf:rest>
+    </rdf:Description>
+  </swrl:body>
+  <swrl:head>
+    <rdf:Description>
+      <rdf:first>
+        <swrl:IndividualPropertyAtom>
+          <swrl:propertyPredicate rdf:resource="#matchesGenre"/>
+          <swrl:argument1 rdf:resource="urn:swrl#p"/>
+          <swrl:argument2 rdf:resource="urn:swrl#g"/>
+        </swrl:IndividualPropertyAtom>
+      </rdf:first>
+      <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    </rdf:Description>
+  </swrl:head>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Player(?p), likes(?p, puzzle), PuzzleGame(?g) -&gt; matchesGenre(?p, ?g)</rdfs:comment>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#recommend_rule">
+  <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+  <swrl:body>
+    <rdf:Description>
+      <rdf:first>
+        <swrl:IndividualPropertyAtom>
+          <swrl:propertyPredicate rdf:resource="#eligibleFor"/>
+          <swrl:argument1 rdf:resource="urn:swrl#p"/>
+          <swrl:argument2 rdf:resource="urn:swrl#g"/>
+        </swrl:IndividualPropertyAtom>
+      </rdf:first>
+      <rdf:rest>
+        <rdf:Description>
+          <rdf:first>
+            <swrl:IndividualPropertyAtom>
+              <swrl:propertyPredicate rdf:resource="#matchesGenre"/>
+              <swrl:argument1 rdf:resource="urn:swrl#p"/>
+              <swrl:argument2 rdf:resource="urn:swrl#g"/>
+            </swrl:IndividualPropertyAtom>
+          </rdf:first>
+          <rdf:rest>
+            <rdf:Description>
+              <rdf:first>
+                <swrl:IndividualPropertyAtom>
+                  <swrl:propertyPredicate rdf:resource="#notOwned"/>
+                  <swrl:argument1 rdf:resource="urn:swrl#p"/>
+                  <swrl:argument2 rdf:resource="urn:swrl#g"/>
+                </swrl:IndividualPropertyAtom>
+              </rdf:first>
+              <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+          </rdf:rest>
+        </rdf:Description>
+      </rdf:rest>
+    </rdf:Description>
+  </swrl:body>
+  <swrl:head>
+    <rdf:Description>
+      <rdf:first>
+        <swrl:IndividualPropertyAtom>
+          <swrl:propertyPredicate rdf:resource="#recommendedGame"/>
+          <swrl:argument1 rdf:resource="urn:swrl#p"/>
+          <swrl:argument2 rdf:resource="urn:swrl#g"/>
+        </swrl:IndividualPropertyAtom>
+      </rdf:first>
+      <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    </rdf:Description>
+  </swrl:head>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">eligibleFor(?p, ?g), matchesGenre(?p, ?g), notOwned(?p, ?g) -&gt; recommendedGame(?p, ?g)</rdfs:comment>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#not_owned_anna_rule">
+  <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+  <swrl:body>
+    <rdf:Description>
+      <rdf:first>
+        <swrl:ClassAtom>
+          <swrl:classPredicate rdf:resource="#NotOwnedByAnnaGame"/>
+          <swrl:argument1 rdf:resource="urn:swrl#g"/>
+        </swrl:ClassAtom>
+      </rdf:first>
+      <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    </rdf:Description>
+  </swrl:body>
+  <swrl:head>
+    <rdf:Description>
+      <rdf:first>
+        <swrl:IndividualPropertyAtom>
+          <swrl:propertyPredicate rdf:resource="#notOwned"/>
+          <swrl:argument1 rdf:resource="#anna"/>
+          <swrl:argument2 rdf:resource="urn:swrl#g"/>
+        </swrl:IndividualPropertyAtom>
+      </rdf:first>
+      <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    </rdf:Description>
+  </swrl:head>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NotOwnedByAnnaGame(?g) -&gt; notOwned(anna, ?g)</rdfs:comment>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#not_owned_boris_rule">
+  <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+  <swrl:body>
+    <rdf:Description>
+      <rdf:first>
+        <swrl:ClassAtom>
+          <swrl:classPredicate rdf:resource="#NotOwnedByBorisGame"/>
+          <swrl:argument1 rdf:resource="urn:swrl#g"/>
+        </swrl:ClassAtom>
+      </rdf:first>
+      <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    </rdf:Description>
+  </swrl:body>
+  <swrl:head>
+    <rdf:Description>
+      <rdf:first>
+        <swrl:IndividualPropertyAtom>
+          <swrl:propertyPredicate rdf:resource="#notOwned"/>
+          <swrl:argument1 rdf:resource="#boris"/>
+          <swrl:argument2 rdf:resource="urn:swrl#g"/>
+        </swrl:IndividualPropertyAtom>
+      </rdf:first>
+      <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    </rdf:Description>
+  </swrl:head>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NotOwnedByBorisGame(?g) -&gt; notOwned(boris, ?g)</rdfs:comment>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#not_owned_vera_rule">
+  <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+  <swrl:body>
+    <rdf:Description>
+      <rdf:first>
+        <swrl:ClassAtom>
+          <swrl:classPredicate rdf:resource="#NotOwnedByVeraGame"/>
+          <swrl:argument1 rdf:resource="urn:swrl#g"/>
+        </swrl:ClassAtom>
+      </rdf:first>
+      <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    </rdf:Description>
+  </swrl:body>
+  <swrl:head>
+    <rdf:Description>
+      <rdf:first>
+        <swrl:IndividualPropertyAtom>
+          <swrl:propertyPredicate rdf:resource="#notOwned"/>
+          <swrl:argument1 rdf:resource="#vera"/>
+          <swrl:argument2 rdf:resource="urn:swrl#g"/>
+        </swrl:IndividualPropertyAtom>
+      </rdf:first>
+      <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    </rdf:Description>
+  </swrl:head>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NotOwnedByVeraGame(?g) -&gt; notOwned(vera, ?g)</rdfs:comment>
+</owl:NamedIndividual>
+
+<swrl:Variable rdf:about="urn:swrl#p"/>
+
+<swrl:Variable rdf:about="urn:swrl#g"/>
+
+<swrl:Variable rdf:about="urn:swrl#a"/>
+
+<swrl:Variable rdf:about="urn:swrl#m"/>
+
+<owl:AllDifferent>
+  <owl:distinctMembers rdf:parseType="Collection">
+    <rdf:Description rdf:about="#rune_quest"/>
+    <rdf:Description rdf:about="#shadow_realm"/>
+    <rdf:Description rdf:about="#star_fleet"/>
+    <rdf:Description rdf:about="#empire_builder"/>
+    <rdf:Description rdf:about="#logic_garden"/>
+    <rdf:Description rdf:about="#anna"/>
+    <rdf:Description rdf:about="#boris"/>
+    <rdf:Description rdf:about="#vera"/>
+    <rdf:Description rdf:about="#rpg"/>
+    <rdf:Description rdf:about="#strategy"/>
+    <rdf:Description rdf:about="#puzzle"/>
+  </owl:distinctMembers>
+</owl:AllDifferent>
+
+<owl:AllDisjointClasses>
+  <owl:members rdf:parseType="Collection">
+    <rdf:Description rdf:about="#RPGGame"/>
+    <rdf:Description rdf:about="#StrategyGame"/>
+    <rdf:Description rdf:about="#PuzzleGame"/>
+  </owl:members>
+</owl:AllDisjointClasses>
+
+<owl:AllDisjointClasses>
+  <owl:members rdf:parseType="Collection">
+    <rdf:Description rdf:about="#Game"/>
+    <rdf:Description rdf:about="#Player"/>
+    <rdf:Description rdf:about="#Genre"/>
+  </owl:members>
+</owl:AllDisjointClasses>
+
+
+</rdf:RDF>

@@ -1,6 +1,0 @@
-perf version 7.0.14
-4
-SOURCE         TARGET FSTYPE
-/dev/nvme0n1p8 /      ext4
-none
-0

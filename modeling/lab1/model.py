@@ -5,7 +5,6 @@ import numpy as np
 from openpyxl import load_workbook
 
 SIZES = (10, 20, 50, 100, 200, 300)
-# Coefficients from the supplied course notes (including 1.643 for p=0.90).
 CONFIDENCE = {0.90: 1.643, 0.95: 1.960, 0.99: 2.576}
 
 

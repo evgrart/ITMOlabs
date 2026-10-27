@@ -1,129 +1,131 @@
 :- encoding(utf8).
 :- module(knowledge_base, [
-    game/1, rpg/1, strategy/1, puzzle/1, indie/1, cooperative/1,
-    singleplayer/1, player/1, genre/1, minimum_age/2, age/2,
-    likes/2, owns/2, friend_of/2, adult/1, eligible/2,
-    matches_genre/2, recommended/2, social_game/1, friends/2,
-    can_play_together/3
+    faction/1, character/1, psyker/1, commander/1,
+    imperial_faction/1, chaos_faction/1, xenos_faction/1,
+    belongs_to/2, threat_rating/2, hostile_faction/2,
+    imperial_character/1, chaos_character/1, xenos_character/1,
+    dangerous/1, non_psyker/1, enemies/2, allies/2
 ]).
 
-% ЛР1. Учебный (вымышленный) каталог видеоигр и профили игроков.
-% Факты: 25 с одним аргументом и 15 с двумя. Правила: 7.
-% Признаки cooperative и singleplayer совместимы: игра может иметь оба режима.
+% ЛР1. Warhammer 40,000: персонажи, фракции и отношения между ними.
+% База: 25 одноаргументных фактов, 15 двухаргументных, 7 правил.
+% Это срез вселенной для изучения логического вывода, не правила настолки.
+% threat_rating — условный учебный рейтинг 0..10, не официальный параметр.
+% commander — выбранные военачальники модели, не полный список лидеров лора.
+% hostile_faction — три заданных конфликта, не вся дипломатия вселенной.
 
-% === Факты с одним аргументом (25) ===
-% game(Game): игра входит в каталог.
-game(rune_quest).
-game(shadow_realm).
-game(star_fleet).
-game(empire_builder).
-game(logic_garden).
+% === Одноаргументные факты (25) ===
+% faction(Faction): фракция, представленная в учебной базе (6).
+faction(ultramarines).
+faction(blood_angels).
+faction(black_legion).
+faction(thousand_sons).
+faction(aeldari).
+faction(necrons).
 
-% Жанровые признаки игр; в учебном каталоге жанры не пересекаются.
-rpg(rune_quest).
-rpg(shadow_realm).
-strategy(star_fleet).
-strategy(empire_builder).
-puzzle(logic_garden).
+% character(Character): персонаж (6).
+character(roboute_guilliman).
+character(mephiston).
+character(abaddon).
+character(ahriman).
+character(eldrad_ulthran).
+character(imotekh).
 
-% indie(Game): независимая разработка; режимы игры — отдельные признаки.
-indie(rune_quest).
-indie(star_fleet).
-indie(logic_garden).
-cooperative(rune_quest).
-cooperative(star_fleet).
-cooperative(empire_builder).
-singleplayer(shadow_realm).
-singleplayer(empire_builder).
-singleplayer(logic_garden).
+% psyker(Character): известные псайкеры (3).
+% Для этих шести персонажей набор считается полным; см. non_psyker/1.
+psyker(mephiston).
+psyker(ahriman).
+psyker(eldrad_ulthran).
 
-% player(Player): зарегистрированный игрок; genre(Genre): допустимый жанр.
-player(anna).
-player(boris).
-player(vera).
-genre(rpg).
-genre(strategy).
-genre(puzzle).
+% commander(Character): выбранные военачальники (4).
+% Psyker и commander совместимы: Ариман имеет оба признака.
+commander(roboute_guilliman).
+commander(abaddon).
+commander(ahriman).
+commander(imotekh).
 
-% === Атрибуты и отношения с двумя аргументами (15) ===
-% minimum_age(Game, Age): учебное возрастное ограничение, целое число >= 0.
-minimum_age(rune_quest, 12).
-minimum_age(shadow_realm, 18).
-minimum_age(star_fleet, 6).
-minimum_age(empire_builder, 12).
-minimum_age(logic_garden, 0).
+% Категории фракций (2 + 2 + 2). Xenos — категория, не общий союз.
+imperial_faction(ultramarines).
+imperial_faction(blood_angels).
+chaos_faction(black_legion).
+chaos_faction(thousand_sons).
+xenos_faction(aeldari).
+xenos_faction(necrons).
 
-% age(Player, Age): возраст игрока в полных годах.
-age(anna, 20).
-age(boris, 12).
-age(vera, 6).
+% === Двухаргументные факты (15) ===
+% belongs_to(Character, Faction): принадлежность/основная связь с фракцией (6).
+belongs_to(roboute_guilliman, ultramarines).
+belongs_to(mephiston, blood_angels).
+belongs_to(abaddon, black_legion).
+belongs_to(ahriman, thousand_sons).
+belongs_to(eldrad_ulthran, aeldari).
+belongs_to(imotekh, necrons).
 
-% likes(Player, Genre): жанровое предпочтение игрока.
-likes(anna, rpg).
-likes(boris, strategy).
-likes(vera, puzzle).
+% threat_rating(Character, Rating): УЧЕБНАЯ оценка угрозы, целое 0..10 (6).
+% Числа выбраны для проверки сравнения и границы >= 8, а не баланса игры.
+threat_rating(roboute_guilliman, 10).
+threat_rating(mephiston, 7).
+threat_rating(abaddon, 9).
+threat_rating(ahriman, 8).
+threat_rating(eldrad_ulthran, 9).
+threat_rating(imotekh, 8).
 
-% owns(Player, Game): полная библиотека каждого из трёх учебных профилей.
-% Отсутствие owns для известной пары здесь означает, что игра не куплена.
-owns(anna, rune_quest).
-owns(boris, empire_builder).
-
-% friend_of(Player, Other): дружба записана в одном направлении;
-% правило friends/2 делает отношение симметричным, исключая дружбу с собой.
-friend_of(anna, boris).
-friend_of(boris, vera).
+% hostile_faction(Faction, Other): выбранные конфликты (3).
+% Записаны в одном направлении; enemies/2 проверяет оба направления.
+hostile_faction(ultramarines, black_legion).
+hostile_faction(blood_angels, thousand_sons).
+hostile_faction(aeldari, necrons).
 
 % === Правила (7) ===
-% 1. adult(Player): совершеннолетие по возрасту, а не отдельный факт.
-adult(Player) :-
-    player(Player), age(Player, Age), Age >= 18.
+% 1. Персонаж Империума: композиция принадлежности и категории фракции.
+imperial_character(Character) :-
+    character(Character), belongs_to(Character, Faction), imperial_faction(Faction).
 
-% 2. eligible(Player, Game): игрок проходит возрастное ограничение.
-eligible(Player, Game) :-
-    player(Player), game(Game),
-    age(Player, Age), minimum_age(Game, Minimum), Age >= Minimum.
+% 2. Персонаж Хаоса.
+chaos_character(Character) :-
+    character(Character), belongs_to(Character, Faction), chaos_faction(Faction).
 
-% 3. matches_genre(Player, Game): конъюнкция и дизъюнкция связывают
-% предпочтение-жанр с одноаргументными жанровыми признаками игр.
-matches_genre(Player, Game) :-
-    player(Player), game(Game), likes(Player, Genre),
-    ( (Genre = rpg, rpg(Game))
-    ; (Genre = strategy, strategy(Game))
-    ; (Genre = puzzle, puzzle(Game))
+% 3. Персонаж ксеносской фракции. Не означает союз со всеми ксеносами.
+xenos_character(Character) :-
+    character(Character), belongs_to(Character, Faction), xenos_faction(Faction).
+
+% 4. Учебная классификация опасных персонажей: рейтинг >= 8 И
+% (псайкер ИЛИ военачальник). У Аримана два доказательства; setof их удаляет.
+dangerous(Character) :-
+    character(Character), threat_rating(Character, Rating), Rating >= 8,
+    (psyker(Character); commander(Character)).
+
+% 5. Известный персонаж, не являющийся псайкером в данном полном срезе.
+% Сначала character/1 связывает переменную, затем выполняется отрицание.
+non_psyker(Character) :-
+    character(Character), \+ psyker(Character).
+
+% 6. Враги: персонажи разных сторон одного из заданных конфликтов.
+% Симметричность обеспечена дизъюнкцией направлений. Самовражда исключена.
+enemies(First, Second) :-
+    character(First), character(Second), dif(First, Second),
+    belongs_to(First, Faction), belongs_to(Second, OtherFaction),
+    (hostile_faction(Faction, OtherFaction); hostile_faction(OtherFaction, Faction)).
+
+% 7. Союзники в УЧЕБНОМ сценарии: два разных персонажа Империума
+% либо два разных персонажа Хаоса. Это допущение, не правило состава армии.
+% Общая метка xenos не создаёт союз. Отношение симметрично, не рефлексивно.
+allies(First, Second) :-
+    character(First), character(Second), dif(First, Second),
+    ( (imperial_character(First), imperial_character(Second))
+    ; (chaos_character(First), chaos_character(Second))
     ).
 
-% 4. recommended(Player, Game): композиция правил + отрицание как неудача.
-% К моменту \+ owns/2 обе переменные связаны предыдущими целями.
-recommended(Player, Game) :-
-    eligible(Player, Game), matches_genre(Player, Game),
-    \+ owns(Player, Game).
-
-% 5. social_game(Game): игра подходит для социального/стратегического досуга.
-% Если оба признака истинны, возможны повторные решения; setof/3 их удаляет.
-social_game(Game) :-
-    game(Game), (cooperative(Game); strategy(Game)).
-
-% 6. friends(Player, Other): симметричная дружба различных игроков.
-friends(Player, Other) :-
-    player(Player), player(Other), dif(Player, Other),
-    (friend_of(Player, Other); friend_of(Other, Player)).
-
-% 7. can_play_together(P, Q, Game): друзья могут играть совместно,
-% если обоим разрешена кооперативная игра. Владение здесь не требуется:
-% правило проверяет возраст и режим, а не лицензию на запуск.
-can_play_together(Player, Other, Game) :-
-    friends(Player, Other), cooperative(Game),
-    eligible(Player, Game), eligible(Other, Game).
-
-% === Тест-запросы возрастающей сложности ===
-% ?- game(rune_quest).                         % true.
-% ?- game(unknown_game).                       % false.
-% ?- setof(G, rpg(G), Games).                  % [rune_quest,shadow_realm]
-% ?- setof(G, (indie(G), cooperative(G)), L).   % [rune_quest,star_fleet]
-% ?- setof(G, (rpg(G); puzzle(G)), L).         % [logic_garden,rune_quest,shadow_realm]
-% ?- setof(G, (game(G), \+ cooperative(G)), L).% [logic_garden,shadow_realm]
-% ?- setof(P, adult(P), L).                    % [anna]
-% ?- setof(G, eligible(vera, G), L).           % [logic_garden,star_fleet]
-% ?- setof(P-G, recommended(P, G), L).        % [anna-shadow_realm,boris-star_fleet,vera-logic_garden]
-% ?- setof(G, can_play_together(anna, boris, G), L).
-%                                             % [empire_builder,rune_quest,star_fleet]
+% === Примеры запросов (вывод: swipl -q -s queries.pl -g main -t halt) ===
+% ?- character(ahriman).                      % true.
+% ?- character(unknown_character).            % false.
+% ?- setof(C, psyker(C), L).                  % [ahriman,eldrad_ulthran,mephiston]
+% ?- setof(C, (psyker(C), commander(C)), L).   % [ahriman]
+% ?- setof(C, (psyker(C); commander(C)), L).   % Все 6 персонажей без повторов.
+% ?- setof(C, (character(C), \+ psyker(C)), L).
+%                                             % [abaddon,imotekh,roboute_guilliman]
+% ?- setof(C, imperial_character(C), L).       % [mephiston,roboute_guilliman]
+% ?- setof(C, dangerous(C), L).
+%                                             % [abaddon,ahriman,eldrad_ulthran,imotekh,roboute_guilliman]
+% ?- setof(C, enemies(abaddon, C), L).        % [roboute_guilliman]
+% ?- setof(C, allies(ahriman, C), L).         % [abaddon]

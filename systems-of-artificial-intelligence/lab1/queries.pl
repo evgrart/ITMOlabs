@@ -1,8 +1,6 @@
 :- encoding(utf8).
 :- use_module(knowledge_base).
 
-% Вспомогательный файл демонстрации; не входит в счётчик правил БЗ.
-% Вывод сохраняет реальные решения SWI-Prolog, а не заранее записанные ответы.
 show_boolean(Text, Goal) :-
     format('?- ~s~n', [Text]),
     (call(Goal) -> writeln('true.'); writeln('false.')), nl.
@@ -14,19 +12,17 @@ show_set(Text, Template, Goal) :-
 
 main :-
     current_prolog_flag(version_data, Version),
-    format('Interpreter: ~q~n~n', [Version]),
-    show_boolean("game(rune_quest).", game(rune_quest)),
-    show_boolean("game(unknown_game).", game(unknown_game)),
-    show_set("setof(G, rpg(G), Games).", G, rpg(G)),
-    show_set("setof(G, (indie(G), cooperative(G)), Games).",
-             G, (indie(G), cooperative(G))),
-    show_set("setof(G, (rpg(G); puzzle(G)), Games).",
-             G, (rpg(G); puzzle(G))),
-    show_set("setof(G, (game(G), \\+ cooperative(G)), Games).",
-             G, (game(G), \+ cooperative(G))),
-    show_set("setof(P, adult(P), Players).", P, adult(P)),
-    show_set("setof(G, eligible(vera, G), Games).", G, eligible(vera, G)),
-    show_set("setof(P-G, recommended(P, G), Pairs).",
-             P-G, recommended(P, G)),
-    show_set("setof(G, can_play_together(anna, boris, G), Games).",
-             G, can_play_together(anna, boris, G)).
+    format('Warhammer 40,000 | Interpreter: ~q~n~n', [Version]),
+    show_boolean("character(ahriman).", character(ahriman)),
+    show_boolean("character(unknown_character).", character(unknown_character)),
+    show_set("setof(C, psyker(C), Characters).", C, psyker(C)),
+    show_set("setof(C, (psyker(C), commander(C)), Characters).",
+             C, (psyker(C), commander(C))),
+    show_set("setof(C, (psyker(C); commander(C)), Characters).",
+             C, (psyker(C); commander(C))),
+    show_set("setof(C, (character(C), \\+ psyker(C)), Characters).",
+             C, (character(C), \+ psyker(C))),
+    show_set("setof(C, imperial_character(C), Characters).", C, imperial_character(C)),
+    show_set("setof(C, dangerous(C), Characters).", C, dangerous(C)),
+    show_set("setof(C, enemies(abaddon, C), Characters).", C, enemies(abaddon, C)),
+    show_set("setof(C, allies(ahriman, C), Characters).", C, allies(ahriman, C)).

@@ -4,30 +4,36 @@
 
 :- begin_tests(knowledge_base).
 
-% Проверка результата каждого правила и важных граничных случаев.
-test(adults, set(P == [anna])) :- adult(P).
-test(age_boundary_allowed) :- eligible(boris, rune_quest).
-test(too_young, [fail]) :- eligible(boris, shadow_realm).
-test(zero_age_game) :- eligible(vera, logic_garden).
-test(youngest_games, set(G == [logic_garden, star_fleet])) :- eligible(vera, G).
-test(unknown_player, [fail]) :- eligible(nobody, logic_garden).
-test(unknown_game, [fail]) :- eligible(anna, unknown_game).
-test(genre_matches, set(G == [empire_builder, star_fleet])) :- matches_genre(boris, G).
-test(recommendations, set(P-G == [anna-shadow_realm, boris-star_fleet, vera-logic_garden])) :- recommended(P, G).
-test(owned_not_recommended, [fail]) :- recommended(anna, rune_quest).
-test(wrong_genre, [fail]) :- recommended(anna, star_fleet).
-test(age_blocks_recommendation, [fail]) :- recommended(boris, shadow_realm).
-test(social_union, set(G == [empire_builder, rune_quest, star_fleet])) :- social_game(G).
-test(reverse_friend) :- friends(boris, anna).
-test(no_self_friend, [fail]) :- friends(anna, anna).
-test(friendship_not_transitive, [fail]) :- friends(anna, vera).
-test(together, set(G == [empire_builder, rune_quest, star_fleet])) :- can_play_together(anna, boris, G).
-test(together_age_boundary, set(G == [star_fleet])) :- can_play_together(boris, vera, G).
-test(together_symmetry, set(G == [empire_builder, rune_quest, star_fleet])) :- can_play_together(boris, anna, G).
-test(strangers_cannot_play, [fail]) :- can_play_together(anna, vera, star_fleet).
-test(singleplayer_blocked, [fail]) :- can_play_together(anna, boris, logic_garden).
+test(imperial, set(C == [mephiston, roboute_guilliman])) :- imperial_character(C).
+test(chaos, set(C == [abaddon, ahriman])) :- chaos_character(C).
+test(xenos, set(C == [eldrad_ulthran, imotekh])) :- xenos_character(C).
+test(unknown_character, [fail]) :- imperial_character(unknown_character).
+test(faction_not_character, [fail]) :- imperial_character(ultramarines).
+test(intersection, set(C == [ahriman])) :- psyker(C), commander(C).
+test(union, set(C == [abaddon, ahriman, eldrad_ulthran, imotekh, mephiston, roboute_guilliman])) :- (psyker(C); commander(C)).
+test(dangerous, set(C == [abaddon, ahriman, eldrad_ulthran, imotekh, roboute_guilliman])) :- dangerous(C).
+test(threshold_inclusive) :- dangerous(imotekh).
+test(low_rating, [fail]) :- dangerous(mephiston).
+test(unknown_not_dangerous, [fail]) :- dangerous(unknown_character).
+test(non_psykers, set(C == [abaddon, imotekh, roboute_guilliman])) :- non_psyker(C).
+test(psyker_not_non_psyker, [fail]) :- non_psyker(ahriman).
+test(unknown_not_non_psyker, [fail]) :- non_psyker(unknown_character).
+test(enemy_forward, [nondet]) :- enemies(roboute_guilliman, abaddon).
+test(enemy_reverse) :- enemies(abaddon, roboute_guilliman).
+test(enemy_xenos) :- enemies(imotekh, eldrad_ulthran).
+test(enemy_set, set(C == [ahriman])) :- enemies(mephiston, C).
+test(no_self_enemy, [fail]) :- enemies(ahriman, ahriman).
+test(no_invented_conflict, [fail]) :- enemies(abaddon, mephiston).
+test(imperial_alliance, [nondet]) :- allies(roboute_guilliman, mephiston).
+test(chaos_alliance) :- allies(abaddon, ahriman).
+test(alliance_reverse) :- allies(ahriman, abaddon).
+test(no_self_ally, [fail]) :- allies(ahriman, ahriman).
+test(xenos_not_one_alliance, [fail]) :- allies(eldrad_ulthran, imotekh).
+test(opposing_sides, [fail]) :- allies(abaddon, roboute_guilliman).
+test(alliance_pairs, set(A-B == [abaddon-ahriman, ahriman-abaddon, mephiston-roboute_guilliman, roboute_guilliman-mephiston])) :- allies(A, B).
+test(no_ally_enemy_overlap, [fail]) :- allies(A, B), enemies(A, B).
 
-% Проверяем объём исходной БЗ через её клаузы, без встроенных предикатов.
+% Интроспекция экспортированной БЗ: 25 унарных, 15 бинарных фактов и 7 правил.
 test(required_size) :-
     findall(A, (current_predicate(knowledge_base:Name/A),
                 functor(Head, Name, A),

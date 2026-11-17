@@ -1,0 +1,22 @@
+\babel@toc {russian}{}\relax 
+\contentsline {section}{\numberline {1.}Задание и исходные данные}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1.}Предположения и правила приёма заявок}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2.}Метод расчёта}{3}{subsection.1.2}%
+\contentsline {section}{\numberline {2.}Марковская модель системы 1}{4}{section.2}%
+\contentsline {subsection}{\numberline {2.1.}Кодирование состояний и размеченный граф}{4}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2.}Матрица интенсивностей}{5}{subsection.2.2}%
+\contentsline {section}{\numberline {3.}Марковская модель системы 2}{6}{section.3}%
+\contentsline {subsection}{\numberline {3.1.}Фазовое представление гиперэкспоненциального обслуживания}{6}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2.}Состояния и правила переходов}{6}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3.}Матрица интенсивностей}{8}{subsection.3.3}%
+\contentsline {section}{\numberline {4.}Стационарные вероятности}{10}{section.4}%
+\contentsline {section}{\numberline {5.}Формулы расчёта характеристик}{10}{section.5}%
+\contentsline {subsection}{\numberline {5.1.}Нагрузка, загрузка, очереди, число заявок и потери}{11}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2.}Времена ожидания и пребывания без формул Литтла}{11}{subsection.5.2}%
+\contentsline {section}{\numberline {6.}Результаты расчёта характеристик}{13}{section.6}%
+\contentsline {section}{\numberline {7.}Проверка результатов}{14}{section.7}%
+\contentsline {section}{\numberline {8.}Сравнение систем и выбор организации}{15}{section.8}%
+\contentsline {subsection}{\numberline {8.1.}Зависимости от интенсивности входного потока}{15}{subsection.8.1}%
+\contentsline {section}{\numberline {9.}Вывод}{16}{section.9}%
+\contentsline {section}{\numberline {A}Воспроизведение расчёта и перенос модели в MARK}{17}{appendix.A}%
+\contentsline {section}{\numberline {B}Основной алгоритм фазовой ветви}{17}{appendix.B}%

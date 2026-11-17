@@ -1,0 +1,187 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex.fmt)
+ restricted \write18 enabled.
+entering extended mode
+(report_variant11_12_09.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2025-12-24>
+(preambula_labs.tex
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/base\size12.clo))
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/cmap\cmap.sty)
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.sty
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty)
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.sty
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty))
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg))
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/base\inputenc.sty)
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/cyrillic\t2aenc.def
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/base\t2aenc.dfu))
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/cyrillic\t2acmr.fd)<<t2
+a.cmap>>)
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/generic/babel\babel.sty
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/generic/babel\txtbabel.def)
+*************************************
+* Local config file bblopts.cfg used
+*
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/arabi\bblopts.cfg)
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/generic/babel/locale/en\babel
+-english.tex)
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/generic/babel/locale/ru\babel
+-russian.tex)
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/babel-english\english.l
+df)
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/babel-russian\russianb.
+ldf))
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath.sty
+For additional information on amsmath, use the `?' option.
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amstext.sty
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsgen.sty))
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsbsy.sty)
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsopn.sty))
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amssymb.sty
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amsfonts.sty))
+ (C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.sty
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.sty
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty)
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\graphics.c
+fg)
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdftex.def
+))) (C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/float\float.sty)
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/tools\longtable.sty)
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/tools\array.sty)
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/xcolor\xcolor.sty
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\color.cfg)
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/graphics\mathcolor.ltx)
+) (C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.sty
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstpatch.sty)
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty)
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.cfg))
+==> First Aid for listings.sty no longer applied!
+    Expected:
+        2024/09/23 1.10c (Carsten Heinz)
+    but found:
+        2025/11/14 1.11b (Carsten Heinz)
+    so I'm assuming it got fixed.
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/titlesec\titlesec.sty)
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.sty
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/kvsetkeys\kvsetkeys.sty
+)
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/generic/kvdefinekeys\kvdefine
+keys.sty)
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/generic/pdfescape\pdfescape.s
+ty
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/generic/ltxcmds\ltxcmds.sty)
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/generic/pdftexcmds\pdftexcmds
+.sty
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/generic/infwarerr\infwarerr.s
+ty)))
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/hycolor\hycolor.sty)
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/refcount\refcount.sty)
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/generic/gettitlestring\gettit
+lestring.sty
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/kvoptions\kvoptions.sty
+)))
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbox.sty)
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/generic/stringenc\stringenc.s
+ty) (C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def
+) (C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/generic/intcalc\intcalc.sty
+) (C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\puenc.def)
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty)
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/generic/bitset\bitset.sty
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/generic/bigintcalc\bigintcalc
+.sty)))
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hpdftex.def
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/rerunfilecheck\rerunfil
+echeck.sty
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/generic/uniquecounter\uniquec
+ounter.sty)))
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty)
+(results/numbers.tex))
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdf
+tex.def) (D:\modeling\lab2\build\report_variant11_12_09.aux)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
+ii
+[Loading MPS to PDF converter (version 2006.09.02).]
+)
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-b
+ase.sty
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.c
+fg)) (D:\modeling\lab2\build\report_variant11_12_09.out)
+(D:\modeling\lab2\build\report_variant11_12_09.out) [1{C:/Users/minec/AppData/L
+ocal/MiKTeX/fonts/map/pdftex/pdftex.map}]
+(D:\modeling\lab2\build\report_variant11_12_09.toc<<ot1.cmap>><<oml.cmap>><<oms
+.cmap>><<omx.cmap>>
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd)
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd))
+[1]
+Underfull \hbox (badness 10000) in paragraph at lines 60--61
+[]|\T2A/cmr/m/n/12 ���������������������,
+[2] [3 <./results/06_structures.pdf>] [4 <./results/01_graph_system1.pdf>]
+(results/matrix1.tex) [5] [6] [7 <./results/03_hyper_factor.pdf>] [8 <./results
+/02_graph_system2.pdf>] (results/matrix2.tex) [9] (results/probabilities.tex)
+[10] [11] [12] (results/characteristics.tex
+Underfull \hbox (badness 10000) in paragraph at lines 34--34
+[]|\T2A/cmr/m/n/10 ������������������
+) [13]
+Underfull \hbox (badness 1642) in paragraph at lines 432--436
+[]\T2A/cmr/m/n/12 ���������� ���-���-�� ��-���-��-�� ����-��-��-�� ��-��-��-�� 
+$[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 t\OT1/cmr/m/n/12 ) = [][] [](\OML/cmm/m/it
+/12 Gt\OT1/cmr/m/n/12 )$
+
+Underfull \hbox (badness 3108) in paragraph at lines 432--436
+\T2A/cmr/m/n/12 �� ��-���-�� ��-���-�-���. ���-���-�-��� �� ���-���-��-�� ���-�
+�-�-���-��-�� ���-���-��-��-���
+[14 <./results/05_convergence.pdf>] [15] [16 <./results/04_comparison.pdf>]
+(C:\Users\minec\AppData\Local\Programs\MiKTeX\tex/latex/cyrillic\t2acmtt.fd)
+(analyze.py [17]) [18] (D:\modeling\lab2\build\report_variant11_12_09.aux)
+
+Package rerunfilecheck Warning: File `report_variant11_12_09.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+ )
+(see the transcript file for additional information)
+pdfTeX warning (dest): name{appendix.C} has been referenced but does not exist,
+ replaced by a fixed one
+
+ <C:\Users\minec\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm0600
+.pk> <C:\Users\minec\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tc
+rm1200.pk> <C:\Users\minec\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi60
+0\latt1000.pk> <C:\Users\minec\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/d
+pi600\latt1200.pk> <C:\Users\minec\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t
+2a/dpi600\larm1000.pk> <C:\Users\minec\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/
+lh-t2a/dpi600\larm1095.pk> <C:\Users\minec\AppData\Local\MiKTeX\fonts/pk/ljfour
+/lh/lh-t2a/dpi600\labx1440.pk> <C:\Users\minec\AppData\Local\MiKTeX\fonts/pk/lj
+four/lh/lh-t2a/dpi600\larm1200.pk> <C:\Users\minec\AppData\Local\MiKTeX\fonts/p
+k/ljfour/lh/lh-t2a/dpi600\labx1200.pk> <C:\Users\minec\AppData\Local\MiKTeX\fon
+ts/pk/ljfour/lh/lh-t2a/dpi600\labx1728.pk> <C:\Users\minec\AppData\Local\MiKTeX
+\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1728.pk> <C:\Users\minec\AppData\Local\Mi
+KTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm2074.pk><C:/Users/minec/AppData/Local
+/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/minec/AppD
+ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/m
+inec/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C
+:/Users/minec/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi
+5.pfb><C:/Users/minec/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
+/cm/cmmi6.pfb><C:/Users/minec/AppData/Local/Programs/MiKTeX/fonts/type1/public/
+amsfonts/cm/cmmi7.pfb><C:/Users/minec/AppData/Local/Programs/MiKTeX/fonts/type1
+/public/amsfonts/cm/cmmi8.pfb><C:/Users/minec/AppData/Local/Programs/MiKTeX/fon
+ts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Users/minec/AppData/Local/Programs/
+MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/minec/AppData/Local/P
+rograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/minec/AppData
+/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/minec/
+AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users
+/minec/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C
+:/Users/minec/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmss
+8.pfb><C:/Users/minec/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
+/cm/cmsy10.pfb><C:/Users/minec/AppData/Local/Programs/MiKTeX/fonts/type1/public
+/amsfonts/cm/cmsy8.pfb>
+Output written on D:\modeling\lab2\build\report_variant11_12_09.pdf (19 pages, 
+534373 bytes).
+Transcript written on D:\modeling\lab2\build\report_variant11_12_09.log.
+pdflatex: major issue: So far, you have not checked for MiKTeX updates.
